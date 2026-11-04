@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>TAP Grupo 7 · AA1</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: informe de revisión de tesina — columna de lectura centrada, índice lateral fijo en escritorio, sellos de severidad en el margen */
+:root {
+  --paper: #fbfbfa;
+  --sheet: #ffffff;
+  --ink: #1c2230;
+  --muted: #5b6475;
+  --rule: #dde1e8;
+  --accent: #1f3a68;
+  --accent-soft: #e8edf6;
+  --crit: #a3262b;   --crit-bg: #fbeceb;
+  --warn: #8a5a00;   --warn-bg: #fdf3df;
+  --sug: #1d6a55;    --sug-bg: #e6f3ee;
+  --ok: #1d6a55;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #12151c; --sheet: #191d26; --ink: #e6e9ef; --muted: #9aa3b4; --rule: #2c3240;
+  --accent: #9db7e6; --accent-soft: #1f2a40;
+  --crit: #f08c8f; --crit-bg: #3a1c1f; --warn: #e8bd6a; --warn-bg: #3a2e14; --sug: #7fcfb4; --sug-bg: #15312a; --ok: #7fcfb4;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #12151c; --sheet: #191d26; --ink: #e6e9ef; --muted: #9aa3b4; --rule: #2c3240;
+  --accent: #9db7e6; --accent-soft: #1f2a40;
+  --crit: #f08c8f; --crit-bg: #3a1c1f; --warn: #e8bd6a; --warn-bg: #3a2e14; --sug: #7fcfb4; --sug-bg: #15312a; --ok: #7fcfb4;
+  color-scheme: dark }
+
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15.5px; line-height: 1.6; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; } nav.toc { position: static !important; } }
+
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; font-size: 13.5px; }
+nav.toc .lbl, .eyebrow { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+nav.toc ol { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 2px; }
+nav.toc a { display: flex; justify-content: space-between; gap: 8px; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+nav.toc a:hover, nav.toc a:focus-visible { background: var(--accent-soft); outline: none; }
+nav.toc .n { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+main { min-width: 0; display: grid; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(28px, 4vw, 38px); font-weight: 700; }
+h2 { font-size: 24px; font-weight: 600; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+
+.demo { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn); padding: 10px 14px; border-radius: 6px; font-weight: 500; font-size: 14px; }
+
+header.cover { border-bottom: 2px solid var(--accent); padding-bottom: 24px; display: grid; gap: 14px; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 24px; margin-top: 6px; }
+.meta div { display: grid; gap: 2px; min-width: 0; }
+.meta dt { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.meta dd { margin: 0; font-weight: 500; }
+.members { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+
+.verdict { display: grid; gap: 14px; }
+.stamp { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 19px; font-weight: 600; color: var(--accent); }
+.stamp::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: currentColor; }
+.stamp.mayor { color: var(--crit); } .stamp.menor { color: var(--warn); } .stamp.apto { color: var(--ok); }
+.counts { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { font-size: 12.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+.pill.critico { background: var(--crit-bg); color: var(--crit); }
+.pill.importante { background: var(--warn-bg); color: var(--warn); }
+.pill.sugerencia { background: var(--sug-bg); color: var(--sug); }
+
+.priorities { list-style: none; counter-reset: p; padding: 0; margin: 0; display: grid; gap: 10px; }
+.priorities li { counter-increment: p; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
+.priorities li::before { content: counter(p); font-family: var(--display); font-weight: 700; color: var(--accent); font-size: 18px; line-height: 1.4; }
+
+section.block { display: grid; gap: 18px; scroll-margin-top: 24px; }
+section.block > .head { display: grid; gap: 4px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+.summary { color: var(--muted); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--paper); }
+td.code { font-family: var(--mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+.st { font-weight: 600; white-space: nowrap; }
+.st.completo { color: var(--ok); } .st.incompleto { color: var(--warn); } .st.ausente { color: var(--crit); }
+
+.obs { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.ob { background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; display: grid; gap: 10px; }
+.ob.done { opacity: .6; }
+.ob .top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ob .where { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.ob blockquote { margin: 0; padding: 8px 12px; border-left: 3px solid var(--rule); color: var(--muted); font-family: var(--display); font-style: italic; font-size: 14.5px; }
+.ob .fix { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; }
+.ob .fix b { color: var(--accent); font-size: 13px; text-transform: uppercase; letter-spacing: .06em; line-height: 1.8; }
+.ob label { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); cursor: pointer; justify-self: start; }
+.ob input { accent-color: var(--accent); width: 16px; height: 16px; }
+.grade { display: flex; align-items: baseline; gap: 8px; font-family: var(--display); color: var(--accent); }
+.grade .big { font-size: 56px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.grade .of { font-size: 22px; color: var(--muted); }
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lvl { font-size: 12.5px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.lvl.l4, .lvl.l3 { background: var(--sug-bg); color: var(--sug); }
+.lvl.l2 { background: var(--warn-bg); color: var(--warn); }
+.lvl.l1, .lvl.l0 { background: var(--crit-bg); color: var(--crit); }
+.ideas { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.strength { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.strength li::before { content: "✓  "; color: var(--ok); font-weight: 700; }
+
+.progress { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+footer { border-top: 1px solid var(--rule); padding-top: 16px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+a { color: var(--accent); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<script type="application/json" id="data">{"id": "grupo-quispe-quintanilla-sosa", "institucion": "CERTUS", "curso": "UD Proyecto Integrador", "evidencia": "AA1", "alcance": "capítulos 1, 2 y 3 (planteamiento del problema, propuesta de valor y modelo de negocio).", "proyecto": "Frútzuma: concentrados de frutas en sachets individuales", "grupo": "Grupo 7", "seccion": "No indicada", "fecha": "30/10/2026 (2.ª versión)", "docente": "Jeanpier Brandol Ancori Sanchez", "integrantes": ["Anyeli Quispe Mamani", "Shiomara Quintanilla Barrios", "Harold Sosa Vega"], "dictamen": "menor", "resumen": "La segunda versión corrige buena parte de lo observado: ahora hay índice, introducción, 1.1 y 1.2 separados, megatendencias de CEPLAN (2023) con las metas 3.4, 12.3 y 12.5 de los ODS (Tabla 2), un precio único (S/ 1,00, S/ 5,50 y S/ 10,50), tablas numeradas con nota, el BMC argumentado por pares de bloques, competidores con fortalezas, limitaciones y precios, e indicadores con fórmula. Lo que aún falta: el problema sigue sin evidencia cualitativa propia y el problema social no tiene cifras; el diferencial frente a Naturale, FIFU y Zuko sigue siendo una hipótesis y, por litro preparado, Frútzuma resulta más cara que Zuko; aparecen contradicciones nuevas (vida útil de «4 meses» frente a «pendiente de validación», versión «con azúcar añadida» frente a la meta 3.4); y al acortar el informe de 24 a 13 páginas se perdió contenido que sí estaba en la v1, como la columna de validación de la tabla 2.4, las funcionalidades de la ficha y el modelo de negocio de cada competidor. En lo formal, la carátula sigue sin carrera, sección ni grupo, y el índice tiene los números de página desfasados.", "fortalezas": ["Reorganizaron el capítulo 1 como se pidió: 1.1 y 1.2 separados, dos megatendencias de CEPLAN (2023) nombradas y aplicadas al negocio (p. 4) y la Tabla 2 con las metas 3.4, 12.3 y 12.5 de los ODS, cada una con una acción y un indicador propuestos.", "Usan cifras recientes de fuentes oficiales (INEI 2026, OMS 2026, OSIPTEL 2026) y las analizan con criterio: explican qué permite concluir cada dato y qué no, por ejemplo, que el 9,6 % de consumo de fruta «no son estimaciones de demanda de FRÚTZUMA» (p. 3).", "El capítulo 3 subió de nivel: el apartado 3.2.1 (p. 9) argumenta la coherencia del BMC por pares (segmento-canal, recursos-socios, actividades-costos, ingresos-margen), la Tabla 10 compara seis competidores con fortaleza, limitación y precio, el FODA cierra con cuatro estrategias y la Tabla 12 propone cinco indicadores con fórmula, meta y frecuencia.", "Corrigieron lo formal más visible: índice, introducción con propósito y estructura, título del proyecto en la carátula, precio único en todo el documento, tablas numeradas con título y nota, referencias con autor institucional y sin duplicados, y eliminaron la consigna de la plantilla que estaba en la p. 20 de la v1."], "prioridades": ["Conseguir evidencia cualitativa propia (entre 8 y 10 entrevistas breves a estudiantes y trabajadores de Arequipa) y usarla para completar la Tabla 1, el mapa de empatía y el problema del cliente, con frases textuales de los entrevistados.", "Demostrar el diferencial con una comparación por litro preparado frente a Naturale, FIFU, Frutex, D' Kampu y Zuko, y cerrar el 3.3 con la ventaja competitiva y la estrategia de diferenciación explícitas.", "Resolver las contradicciones nuevas: vida útil (p. 3 frente a p. 6), versión con azúcar añadida frente a la meta 3.4, uno o tres sabores de lanzamiento, y «sabor diferencial» (BMC) frente a «sabor tradicional» (FODA).", "Recuperar el contenido que se perdió al acortar el informe: la columna de validación de la Tabla 7, los campos de funcionalidades, sostenibilidad e integración con redes sociales de la ficha, y el modelo de negocio de cada competidor.", "Dar sustento al problema social con cifras y fuentes para sus causas y consecuencias, y corregir las columnas de la Tabla 1.", "Completar la carátula (carrera, sección y Grupo 7), actualizar el índice, hacer que cada referencia se cite en el texto y viceversa, y corregir las erratas."], "camino": [{"criterio": "Fuentes de información", "exige": "Fuentes secundarias actuales y confiables, con un análisis crítico que muestre qué aporta cada una al proyecto en relación con las megatendencias y los ODS.", "falta": "Ya tienen fuentes oficiales y las analizan con criterio. Les falta información del mercado de bebidas o refrescos y del consumo fuera del hogar (nada es de Arequipa), cifras que sostengan el problema social y las metas 12.3 y 12.5, y que la lista y las citas coincidan: Naturale, FIFU, Frutex y Tottus están en la lista pero no se citan, y D' Kampu se usa sin referencia."}, {"criterio": "Planteamiento del problema", "exige": "Pertinencia del problema sustentada con evidencia cualitativa y cuantitativa, con un vínculo detallado con las megatendencias, los ODS y las necesidades del cliente.", "falta": "No hay evidencia cualitativa: el propio informe dice que «no se presentan entrevistas» (p. 3). La Tabla 1 tiene la columna «Evidencia requerida» con afirmaciones sin fuente, y el problema social describe causas «posibles» y una sola consecuencia, sin datos."}, {"criterio": "Propuesta de valor", "exige": "Propuesta innovadora y diferenciada, con descripción, ficha técnica, soluciones, segmentos y casos de uso coherentes con el problema.", "falta": "Los elementos están, pero el diferencial (dosis personal, sabores mezclados, puntos de retiro) se presenta como hipótesis y no se compara por litro preparado con los competidores. A la ficha le faltan sostenibilidad e integración con redes sociales, perdió las funcionalidades que tenía la v1 y tiene contradicciones (vida útil, azúcar añadida, sabores)."}, {"criterio": "Modelo de negocio", "exige": "BMC y mapa de empatía que argumenten la coherencia entre los nueve bloques y la propuesta de valor.", "falta": "Están muy cerca. Falta un mapa de empatía basado en clientes reales; la ventaja competitiva y la estrategia de diferenciación explícitas después de la Tabla 10, con precios comparables; un ejemplo de cálculo en los indicadores; y alinear la propuesta de valor del BMC («sabor diferencial») con la estrategia FA («sabor tradicional»)."}], "viabilidad": {"resumen": "La v2 ya reconoce el registro sanitario y el costo del delivery, lo que es un avance. Los choques más fuertes siguen siendo el registro sanitario y el rotulado (ahora con azúcar añadida y acesulfame de potasio), un precio de S/ 1,00 por sachet líquido que puede no cubrir el costo unitario, y la competencia de Zuko, que cuesta menos por litro preparado. Se suma una fricción de uso: cada sachet necesita medio litro de agua segura y un recipiente.", "riesgos": [{"tema": "Regulación", "titulo": "Registro sanitario, HACCP y advertencias del rotulado", "choque": "Un concentrado envasado necesita registro sanitario de DIGESA, fabricación en un establecimiento con plan HACCP validado y un rotulado conforme a la Ley 30021 y su Manual de Advertencias Publicitarias. La versión «con azúcar añadida» podría llevar el octógono «Alto en azúcar», y la versión con acesulfame de potasio, la leyenda para edulcorantes. Ambas cosas chocan con el mensaje de la meta 3.4 y con la confianza que buscan dar en la etiqueta.", "ideas": ["Averiguar en DIGESA el costo y el plazo del registro sanitario para un concentrado de fruta, e incluirlos en el costeo de la AA2.", "Consultar con un tecnólogo de alimentos si los parámetros de azúcar se evalúan sobre el concentrado tal como se vende y simular el rotulado de cada versión antes de decidir la formulación.", "Buscar una planta o maquila de Arequipa que ya tenga habilitación sanitaria y validación HACCP, en lugar de producir por cuenta propia."]}, {"tema": "Costos", "titulo": "S/ 1,00 por sachet líquido puede no cubrir el costo unitario", "choque": "Con S/ 1,00 por sachet (S/ 0,88 en el kit de 12) hay que pagar la fruta, los conservantes, un envase multicapa sellado, el llenado (que suele exigir lotes mínimos), los análisis de laboratorio, el registro y, si se vende en cafeterías, el margen del intermediario. La propia nota de la Tabla 5 dice que el precio «no incluye […] margen comercial».", "ideas": ["Pedir al menos dos cotizaciones de maquila o envasado por unidad (incluido el lote mínimo) y armar un costo unitario antes de la AA2.", "Calcular el margen de contribución por canal (WhatsApp con retiro y cafetería con comisión) y comprobar si el indicador «> S/ 0,00» de la Tabla 12 se cumple.", "Evaluar si un sachet más concentrado o un precio mayor sigue siendo aceptable para el segmento."]}, {"tema": "Competencia", "titulo": "Zuko es más barato por litro, y Naturale y FIFU ya venden sachets", "choque": "Según la Tabla 10, Zuko cuesta S/ 1,20 por sobre y rinde un litro, mientras que Frútzuma costaría S/ 1,00 por medio litro, es decir, unos S/ 2,00 por litro. El consumidor de Arequipa compara precio en la tienda, y la dosis personal y el punto de retiro son atributos que las marcas instaladas pueden copiar.", "ideas": ["Elaborar una tabla de precio por litro preparado de cada competidor, con precios observados en tiendas de Arequipa.", "Hacer en la AA2 una prueba de sabor a ciegas del prototipo frente a Zuko y un concentrado de Naturale, y preguntar la disposición a pagar después de probar.", "Explorar un diferencial más difícil de imitar, como mezclas con frutas o ingredientes regionales o una venta institucional en cafeterías de institutos."]}, {"tema": "Adopción", "titulo": "Se necesita medio litro de agua segura y un recipiente", "choque": "La ficha indica preparar con «agua hervida o embotellada». Un estudiante o trabajador fuera de casa tiene que llevar su botella con agua o comprarla. Si la compra, el costo total supera al de una bebida lista y la practicidad, que es el centro de la propuesta, se pierde.", "ideas": ["Preguntar en la encuesta de la AA2 si el cliente lleva una botella con agua durante su jornada y dónde la rellena.", "Identificar institutos y oficinas de Arequipa con dispensadores de agua y empezar el piloto allí.", "Medir en la prueba de prototipo cuánto tarda la mezcla y si se puede hacer en una botella común sin derrames."]}, {"tema": "Operación", "titulo": "Vida útil declarada y puntos de retiro", "choque": "La ficha declara «4 meses» de vida útil sin estudio de estabilidad. El modelo depende de puntos de retiro y pedidos agrupados, y alguien tiene que administrarlos, cobrar y aceptar guardar el producto con un ticket de S/ 5,50 por kit.", "ideas": ["Encargar un estudio de vida útil acelerado o consultar a un laboratorio universitario de Arequipa antes de imprimir una fecha en la etiqueta.", "Conversar con dos o tres cafeterías o quioscos cercanos a institutos sobre si aceptarían ser punto de retiro y qué comisión pedirían.", "Definir un pedido mínimo para el delivery y medirlo con el indicador de «pedidos con retiro/agrupación»."]}]}, "estructura": [{"codigo": "—", "apartado": "Carátula con integrantes", "estado": "incompleto", "nota": "Ahora tiene el título del proyecto, pero faltan carrera, sección y número de grupo (Grupo 7)."}, {"codigo": "—", "apartado": "Índice", "estado": "incompleto", "nota": "Existe, pero los números de página están desfasados desde 1.3 y algunos títulos no coinciden con el cuerpo."}, {"codigo": "—", "apartado": "Introducción", "estado": "completo", "nota": ""}, {"codigo": "1.1", "apartado": "Problema del cliente (causas y consecuencias)", "estado": "incompleto", "nota": "Árbol de problema en la Tabla 1, con columnas mal llenadas y sin evidencia cualitativa."}, {"codigo": "1.2", "apartado": "Problema social (ODS y megatendencias)", "estado": "incompleto", "nota": "Megatendencias y metas de los ODS correctas; causas y consecuencias sin datos ni fuente."}, {"codigo": "2.1", "apartado": "Descripción de la propuesta de valor", "estado": "completo", "nota": "El diferencial está planteado como hipótesis."}, {"codigo": "2.2", "apartado": "Ficha técnica", "estado": "incompleto", "nota": "Faltan sostenibilidad, integración con redes sociales y funcionalidades; la vida útil se contradice."}, {"codigo": "2.3", "apartado": "Beneficios clave", "estado": "completo", "nota": "Quedó en una sola frase; la v1 los explicaba uno por uno."}, {"codigo": "2.4", "apartado": "Solución a problemas o necesidades", "estado": "incompleto", "nota": "La Tabla 7 perdió la columna de validación que anuncia su título."}, {"codigo": "2.5", "apartado": "Segmentos de cliente", "estado": "completo", "nota": "Numeración corregida (2.5.1 a 2.5.6)."}, {"codigo": "2.6", "apartado": "Casos de uso", "estado": "completo", "nota": "Seis casos, ahora resumidos en una línea cada uno."}, {"codigo": "3.1", "apartado": "Mapa de empatía", "estado": "completo", "nota": "En tabla y como hipótesis, sin respaldo de clientes."}, {"codigo": "3.2", "apartado": "Business Model Canvas (9 bloques)", "estado": "completo", "nota": "Tabla 9, Figura 1 y coherencia por pares en 3.2.1."}, {"codigo": "3.3", "apartado": "Competidores", "estado": "incompleto", "nota": "Precios no comparables; falta cerrar con la ventaja competitiva y la estrategia de diferenciación."}, {"codigo": "3.5", "apartado": "Indicadores de gestión", "estado": "completo", "nota": "Cinco indicadores con fórmula; falta un ejemplo de cálculo."}, {"codigo": "—", "apartado": "Bibliografía APA 7", "estado": "incompleto", "nota": "Mejoró mucho; hay referencias sin cita en el texto, una cita sin referencia y dos entradas «Naciones Unidas (s. f.)» sin a/b."}], "secciones": [{"etiqueta": "Capítulo I", "titulo": "Planteamiento del problema", "resumen": "Mejor estructurado: megatendencias de CEPLAN, metas de los ODS y cifras oficiales recientes. Falta evidencia cualitativa, faltan datos del problema social y hay que corregir el árbol de problema.", "observaciones": [{"severidad": "critico", "titulo": "Sin evidencia cualitativa del problema del cliente", "ubicacion": "Introducción, p. 3; 1.1, Tabla 1, p. 3; 1.4, pp. 4-5", "cita": "No se presentan entrevistas, cotizaciones, análisis de laboratorio ni demanda comercial como resultados existentes", "problema": "Persiste de la versión anterior: el problema del cliente sigue sin ninguna evidencia cualitativa propia. La nota de la Tabla 1 aclara que las causas y consecuencias «no se presentan como hallazgos de entrevistas realizadas», y en el 1.4 el problema se define como algo que «aún no se ha demostrado». Para el nivel Logrado, la rúbrica pide evidencias cualitativas y cuantitativas.", "mejora": "Hacer entre 8 y 10 entrevistas breves a estudiantes y trabajadores de Arequipa con una guía corta: qué beben fuera de casa, cuánto gastan, si llevan agua, qué les molesta de las alternativas que usan. Resumir los hallazgos en un párrafo o tabla con frases textuales e indicar en la nota cuántas personas se entrevistaron, dónde y cuándo. Con eso pueden reemplazar las «hipótesis» de la Tabla 1 por hallazgos."}, {"severidad": "importante", "titulo": "Columnas de la Tabla 1 mal llenadas", "ubicacion": "1.1, Tabla 1, p. 3", "cita": "Los precios en el mercado son muy caros y se venden en proporciones grandes.", "problema": "La columna «Evidencia requerida» debería decir qué dato o prueba confirmaría cada elemento. Sin embargo, en las filas de causas y problema central contiene afirmaciones sin fuente («Las personas les cuesta tiempo y el proceso de preparación es muy largo»), que además contradicen la nota de la tabla. El «problema central» está redactado como solución («Opción de productos que reúnan porción individual…») y no como carencia del cliente.", "mejora": "Revisar fila por fila que cada columna cumpla su función: el problema central se redacta como necesidad no atendida y la tercera columna indica la evidencia (entrevista, encuesta, dato de una fuente). Si afirman que los precios son caros, citen los precios de la Tabla 10."}, {"severidad": "importante", "titulo": "Problema social con causas y consecuencias sin datos", "ubicacion": "1.2, p. 4", "cita": "Causas estructurales posibles del problema social incluyen una oferta amplia de bebidas…", "problema": "Las megatendencias y las metas de los ODS ya están bien identificadas, pero las causas del problema social son «posibles» y sin fuente, y la única consecuencia es una frase general («el riesgo asociado con dietas inadecuadas»). Las metas 12.3 y 12.5 no tienen ningún dato que las dimensione (desperdicio de alimentos o residuos de envases en Perú). Las cifras más fuertes del INEI (9,6 % y 63,8 %) están en el 1.1, aunque en realidad describen el problema social.", "mejora": "Construir para el 1.2 una estructura de causas y consecuencias parecida a la Tabla 1, con una fuente por fila. Esqueleto: «Según [institución] ([año]), [dato]; esto se relaciona con la meta [n.º] porque…». Para el ODS 12, buscar un dato oficial sobre residuos de envases o desperdicio de alimentos (MINAM, FAO). Las cifras del INEI pueden pasar al 1.2 o quedar enlazadas desde allí."}, {"severidad": "importante", "titulo": "Ninguna cifra del mercado ni de Arequipa", "ubicacion": "1.1 y 1.3, pp. 3-4", "cita": "Son indicadores nacionales de salud pública, no estimaciones de demanda de FRÚTZUMA", "problema": "Persiste de la versión anterior: las cifras siguen sin dimensionar el problema del cliente. Ustedes mismos reconocen que los datos del INEI no miden la demanda, y el estudio de Guzman-Vilca et al. (2022) usa datos de 2017-2018. No hay ningún dato del mercado de bebidas o refrescos, del consumo de bebidas fuera del hogar ni de la población objetivo en Arequipa.", "mejora": "Agregar dos o tres cifras recientes: tamaño o crecimiento del mercado de jugos y refrescos (Euromonitor, Kantar, Ipsos, notas de Gestión o El Comercio que citen un estudio), gasto en alimentos fuera del hogar (INEI, ENAHO) y la población de 18 a 45 años que estudia o trabaja en Arequipa (INEI)."}]}, {"etiqueta": "Capítulo II", "titulo": "Propuesta de valor", "resumen": "Todos los apartados están presentes y el precio ya es único. El diferencial sigue sin demostrarse, aparecen contradicciones nuevas y se perdió detalle que la v1 sí tenía.", "observaciones": [{"severidad": "critico", "titulo": "El diferencial frente a los sachets existentes sigue sin demostrarse", "ubicacion": "2.1, p. 5; 1.3, p. 4", "cita": "Son atributos de diseño y distribución que deben contrastarse en el mercado; no se afirma exclusividad.", "problema": "Persiste de la versión anterior: los tres atributos (dosis para botella personal, sabores mezclados y puntos de retiro) se presentan como hipótesis, y el propio informe reconoce que el sachet «ya es utilizado por otras marcas». Los concentrados y refrescos están cerca de la categoría de baja innovación de los lineamientos, por lo que el diferencial tiene que sustentarse con datos para llegar a una propuesta «innovadora y diferenciada».", "mejora": "Elegir el atributo más fuerte y respaldarlo con una tabla de atributos (formato, porción, sabores, precio por litro, canal) que muestre qué tiene Frútzuma que no tenga cada competidor. Planificar cómo lo validarán en la AA2 (prueba de sabor frente a competidores, disposición a pagar)."}, {"severidad": "importante", "titulo": "Contradicciones nuevas en la ficha técnica", "ubicacion": "Introducción, p. 3; Tabla 3, p. 5; Tabla 4, p. 6; 3.6, p. 11", "cita": "Vida útil: 4 meses después de su elaboración", "problema": "La ficha declara una vida útil de 4 meses, pero la introducción dice que «la vida útil está pendiente de validación técnica» y el pitch, que «será validada antes de la venta». La ficha propone una versión «con azúcar añadida», lo que no encaja con la meta 3.4 ni con la «formulación responsable» del 1.4. La Tabla 3 anuncia tres sabores iniciales, mientras que el 2.1 y el pitch dicen que se lanzará uno solo. Además, la v1 hablaba de stevia y ahora aparece acesulfame de potasio, sin explicar el cambio.", "mejora": "Unificar los datos en todo el documento: si la vida útil es una meta, escribir «objetivo: 4 meses, por validar». Justificar la versión con azúcar o retirarla, y explicar cómo se relaciona con la meta 3.4. Definir si se lanza uno o tres sabores y usar el mismo dato en la Tabla 3, el 2.1 y el pitch."}, {"severidad": "importante", "titulo": "A la ficha le faltan campos oficiales y perdió contenido de la v1", "ubicacion": "2.2, Tabla 4, pp. 5-6", "cita": "eco amigable se evaluará material reciclable o de menor impacto cuando sea técnicamente viable", "problema": "Persiste de la versión anterior: «Sostenibilidad o consideraciones ambientales» e «Integración con redes sociales» siguen sin un campo propio; solo hay una mención condicional en el envase secundario. Además, al acortar la ficha desaparecieron las funcionalidades y características (dosificación, preparación, etiquetado, código QR) y las pruebas previas a la comercialización que la v1 desarrollaba en las pp. 10-13.", "mejora": "Agregar a la Tabla 4 una fila de sostenibilidad (material del sachet, qué harán con las mermas de fruta, enlazado con las metas 12.3 y 12.5) y una de redes sociales (qué redes, qué contenido y para qué etapa de la compra). Recuperar en forma breve las funcionalidades y el etiquetado de la v1."}, {"severidad": "importante", "titulo": "La Tabla 7 perdió la columna de validación", "ubicacion": "2.3 y 2.4, p. 7", "cita": "Necesidad, respuesta y evidencia de validación", "problema": "El título de la Tabla 7 anuncia una «evidencia de validación», pero la tabla solo tiene dos columnas. En la v1, la columna «Cómo se validará» era uno de los puntos fuertes del informe. También los beneficios clave (2.3) quedaron en una sola frase, cuando antes se explicaba cada uno.", "mejora": "Restituir la tercera columna (qué prueba o pregunta de encuesta confirmará cada necesidad) y desarrollar cada beneficio en dos o tres líneas, vinculándolo con una causa de la Tabla 1."}, {"severidad": "sugerencia", "titulo": "No se explica cómo se fijó el precio", "ubicacion": "2.2.1, Tabla 5, p. 6", "cita": "No incluye agua, traslado ni margen comercial.", "problema": "El precio ya es coherente en todo el documento, pero no se dice de dónde sale S/ 1,00 ni cómo se compara con las alternativas. La nota de la Tabla 5 resulta confusa: un precio de venta debería incluir el margen.", "mejora": "Añadir dos o tres líneas que expliquen la referencia usada (precio por litro de los competidores de la Tabla 10, rango de disposición a pagar por validar) y corregir la nota para indicar qué supuestos usa el cálculo."}]}, {"etiqueta": "Capítulo III", "titulo": "Modelo de negocio", "resumen": "Muy cerca del nivel Sobresaliente: BMC con coherencia argumentada, competidores, FODA e indicadores. Falta que los precios de los competidores sean comparables, cerrar con la ventaja competitiva y respaldar el mapa de empatía.", "observaciones": [{"severidad": "importante", "titulo": "Precios de competidores no comparables y sin fuente en la tabla", "ubicacion": "3.3, Tabla 10, p. 10", "cita": "son precios comprobados en Arequipa", "problema": "El texto dice que los precios son «comprobados en Arequipa», pero también que corresponden a «páginas consultadas». La Tabla 10 no tiene nota de fuente, y los precios están en unidades distintas (bolsa de 2 L, «1.0 kg» para un paquete de 10 sachets de 90 g, frasco de 200 ml, sobre de 15 g, vaso), por lo que no se pueden comparar. La celda de Zuko termina en «rendimiento por litro» sin dato, la de D' Kampu dice «Referente del documento inicial» (texto de borrador) y el precio de las juguerías (S/ 6,00) no tiene fuente. Además, se perdió la descripción del modelo de negocio de cada competidor que la v1 tenía en las pp. 4-5.", "mejora": "Agregar una columna de «precio por litro preparado» calculada con el rendimiento declarado por cada marca, indicar en la nota la fuente y la fecha de cada precio (web o tienda de Arequipa) y recuperar en una línea por competidor cómo vende (canal y cliente)."}, {"severidad": "importante", "titulo": "Falta cerrar con la ventaja competitiva y la estrategia de diferenciación", "ubicacion": "3.3, p. 10; 3.4, p. 10; Tabla 9, p. 9", "cita": "diferenciar el producto por su practicidad, facilidad de preparación y sabor tradicional", "problema": "La estructura del TAP pide cerrar el análisis de competidores con la ventaja competitiva propia y la estrategia de diferenciación. Hoy solo aparece de forma indirecta en la estrategia FA, y allí se habla de «sabor tradicional», mientras que el BMC dice «sabor diferencial» y el 2.1, «sabores mezclados».", "mejora": "Después de la Tabla 10, redactar un párrafo de ventaja competitiva (qué atributo, frente a quién, con qué evidencia) y otro de estrategia de diferenciación, y usar la misma formulación del atributo de sabor en el 2.1, el BMC y el FODA."}, {"severidad": "importante", "titulo": "Indicadores sin ejemplo de cálculo", "ubicacion": "3.5, Tabla 12, p. 11", "cita": "> S/ 0,00; meta definitiva tras costeo", "problema": "Los cinco indicadores tienen fórmula, meta y frecuencia, pero ninguno tiene un ejemplo de cálculo, que la estructura del TAP pide. La meta de margen de contribución «> S/ 0,00» no orienta decisiones.", "mejora": "Añadir una columna de ejemplo con números supuestos y declarados como tales. Esqueleto: «si hay [n] consultas y [m] compras, la conversión es [m/n × 100] %». Fijar una meta de margen mínima por unidad, aunque sea provisional."}, {"severidad": "sugerencia", "titulo": "Mapa de empatía sin voz del cliente", "ubicacion": "3.1, Tabla 8, pp. 8-9", "cita": "Se utilizará el mapa como herramienta de hipótesis.", "problema": "Persiste de la versión anterior: el mapa está completo, pero no se basa en conversaciones con clientes y el cuadrante «Dice y hace» no tiene frases propias del cliente. La v1 lo presentaba además como figura; ahora solo es una tabla, lo cual es válido.", "mejora": "Completar el mapa con lo que surja de las entrevistas sugeridas en el capítulo 1 (dos o tres frases textuales en «Dice y hace») e indicar en la nota cuántas personas se entrevistaron."}, {"severidad": "sugerencia", "titulo": "Canales poco específicos y texto de organización dentro del FODA", "ubicacion": "Tabla 9 y Figura 1, p. 9; 3.4, pp. 10-11", "cita": "WhatsApp/redes para captar y agrupar pedidos; puntos de retiro y cafeterías piloto.", "problema": "El bloque de canales dice «redes» sin precisar cuáles (en la v1 se nombraban Instagram, Facebook y TikTok), y las cafeterías aparecen como canal y también como cliente secundario (2.5.6). Por otro lado, los cuatro párrafos sobre la organización del equipo (pp. 10-11) están dentro del FODA, aunque tratan de otro tema.", "mejora": "Nombrar las redes y el rol de cada una, y aclarar si la cafetería es cliente o canal. Pasar los párrafos de organización del equipo a un subapartado propio (por ejemplo, «Planificación del equipo»)."}]}, {"etiqueta": "Formato académico", "titulo": "Presentación, redacción y citas", "resumen": "El salto formal es grande (índice, introducción, tablas numeradas y referencias ordenadas). Quedan pendientes la carátula, el índice desfasado, la correspondencia entre citas y referencias, y erratas.", "observaciones": [{"severidad": "importante", "titulo": "Carátula sin carrera, sección ni número de grupo", "ubicacion": "Carátula, p. 1", "cita": "Curso: Proyecto Integrador", "problema": "Persiste de la versión anterior: ya incluye el nombre del proyecto, pero siguen faltando la carrera de cada integrante, la sección y el número de grupo. Sin las carreras no se puede verificar el requisito de máximo dos integrantes por carrera.", "mejora": "Agregar la carrera junto a cada nombre, la sección y «Grupo 7»."}, {"severidad": "importante", "titulo": "Índice con números de página desfasados", "ubicacion": "Índice, p. 2", "cita": "CAPÍTULO III. MODELO DE NEGOCIO 10", "problema": "Desde el 1.3, casi todos los números de página del índice están desplazados: el capítulo II empieza en la p. 5 y no en la 6, el capítulo III en la p. 8 y no en la 10, y las referencias en la p. 12 y no en la 13. Algunos títulos tampoco coinciden con el cuerpo («3.4. Análisis FODA» frente a «Análisis interno y externo del negocio (FODA)»; «2.3–2.4» agrupados).", "mejora": "Generar el índice automáticamente desde los estilos de título y actualizarlo antes de exportar a PDF."}, {"severidad": "importante", "titulo": "Citas y referencias que no se corresponden", "ubicacion": "Tabla 10, p. 10; Referencias, pp. 12-13", "cita": "Naciones Unidas. (s. f.). Objetivo 3… / Naciones Unidas. (s. f.). Objetivo 12…", "problema": "Naturale, FIFU, Frutex Perú y Tottus están en la lista, pero no se citan en el texto. D' Kampu se usa en la Tabla 10 sin referencia. Las dos entradas de Naciones Unidas tienen el mismo autor y año, pero no llevan «s. f.-a» y «s. f.-b». La referencia del INEI dice «2025» en el título y «2024» en la URL; conviene verificarla. Los títulos de informes, libros y revistas deben ir en cursiva.", "mejora": "Citar cada fuente en el lugar donde se usa (por ejemplo, en la nota de la Tabla 10: «Elaboración propia con base en Naturale (s. f.), FIFU (s. f.)…»), agregar la referencia de D' Kampu, diferenciar las entradas de Naciones Unidas con a/b y revisar la cursiva."}, {"severidad": "sugerencia", "titulo": "Erratas, formato de cifras y maquetación", "ubicacion": "pp. 3, 4, 5, 6, 7, 9, 10, 11 y 12", "cita": "Nota. Elaboración propio. Cuadro conceptual", "problema": "Hay erratas como «Elaboración propio» (p. 5), «no lograda.e» (p. 4), «Maracumango» (p. 6), «Kits de 6 y 12 2 sachets» (p. 6), «Las personas les cuesta» (p. 3), «validación..» (p. 7), «promedio..» (p. 10) y «Fútzuma» (p. 11). Los precios mezclan «S/ 1.00» (Tabla 4) y «S/ 1,00» (Tabla 5). El título de la Figura 1 no sigue APA 7 (número en negrita y título en cursiva en líneas separadas), y la p. 12 deja media página en blanco.", "mejora": "Hacer una revisión ortográfica final, usar la coma decimal en todo el documento, aplicar a la Figura 1 el mismo formato de las tablas y eliminar el salto de página que deja el espacio en blanco."}, {"severidad": "sugerencia", "titulo": "Exceso de salvedades y comentarios dirigidos al evaluador", "ubicacion": "pp. 3, 5, 9 y 10", "cita": "Esta distinción es esencial para una evaluación académica rigurosa.", "problema": "Casi todos los párrafos y notas aclaran que algo es «hipótesis», «a validar» o que «no se afirma». Algunas frases le hablan al evaluador en lugar de al lector («No se confunden atributos planeados con capacidades ya demostradas», nota de la Tabla 11). Ser prudente está bien, pero en exceso la propuesta pierde fuerza y no queda claro qué decidió el equipo.", "mejora": "Concentrar las limitaciones en un párrafo (por ejemplo, al final de la introducción) y redactar el resto con decisiones claras del equipo, marcando como «por validar» solo los datos que realmente lo estén."}]}], "calificacion": {"fuentes": 3, "problema": 3, "propuesta": 3, "modelo": 3, "responsabilidad": 3}}</script>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contenido">
+    <div class="lbl">Contenido</div>
+    <ol id="toc"></ol>
+    <p class="progress" id="progress" style="margin-top:14px"></p>
+  </nav>
+  <main id="main"></main>
+</div>
+
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const SEV = { critico: 'Crítico', importante: 'Importante', sugerencia: 'Sugerencia' };
+const ST = { completo: 'Completo', incompleto: 'Incompleto', ausente: 'Ausente' };
+const DICT = { mayor: 'Requiere correcciones mayores', menor: 'Requiere correcciones menores', apto: 'Apto para continuar' };
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const KEY = 'tap-revision-' + (D.id || 'x');
+let done = {};
+try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+
+const all = D.secciones.flatMap(s => s.observaciones.map(o => o.severidad));
+const count = sev => all.filter(x => x === sev).length;
+
+let html = '';
+if (D.ejemplo) html += `<div class="demo">Ejemplo con datos ficticios: así verá cada grupo su revisión.</div>`;
+html += `<header class="cover">
+  <div class="eyebrow">${esc(D.institucion)} · ${esc(D.curso)} · ${esc(D.evidencia)}</div>
+  <h1>${esc(D.proyecto)}</h1>
+  <p class="summary">Revisión del Trabajo de Aplicación Profesional (TAP): ${esc(D.alcance)}</p>
+  <dl class="meta">
+    <div><dt>Grupo</dt><dd>${esc(D.grupo)}</dd></div>
+    <div><dt>Sección</dt><dd>${esc(D.seccion)}</dd></div>
+    <div><dt>Fecha de revisión</dt><dd>${esc(D.fecha)}</dd></div>
+    <div><dt>Docente</dt><dd>${esc(D.docente)}</dd></div>
+  </dl>
+  <div><div class="eyebrow" style="margin-bottom:4px">Integrantes</div>
+  <ul class="members">${D.integrantes.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+</header>`;
+
+html += `<section class="block verdict" id="dictamen">
+  <div class="head"><div class="eyebrow">Dictamen</div><h2>Estado del informe</h2></div>
+  <div class="stamp ${esc(D.dictamen)}">${DICT[D.dictamen] || esc(D.dictamen)}</div>
+  <div class="counts">
+    <span class="pill critico">${count('critico')} críticas</span>
+    <span class="pill importante">${count('importante')} importantes</span>
+    <span class="pill sugerencia">${count('sugerencia')} sugerencias</span>
+  </div>
+  <p>${esc(D.resumen)}</p>
+  ${D.fortalezas?.length ? `<div><h3 style="margin-bottom:8px">Lo que está bien</h3><ul class="strength">${D.fortalezas.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>` : ''}
+</section>`;
+
+if (D.calificacion) {
+  const C = D.calificacion;
+  const NIV = { 4: 'Sobresaliente', 3: 'Logrado', 2: 'En proceso', 1: 'Inicio', 0: 'No presentó' };
+  const filas = [['Fuentes de información', C.fuentes], ['Planteamiento del problema', C.problema],
+    ['Propuesta de valor', C.propuesta], ['Modelo de negocio', C.modelo], ['Responsabilidad en la ejecución', C.responsabilidad]];
+  const total = filas.reduce((s, f) => s + (Number(f[1]) || 0), 0);
+  html += `<section class="block" id="nota">
+    <div class="head"><div class="eyebrow">Rúbrica de la ${esc(D.evidencia)}</div><h2>Calificación preliminar del informe</h2></div>
+    <div class="grade"><span class="big">${total}</span><span class="of">/ 20</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Criterio</th><th>Nivel</th><th class="num">Puntos</th></tr></thead>
+      <tbody>${filas.map(([c, p]) => `<tr><td>${c}</td><td><span class="lvl l${p}">${NIV[p] ?? '—'}</span></td><td class="num">${p ?? '—'} / 4</td></tr>`).join('')}</tbody>
+    </table></div>
+    <p class="summary">La nota es individual y la final de la ${esc(D.evidencia)} también considera la exposición y las respuestas de cada integrante. Para subir de nivel, revisen la sección “Camino al 20”.</p>
+  </section>`;
+}
+
+html += `<section class="block" id="prioridades">
+  <div class="head"><div class="eyebrow">Antes de la siguiente entrega</div><h2>Prioridades de corrección</h2></div>
+  <ol class="priorities">${D.prioridades.map(p => `<li><span>${esc(p)}</span></li>`).join('')}</ol>
+</section>`;
+
+if (D.camino?.length) html += `<section class="block" id="camino">
+  <div class="head"><div class="eyebrow">Meta: nivel Sobresaliente en cada criterio de la rúbrica</div><h2>Camino al 20</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Criterio</th><th>Qué exige el nivel Sobresaliente</th><th>Qué les falta para llegar</th></tr></thead>
+    <tbody>${D.camino.map(c => `<tr><td><b>${esc(c.criterio)}</b></td><td>${esc(c.exige)}</td><td>${esc(c.falta)}</td></tr>`).join('')}</tbody>
+  </table></div>
+</section>`;
+
+if (D.viabilidad?.riesgos?.length) html += `<section class="block" id="viabilidad">
+  <div class="head"><div class="eyebrow">Mirada de negocio, más allá del documento</div><h2>Viabilidad: con qué se van a chocar</h2></div>
+  ${D.viabilidad.resumen ? `<p>${esc(D.viabilidad.resumen)}</p>` : ''}
+  <ul class="obs">${D.viabilidad.riesgos.map(r => `<li class="ob">
+    <div class="top"><span class="pill importante">${esc(r.tema)}</span><h3>${esc(r.titulo)}</h3></div>
+    <p>${esc(r.choque)}</p>
+    <div class="fix"><b>Ideas</b><ul class="ideas">${(r.ideas || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+  </li>`).join('')}</ul>
+</section>`;
+
+html += `<section class="block" id="estructura">
+  <div class="head"><div class="eyebrow">Contra la estructura oficial del TAP</div><h2>Revisión de estructura</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Ítem</th><th>Apartado</th><th>Estado</th><th>Comentario</th></tr></thead>
+    <tbody>${D.estructura.map(r => `<tr><td class="code">${esc(r.codigo)}</td><td>${esc(r.apartado)}</td>
+      <td class="st ${esc(r.estado)}">${ST[r.estado] || esc(r.estado)}</td><td>${esc(r.nota)}</td></tr>`).join('')}</tbody>
+  </table></div>
+</section>`;
+
+D.secciones.forEach((s, si) => {
+  html += `<section class="block" id="s${si}">
+    <div class="head"><div class="eyebrow">${esc(s.etiqueta)}</div><h2>${esc(s.titulo)}</h2></div>
+    ${s.resumen ? `<p class="summary">${esc(s.resumen)}</p>` : ''}
+    <ul class="obs">${s.observaciones.map((o, oi) => {
+      const k = si + '-' + oi;
+      return `<li class="ob${done[k] ? ' done' : ''}" data-k="${k}">
+        <div class="top"><span class="pill ${esc(o.severidad)}">${SEV[o.severidad] || esc(o.severidad)}</span>
+        <h3>${esc(o.titulo)}</h3>${o.ubicacion ? `<span class="where">${esc(o.ubicacion)}</span>` : ''}</div>
+        ${o.cita ? `<blockquote>“${esc(o.cita)}”</blockquote>` : ''}
+        <p>${esc(o.problema)}</p>
+        <div class="fix"><b>Mejora</b><p>${esc(o.mejora)}</p></div>
+        <label><input type="checkbox" id="chk-${k}" ${done[k] ? 'checked' : ''}> Marcar como corregido</label>
+      </li>`;
+    }).join('')}</ul>
+  </section>`;
+});
+
+html += `<footer>
+  <span>Revisión elaborada con la rúbrica de la ${esc(D.evidencia)} y la estructura oficial del TAP de CERTUS.</span>
+  <span>Las casillas “corregido” se guardan solo en este navegador, como ayuda para organizarse.</span>
+</footer>`;
+document.getElementById('main').innerHTML = html;
+
+const toc = [['dictamen', 'Dictamen', '']]
+  .concat(D.calificacion ? [['nota', 'Calificación', '']] : [])
+  .concat([['prioridades', 'Prioridades', '']])
+  .concat(D.camino?.length ? [['camino', 'Camino al 20', '']] : [])
+  .concat(D.viabilidad?.riesgos?.length ? [['viabilidad', 'Viabilidad', '']] : [])
+  .concat([['estructura', 'Estructura', '']])
+  .concat(D.secciones.map((s, i) => ['s' + i, s.titulo, s.observaciones.length]));
+document.getElementById('toc').innerHTML = toc.map(([id, t, n]) => `<li><a href="#${id}"><span>${esc(t)}</span><span class="n">${n}</span></a></li>`).join('');
+
+function updateProgress() {
+  const total = document.querySelectorAll('.ob').length;
+  const ok = document.querySelectorAll('.ob.done').length;
+  document.getElementById('progress').textContent = `${ok} de ${total} observaciones corregidas`;
+}
+document.getElementById('main').addEventListener('change', e => {
+  const li = e.target.closest('.ob'); if (!li) return;
+  li.classList.toggle('done', e.target.checked);
+  done[li.dataset.k] = e.target.checked;
+  try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (err) {}
+  updateProgress();
+});
+updateProgress();
+</script>
+
+</html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>TAP Grupo (sin número) · AA1</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: informe de revisión de tesina — columna de lectura centrada, índice lateral fijo en escritorio, sellos de severidad en el margen */
+:root {
+  --paper: #fbfbfa;
+  --sheet: #ffffff;
+  --ink: #1c2230;
+  --muted: #5b6475;
+  --rule: #dde1e8;
+  --accent: #1f3a68;
+  --accent-soft: #e8edf6;
+  --crit: #a3262b;   --crit-bg: #fbeceb;
+  --warn: #8a5a00;   --warn-bg: #fdf3df;
+  --sug: #1d6a55;    --sug-bg: #e6f3ee;
+  --ok: #1d6a55;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #12151c; --sheet: #191d26; --ink: #e6e9ef; --muted: #9aa3b4; --rule: #2c3240;
+  --accent: #9db7e6; --accent-soft: #1f2a40;
+  --crit: #f08c8f; --crit-bg: #3a1c1f; --warn: #e8bd6a; --warn-bg: #3a2e14; --sug: #7fcfb4; --sug-bg: #15312a; --ok: #7fcfb4;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #12151c; --sheet: #191d26; --ink: #e6e9ef; --muted: #9aa3b4; --rule: #2c3240;
+  --accent: #9db7e6; --accent-soft: #1f2a40;
+  --crit: #f08c8f; --crit-bg: #3a1c1f; --warn: #e8bd6a; --warn-bg: #3a2e14; --sug: #7fcfb4; --sug-bg: #15312a; --ok: #7fcfb4;
+  color-scheme: dark }
+
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15.5px; line-height: 1.6; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; } nav.toc { position: static !important; } }
+
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; font-size: 13.5px; }
+nav.toc .lbl, .eyebrow { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+nav.toc ol { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 2px; }
+nav.toc a { display: flex; justify-content: space-between; gap: 8px; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+nav.toc a:hover, nav.toc a:focus-visible { background: var(--accent-soft); outline: none; }
+nav.toc .n { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+main { min-width: 0; display: grid; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(28px, 4vw, 38px); font-weight: 700; }
+h2 { font-size: 24px; font-weight: 600; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+
+.demo { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn); padding: 10px 14px; border-radius: 6px; font-weight: 500; font-size: 14px; }
+
+header.cover { border-bottom: 2px solid var(--accent); padding-bottom: 24px; display: grid; gap: 14px; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 24px; margin-top: 6px; }
+.meta div { display: grid; gap: 2px; min-width: 0; }
+.meta dt { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.meta dd { margin: 0; font-weight: 500; }
+.members { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+
+.verdict { display: grid; gap: 14px; }
+.stamp { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 19px; font-weight: 600; color: var(--accent); }
+.stamp::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: currentColor; }
+.stamp.mayor { color: var(--crit); } .stamp.menor { color: var(--warn); } .stamp.apto { color: var(--ok); }
+.counts { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { font-size: 12.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+.pill.critico { background: var(--crit-bg); color: var(--crit); }
+.pill.importante { background: var(--warn-bg); color: var(--warn); }
+.pill.sugerencia { background: var(--sug-bg); color: var(--sug); }
+
+.priorities { list-style: none; counter-reset: p; padding: 0; margin: 0; display: grid; gap: 10px; }
+.priorities li { counter-increment: p; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
+.priorities li::before { content: counter(p); font-family: var(--display); font-weight: 700; color: var(--accent); font-size: 18px; line-height: 1.4; }
+
+section.block { display: grid; gap: 18px; scroll-margin-top: 24px; }
+section.block > .head { display: grid; gap: 4px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+.summary { color: var(--muted); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--paper); }
+td.code { font-family: var(--mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+.st { font-weight: 600; white-space: nowrap; }
+.st.completo { color: var(--ok); } .st.incompleto { color: var(--warn); } .st.ausente { color: var(--crit); }
+
+.obs { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.ob { background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; display: grid; gap: 10px; }
+.ob.done { opacity: .6; }
+.ob .top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ob .where { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.ob blockquote { margin: 0; padding: 8px 12px; border-left: 3px solid var(--rule); color: var(--muted); font-family: var(--display); font-style: italic; font-size: 14.5px; }
+.ob .fix { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; }
+.ob .fix b { color: var(--accent); font-size: 13px; text-transform: uppercase; letter-spacing: .06em; line-height: 1.8; }
+.ob label { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); cursor: pointer; justify-self: start; }
+.ob input { accent-color: var(--accent); width: 16px; height: 16px; }
+.grade { display: flex; align-items: baseline; gap: 8px; font-family: var(--display); color: var(--accent); }
+.grade .big { font-size: 56px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.grade .of { font-size: 22px; color: var(--muted); }
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lvl { font-size: 12.5px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.lvl.l4, .lvl.l3 { background: var(--sug-bg); color: var(--sug); }
+.lvl.l2 { background: var(--warn-bg); color: var(--warn); }
+.lvl.l1, .lvl.l0 { background: var(--crit-bg); color: var(--crit); }
+.ideas { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.strength { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.strength li::before { content: "✓  "; color: var(--ok); font-weight: 700; }
+
+.progress { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+footer { border-top: 1px solid var(--rule); padding-top: 16px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+a { color: var(--accent); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<script type="application/json" id="data">{"id": "grupo-olivera-trujillo-sanchez-cari", "institucion": "CERTUS", "curso": "UD Proyecto Integrador", "evidencia": "AA1", "alcance": "capítulos 1, 2 y 3 (planteamiento del problema, propuesta de valor y modelo de negocio).", "proyecto": "ArreglaYa: servicios técnicos para el hogar y pequeños negocios en Arequipa", "grupo": "Grupo (sin número)", "seccion": "No indicada", "fecha": "30/10/2026 (2.ª versión)", "docente": "Jeanpier Brandol Ancori Sanchez", "integrantes": ["Olivera Ramirez, Eduardo Antonio", "Cari Sanchez, Aydan Reynaldo", "Sanchez Ccama, Yamile Xiomara", "Trujillo Huamani, Susan Lizbeth"], "dictamen": "mayor", "resumen": "Esta versión avanza de forma clara: el capítulo 3, que en la versión anterior solo tenía las consignas, ahora tiene mapa de empatía, BMC con sus nueve bloques explicados, análisis de competidores, indicadores y análisis del entorno (pp. 15-21). Además, la segmentación se rehízo con distritos, NSE y cifras del INEI y CPI (pp. 9-13), y el documento ya tiene carátula. Sin embargo, el capítulo 1 es el mismo de la versión anterior: el problema del cliente y el social siguen mezclados, falta evidencia cualitativa y las megatendencias se sustentan con un documento de PwC sobre defensa. En el capítulo 2, la ficha técnica sigue describiendo el software y en ninguna parte del informe aparece un precio. Ahora hay además una contradicción de fondo: la propuesta promete «precios claros», pero el BMC dice que los técnicos «acuerdan el precio con los clientes» y ArreglaYa solo cobra una comisión (p. 16). Los competidores no incluyen las alternativas digitales ni las fortalezas de cada uno, y los indicadores no tienen fórmula. En el formato, siguen las consignas copiadas en seis páginas, no hay índice y la carátula escribe mal el apellido del docente.", "fortalezas": ["Desarrollaron el capítulo 3, que antes no existía: mapa de empatía con sus seis dimensiones (p. 15), BMC con los nueve bloques explicados (pp. 16-17) y su lienzo (anexo 2), dos competidores con el ajuste que cada uno motiva en el modelo (pp. 17-18), seis indicadores en tres áreas (pp. 18-19) y un análisis del entorno interno y externo (pp. 19-21).", "La segmentación ahora es específica y medible: tres distritos de inicio (Cayma, Paucarpata y Cerro Colorado) con su población según los Censos 2025, NSE B y C con el dato de CPI, tipos de negocio con cifras de MYPE y segmentación tecnográfica (pp. 9-13). Además, reconocen el límite del dato: «No existen datos públicos recientes de NSE desagregados por distrito» (p. 10).", "Corrigieron la presentación: agregaron una carátula con institución, título, docente e integrantes (p. 1), ordenaron alfabéticamente las referencias con sangría francesa (pp. 22-24) y sacaron la captación en movilidad de los segmentos del capítulo 2 para tratarla como forma de llegar al cliente.", "El capítulo 1 mantiene un análisis honesto de sus datos: aclara que el indicador de vivienda adecuada incluye servicios básicos y título (p. 2) y que la data de TECSUP es de un solo instituto (p. 3)."], "prioridades": ["Definir el modelo de precio e ingresos (quién fija la tarifa, qué porcentaje es la comisión, quién cobra, quién emite el comprobante y quién paga la garantía) y usar esa misma versión en la ficha técnica, el BMC, los competidores y los indicadores.", "Rehacer la ficha técnica como ficha del servicio con los 8 campos oficiales, incluidos precios y opciones de compra, en una tabla numerada.", "Borrar todas las consignas copiadas (pp. 2, 5, 15, 17, 19 y 22), agregar un índice, completar la carátula (apellido del docente, carrera, sección y grupo) y aplicar la numeración oficial (1.1, 1.2, 2.1-2.6, 3.1-3.3).", "Completar el análisis de competidores con las alternativas digitales y las fortalezas de cada competidor, en una tabla, y dar a cada indicador su fórmula, meta y ejemplo de cálculo.", "Reorganizar el capítulo 1 en problema del cliente y problema social, cada uno con causas y consecuencias, y sumar evidencia cualitativa propia que también sustente el mapa de empatía.", "Sustentar las megatendencias con CEPLAN y las metas de los ODS con la ONU, pasar las cifras de prensa a su fuente primaria y hacer coincidir cada cita con su referencia."], "camino": [{"criterio": "Fuentes de información", "exige": "Fuentes secundarias actuales y confiables, analizadas críticamente para mostrar su aporte al proyecto en relación con megatendencias y ODS.", "falta": "En el capítulo 2 ya usan INEI, CPI y CENEPRED, pero el capítulo 1, que es donde se juegan las megatendencias y los ODS, sigue con notas de prensa, con PwC (defensa, s. f.) para las megatendencias y sin fuente para los ODS. Además, varias citas no coinciden con su referencia y siete referencias no se citan."}, {"criterio": "Planteamiento del problema", "exige": "Pertinencia del problema sustentada con evidencia cuantitativa y cualitativa, y vinculada explícitamente con megatendencias, ODS y necesidades del cliente.", "falta": "Separar el problema del cliente y el social con sus causas y consecuencias, y sumar evidencia cualitativa propia (testimonios o entrevistas a hogares y negocios de Arequipa) y una cifra sobre cómo contratan hoy a un técnico."}, {"criterio": "Propuesta de valor", "exige": "Una propuesta innovadora y diferenciada, con descripción, ficha técnica, solución, segmentos y casos de uso coherentes con el problema.", "falta": "La ficha técnica del servicio con sus 8 campos y precio, un diferencial que el cliente perciba (no funciones internas de gestión) y una sola versión de qué recibe el cliente al inicio (WhatsApp o plataforma)."}, {"criterio": "Modelo de negocio", "exige": "BMC y mapa de empatía que argumenten la coherencia de los 9 bloques con la propuesta de valor, junto con el análisis de competidores y los indicadores.", "falta": "Argumentar la coherencia entre bloques y resolver la contradicción entre «precios claros» y «los técnicos acuerdan el precio», incluir a los técnicos como segundo lado del modelo, completar competidores con fortalezas y alternativas digitales, y dar fórmula a los indicadores."}], "viabilidad": {"resumen": "Con el capítulo 3 el modelo se volvió más concreto (comisión por servicio, movilidad, alianzas con institutos y Sodimac), y eso deja más visibles los choques. Antes de la AA2 tienen que resolver cinco: competir con alternativas gratuitas que ni siquiera analizaron, la relación legal con los técnicos, quién responde por la garantía y los daños, si una comisión alcanza para cubrir la movilidad, y cuánto pagará realmente el cliente.", "riesgos": [{"tema": "Competencia", "titulo": "Las alternativas gratuitas y digitales no están en el análisis", "choque": "El análisis de competidores (pp. 17-18) solo considera al maestro informal y a los home centers. En Arequipa, el cliente consigue técnicos sobre todo por recomendación, grupos de Facebook, Marketplace, los maestros que esperan en las ferreterías y apps o directorios de servicios. Todas estas opciones son gratuitas para él. Ustedes mismos reconocen que el cliente puede «contratar directamente a un técnico sin utilizar la plataforma» (p. 20): una vez que conoce al técnico, la comisión desaparece. Las apps en mercados saturados figuran entre los productos restringidos por baja innovación, así que el diferencial tiene que demostrarse.", "ideas": ["Hacer un inventario real de las alternativas digitales e informales que usan en Arequipa y compararlas por precio, garantía, comprobante, tiempo de respuesta y verificación del técnico.", "Preguntar en la encuesta de la AA2 cómo consiguieron al último técnico, qué salió mal y qué los haría cambiar de canal.", "Diseñar qué retiene al cliente y al técnico dentro de ArreglaYa (garantía que solo vale si se contrata por la plataforma, paquetes de mantenimiento para negocios, flujo de trabajo para el técnico) para reducir la desintermediación."]}, {"tema": "Regulación", "titulo": "Relación laboral y comprobantes con los técnicos", "choque": "El BMC presenta a los técnicos como independientes que cobran y pagan una comisión (p. 16), pero el informe también habla de «su personal técnico», de «jornada laboral» y de supervisión (p. 14), y ArreglaYa pone la movilidad, las herramientas y las capacitaciones (p. 17). Si la empresa fija horarios, zonas y supervisión, SUNAFIL podría considerar que existe una relación laboral. Además, si cobra el técnico, el comprobante que prometen (p. 4) solo existe si cada técnico tiene RUC.", "ideas": ["Definir el modelo: técnicos en planilla, locadores independientes con RUC o convenio de prácticas con institutos, y averiguar con SUNAT y el MTPE qué obligaciones implica cada uno.", "Precisar quién emite la boleta al cliente y cómo se documenta la comisión (ArreglaYa factura al técnico, o cobra todo y le paga).", "Validar con técnicos de Arequipa si aceptarían formalizarse y qué comisión les resulta aceptable frente a trabajar por su cuenta."]}, {"tema": "Operación", "titulo": "Quién responde por la garantía y por los daños", "choque": "ArreglaYa promete garantía, pero el cobro lo recibe el técnico. Si una instalación eléctrica causa un cortocircuito, el cliente reclamará a la marca ante INDECOPI. Además, el indicador de re-trabajo (p. 18) no dice quién paga la segunda visita. El mapa de empatía muestra que el cliente «teme por la seguridad de su familia» (p. 15): dejar entrar a un desconocido exige verificar antecedentes.", "ideas": ["Definir por escrito qué cubre la garantía, por cuánto tiempo y quién asume su costo, y cotizar un seguro de responsabilidad civil.", "Diseñar un filtro de ingreso para los técnicos (certificado de antecedentes, prueba práctica, formación acreditada para trabajos eléctricos).", "Preguntar en la encuesta de la AA2 qué les daría confianza para dejar entrar a un técnico (identificación, foto, calificaciones, seguro)."]}, {"tema": "Costos", "titulo": "Una comisión tiene que pagar la movilidad", "choque": "Los únicos ingresos son una comisión sobre servicios de bajo monto (cambiar un caño o un accesorio, pintar una pared), pero ArreglaYa asume el alquiler de la movilidad, el combustible, el personal administrativo, las herramientas, las capacitaciones y la publicidad (p. 17). Si un recorrido consigue pocos servicios, el costo de captar cada cliente supera a la comisión.", "ideas": ["Estimar el costo de un día de recorrido y cuántos servicios, con qué ticket promedio y qué porcentaje de comisión, hacen falta para cubrirlo.", "Probar en la AA2 un piloto barato (visitas a pie en una sola urbanización, alianza con una ferretería o junta vecinal) y medir la tasa de conversión que ya definieron antes de alquilar un vehículo.", "Explorar paquetes de mantenimiento mensual para bodegas, restaurantes y peluquerías, que dan ingresos recurrentes."]}, {"tema": "Mercado", "titulo": "Disposición a pagar por precio claro y garantía", "choque": "El informe sigue sin indicar un solo precio, ni de los servicios ni de la comisión. El cliente arequipeño suele negociar con el maestro informal, y la formalidad (comprobante, garantía, capacitación y comisión) encarece el servicio. Tener NSE B o C no garantiza que el cliente pague más por la confianza.", "ideas": ["Levantar los precios actuales en Arequipa de los servicios más comunes (visita, cambio de caño, punto eléctrico, m² de pintura) y definir su tarifa.", "Validar en la encuesta de la AA2 cuánto más pagarían por garantía y comprobante, y si prefieren tarifa fija o presupuesto previo.", "Probar si el descuento por varios servicios en una visita mueve realmente la decisión, antes de incluirlo en el margen."]}]}, "estructura": [{"codigo": "—", "apartado": "Carátula", "estado": "incompleto", "nota": "Ya existe (p. 1), pero escribe «ANCORIJ» y no indica carrera de los integrantes, sección ni grupo."}, {"codigo": "—", "apartado": "Índice", "estado": "ausente", "nota": "Generarlo de forma automática desde los estilos de título."}, {"codigo": "1.1", "apartado": "Problema del cliente (causas y consecuencias)", "estado": "incompleto", "nota": "Sin cambios frente a la versión anterior: está mezclado con el problema social (pp. 2-3), sin causas y consecuencias ordenadas ni evidencia cualitativa."}, {"codigo": "1.2", "apartado": "Problema social (ODS y megatendencias)", "estado": "incompleto", "nota": "ODS 8, 10 y 11 y tres megatendencias (pp. 3-5), sin metas de los ODS y con PwC (defensa, s. f.) como fuente."}, {"codigo": "2.1", "apartado": "Descripción de la propuesta de valor", "estado": "incompleto", "nota": "El «valor diferencial» sigue basado en funciones internas de gestión (p. 5)."}, {"codigo": "2.2", "apartado": "Ficha técnica", "estado": "incompleto", "nota": "Sin cambios: es una ficha del software (pp. 5-7), sin precio, proceso de atención, presentación, sostenibilidad ni redes sociales."}, {"codigo": "2.3", "apartado": "Beneficios clave", "estado": "completo", "nota": "Siete beneficios (pp. 7-8)."}, {"codigo": "2.4", "apartado": "Solución a problemas o necesidades", "estado": "completo", "nota": "Desarrollada (pp. 8-9); no retoma el riesgo eléctrico del capítulo 1."}, {"codigo": "2.5", "apartado": "Segmentos de cliente", "estado": "completo", "nota": "Rehecho con distritos, NSE, tipos de negocio y cifras (pp. 9-13). La psicografía no elige qué perfiles de Arellano son el objetivo."}, {"codigo": "2.6", "apartado": "Casos de uso", "estado": "completo", "nota": "Seis casos (pp. 13-15) e infografía (anexo 1), aún numerados 2.1-2.6."}, {"codigo": "3.1", "apartado": "Mapa de empatía", "estado": "completo", "nota": "Seis dimensiones (p. 15), uno solo para hogares y negocios, sin número de figura ni fuente."}, {"codigo": "3.2", "apartado": "Business Model Canvas (9 bloques)", "estado": "incompleto", "nota": "Los 9 bloques están explicados (pp. 16-17) y el lienzo está en el anexo 2, pero no se argumenta la coherencia entre bloques y el modelo de precio contradice la propuesta de valor."}, {"codigo": "3.3", "apartado": "Competidores", "estado": "incompleto", "nota": "Dos grupos (informales y home centers, pp. 17-18), sin fortalezas de cada competidor ni alternativas digitales."}, {"codigo": "—", "apartado": "Indicadores de gestión", "estado": "incompleto", "nota": "Seis indicadores (pp. 18-19), sin fórmula, sin ejemplo de cálculo y solo dos con meta."}, {"codigo": "—", "apartado": "Referencias APA 7", "estado": "incompleto", "nota": "Ya están en orden alfabético y con sangría francesa (pp. 22-24), pero se titulan «Bibliografía», hay citas que no coinciden con su referencia y siete referencias no se citan."}], "secciones": [{"etiqueta": "Capítulo I", "titulo": "Planteamiento del problema", "resumen": "El capítulo es el mismo de la versión anterior: tiene cifras de Arequipa con sus limitaciones bien explicadas, pero no separa el problema del cliente y el social, no tiene evidencia cualitativa y sigue apoyado en prensa y en PwC.", "observaciones": [{"severidad": "importante", "titulo": "Problema del cliente y problema social mezclados, sin causas y consecuencias ordenadas", "ubicacion": "«Planteamiento del problema», pp. 2-3", "cita": "Falta un servicio que conecte estos elementos y ofrezca a los hogares técnicos capacitados", "problema": "Persiste de la versión anterior: el capítulo sigue siendo un solo texto continuo que combina la informalidad, la vivienda, el riesgo eléctrico, el empleo juvenil y el ingreso. No hay un apartado para el problema del cliente (el hogar o negocio que necesita una reparación) y otro para el problema social, cada uno con causas y consecuencias. La síntesis sigue definiendo el problema como la falta de la propia solución.", "mejora": "Crear 1.1 «Problema del cliente» y 1.2 «Problema social». En cada uno, enunciar el problema en una oración que no mencione la solución y luego desarrollar causas y consecuencias, por ejemplo en un árbol de problemas presentado como figura numerada. Reubicar en cada apartado las cifras que ya tienen."}, {"severidad": "importante", "titulo": "Falta evidencia cualitativa y una cifra del comportamiento del cliente", "ubicacion": "pp. 2-3; mapa de empatía, p. 15; p. 13", "cita": "Para el cliente, contratar a un técnico supone incertidumbre: no sabe cuánto terminará pagando ni a quién reclamar si el trabajo falla.", "problema": "Persiste de la versión anterior: ninguna cifra mide el problema del cliente (malas experiencias con técnicos, cómo los buscan, cuánto pagan). El mapa de empatía menciona «quejas de conocidos sobre técnicos que cobraron de más» (p. 15), pero no se indica de dónde sale, y en la p. 13 se dice que los hábitos de contratación «deberán validarse mediante entrevistas». La rúbrica pide evidencia cualitativa y cuantitativa vinculada con las necesidades del cliente.", "mejora": "Hacer entrevistas breves a hogares y negocios de los tres distritos elegidos, y citar en el capítulo 1 frases textuales con el número de entrevistados; esas mismas entrevistas sustentan el mapa de empatía. Sumar un dato sobre reclamos de servicios del hogar (INDECOPI) o un estudio de consumidor (Ipsos, Arellano). Forma sugerida: «Según [institución] ([año]), el X % de los hogares…»."}, {"severidad": "importante", "titulo": "Las cifras del capítulo siguen saliendo de la prensa", "ubicacion": "pp. 2-3", "cita": "El ingreso mensual promedio en Arequipa en 2025 fue de S/ 2 324,6 (El Peruano, 2026), frente a S/ 1 887,2 a nivel nacional (Rumbo Minero, 2026a).", "problema": "Persiste de la versión anterior: El Búho, Diario Correo, Infomercado, Expreso (s. f.), Gestión, El Peruano y Rumbo Minero siguen siendo la base del capítulo 1, y la comparación de ingresos combina dos medios distintos. En el capítulo 2, en cambio, ya citan directamente al INEI (Censos 2025), CPI y CENEPRED, lo que muestra que pueden llegar a la fuente primaria.", "mejora": "Aplicar al capítulo 1 lo mismo que hicieron en el capítulo 2: ir al informe original de cada cifra (INEI-ENAHO, Encuesta de Demanda Ocupacional del MTPE, INDECI o Cuerpo de Bomberos) y citarlo directamente. Usar la prensa solo cuando el dato no esté publicado en otra fuente."}, {"severidad": "importante", "titulo": "Megatendencias sustentadas con una fuente que no corresponde", "ubicacion": "«Megatendencias relacionadas», pp. 4-5", "cita": "(PwC, s. f.)", "problema": "Persiste de la versión anterior: las megatendencias siguen tomadas de «Five megatrends and their implications for global defense & security», un documento sin fecha sobre defensa. No se usa CEPLAN, y en el Perú la megatendencia demográfica es el envejecimiento, así que vincular «cambio demográfico» con «población joven» necesita sustento.", "mejora": "Sustentar cada megatendencia con CEPLAN (Perú 2050 o sus informes de megatendencias y tendencias), con un dato de esa fuente. Revisar si el argumento sobre los jóvenes encaja mejor en una tendencia sobre empleo y formalización."}, {"severidad": "sugerencia", "titulo": "ODS sin metas específicas ni fuente", "ubicacion": "«ODS Relacionadas», pp. 3-4", "cita": "ODS 8: Trabajo Decente y Crecimiento Económico", "problema": "Persiste de la versión anterior: los tres ODS se relacionan bien con el proyecto, pero no se indica qué meta atiende cada uno ni se cita ninguna fuente. La referencia sobre ODS sigue siendo del Ministerio del Medio Ambiente de Chile y no se cita en el texto.", "mejora": "Identificar la meta concreta de cada ODS en el portal oficial de la ONU y citarla. Valorar si conviene quedarse con dos ODS bien desarrollados en lugar de tres."}]}, {"etiqueta": "Capítulo II", "titulo": "Propuesta de valor", "resumen": "La segmentación mejoró mucho, pero la ficha técnica sigue siendo del software, no hay precio y el capítulo todavía presenta dos versiones de lo que recibe el cliente al inicio.", "observaciones": [{"severidad": "critico", "titulo": "La ficha técnica describe el software y no el servicio, y no tiene precio", "ubicacion": "«Ficha técnica», pp. 5-7", "cita": "Ficha técnica de la aplicación digital ArreglaYa", "problema": "Persiste de la versión anterior: los nueve puntos de la ficha describen el panel administrativo (recorridos, registro de técnicos, permisos, base de datos). No figuran precios ni opciones de compra, proceso de atención, presentación, sostenibilidad ni integración con redes sociales, que son campos obligatorios. En todo el informe no aparece un solo precio, ni del servicio ni de la comisión.", "mejora": "Presentar la ficha como tabla numerada con los 8 campos oficiales: nombre; especificaciones (servicios y alcance de cada uno); funcionalidades; precio y opciones de compra (tarifa por visita o por servicio, paquetes, descuento por varios servicios, medios de pago); proceso (el flujo de atención: diagnóstico, presupuesto, ejecución, garantía); presentación (uniforme, identificación, informe o comprobante); sostenibilidad (residuos, pinturas, materiales); y redes sociales. La plataforma puede ir como un recurso dentro de la ficha."}, {"severidad": "importante", "titulo": "Dos versiones de lo que recibe el cliente al inicio", "ubicacion": "pp. 5, 6, 7, 9, 13-15; p. 4; BMC, p. 16", "cita": "Los clientes podrán solicitar servicios, proporcionar información sobre sus necesidades y calificar la atención recibida.", "problema": "Persiste de la versión anterior, aunque mejoró: la segmentación tecnográfica (p. 13) aclara que al inicio el cliente usará WhatsApp y que la app llegará después, y la ficha (p. 6) dice lo mismo. Pero la descripción (p. 5), los beneficios (p. 7), la solución (p. 9), los casos de uso 2.1 y 2.6 (pp. 13-15) y la megatendencia de la p. 4 («funciona como una plataforma móvil») siguen presentando al cliente registrando y calificando en la plataforma. Además, el BMC pone la «página web» como primer canal (p. 16).", "mejora": "Usar en todo el informe la versión de la p. 13 (WhatsApp y redes al inicio, app después) y ajustar descripción, beneficios, casos de uso y canales para que describan lo que el cliente usará en el lanzamiento."}, {"severidad": "importante", "titulo": "El diferencial sigue apoyado en funciones internas", "ubicacion": "«Descripción de la propuesta de valor», p. 5", "cita": "Como valor diferencial, ArreglaYa integrará en una sola plataforma la solicitud de servicios, la gestión administrativa, la confirmación de trabajos y la organización de actividades de capacitación.", "problema": "Persiste de la versión anterior: la gestión administrativa y la confirmación de trabajos no son algo que el cliente perciba. Precios claros, garantía y descuentos sí lo son, pero ninguna de estas promesas se cuantifica, y en el capítulo 3 el precio lo acuerda el técnico (p. 16). La captación en movilidad, que el BMC presenta como el diferencial (p. 16), es en realidad un canal. Como las apps en mercados saturados figuran entre los productos restringidos, el diferencial tiene que sustentarse con evidencia.", "mejora": "Redactar el diferencial solo con lo que el cliente valora y ArreglaYa hace mejor que sus alternativas (precio, garantía, comprobante, verificación del técnico, tiempo de respuesta), con datos concretos: cuánto dura la garantía, en cuánto tiempo se atiende y cuánto ahorra el descuento. Apoyarlo en la tabla comparativa de competidores del capítulo 3."}, {"severidad": "sugerencia", "titulo": "La solución no retoma el riesgo eléctrico del capítulo 1", "ubicacion": "«Solución a problemas o necesidades específicas», pp. 8-9", "cita": "", "problema": "Persiste de la versión anterior: el capítulo 1 presenta el riesgo eléctrico como «uno de los efectos más graves» y la p. 12 menciona la «revisión preventiva de techos, paredes e instalaciones», pero ningún servicio de la propuesta lo atiende. La solución no responde al problema más fuerte que plantean.", "mejora": "Evaluar si la propuesta debe incluir un servicio que responda a ese riesgo y explicar, causa por causa, cómo la solución atiende cada problema del capítulo 1, por ejemplo con una tabla problema-solución."}, {"severidad": "sugerencia", "titulo": "La segmentación psicográfica no elige perfiles", "ubicacion": "2.5.3, pp. 11-12", "cita": "Modernas (27 %), Formalistas (21 %), Progresistas (20 %), Conservadoras (14 %), Sofisticados (9 %) y Austeros (9 %)", "problema": "Se presentan los seis estilos de vida de Arellano, pero no se indica cuáles son el público de ArreglaYa ni por qué. Además, la fuente es de 2017 y nacional, como ustedes mismos advierten.", "mejora": "Elegir uno o dos estilos de vida y justificar la elección con las características del segmento (por ejemplo, quién valora la garantía y el comprobante)."}]}, {"etiqueta": "Capítulo III", "titulo": "Modelo de negocio", "resumen": "El capítulo ya existe y tiene todos sus apartados, pero el modelo de ingresos contradice la propuesta de valor, el BMC no argumenta la coherencia entre bloques, los competidores están incompletos y los indicadores no tienen fórmula.", "observaciones": [{"severidad": "critico", "titulo": "El modelo de ingresos contradice la promesa de precios claros", "ubicacion": "BMC, «Fuentes de ingresos», p. 16; pp. 5, 7 y 17-18", "cita": "Los técnicos son quienes realizan los trabajos, acuerdan el precio con los clientes y reciben el pago por sus servicios.", "problema": "Si cada técnico acuerda el precio con el cliente, ArreglaYa no puede garantizar los «precios claros y transparentes previos a la contratación» (p. 18), que es justamente el ajuste frente al maestro informal. Tampoco puede ofrecer el «descuento por varios servicios», porque cada técnico fija su tarifa. Además, la comisión se cobra «posteriormente» sobre lo que el técnico ya recibió, y ustedes mismos reconocen que el cliente puede contratarlo directamente (p. 20). Así, la propuesta de valor y el bloque de ingresos describen dos negocios distintos.", "mejora": "Decidir quién fija la tarifa (tarifario de ArreglaYa o rangos acordados con los técnicos), quién cobra al cliente, qué porcentaje es la comisión y quién asume el descuento y la garantía. Luego, escribir esa misma versión en la ficha técnica, el BMC, los competidores y los indicadores."}, {"severidad": "importante", "titulo": "El BMC explica cada bloque, pero no argumenta la coherencia entre ellos", "ubicacion": "BMC, pp. 16-17; anexo 2", "cita": "También atiende a personas que conocen la empresa mediante los recorridos de promoción que realiza la movilidad por diferentes zonas.", "problema": "Cada bloque se describe por separado, pero no se explica cómo se sostienen entre sí, que es lo que pide el nivel Sobresaliente. Se ven tres incoherencias: (1) los técnicos pagan la comisión, pero no aparecen como segmento ni tienen una propuesta de valor propia; (2) el bloque de segmentos vuelve a incluir a quienes llegan por los recorridos, que es un canal, y no recoge el segmento definido en 2.5 (distritos y NSE); (3) los ingresos son solo comisiones, pero los costos incluyen la movilidad, el personal, las herramientas y las capacitaciones, y no se explica cómo se cubren.", "mejora": "Tratar el modelo como de dos lados (clientes y técnicos) en segmentos, propuesta de valor, relación e ingresos. Copiar en el bloque de segmentos el segmento de 2.5. Después de los 9 bloques, agregar un párrafo que explique cómo los canales, los recursos y los costos hacen posible la propuesta de valor y cómo la comisión los cubre."}, {"severidad": "importante", "titulo": "Competidores incompletos y sin las alternativas digitales", "ubicacion": "«Compara modelos de negocio existentes», pp. 17-18", "cita": "Sus servicios técnicos suelen ser costosos, burocráticos y, por lo general, están estrictamente condicionados a que el cliente compre el producto nuevo en su tienda", "problema": "Solo se analizan dos grupos (maestros informales y home centers), y de cada uno se presentan desventajas, pero no fortalezas. Faltan las alternativas que más compiten con un servicio de conexión: grupos de Facebook, Marketplace, maestros de ferretería y apps o directorios de servicios del hogar. Las afirmaciones sobre los home centers («costosos», «puede tardar varios días») no tienen fuente ni comprobación.", "mejora": "Elaborar una tabla con 4 o 5 competidores directos e indirectos que operen en Arequipa, con estas columnas: descripción, modelo de negocio, precio, fortalezas y debilidades. Sustentar los datos con una visita, una cotización o la web del competidor. Cerrar con la ventaja competitiva y la estrategia de diferenciación."}, {"severidad": "importante", "titulo": "Indicadores sin fórmula, meta ni ejemplo de cálculo", "ubicacion": "«Indicadores de gestión», pp. 18-19", "cita": "Tasa de conversión por recorridos físicos: Mide qué porcentaje de los pequeños negocios u hogares abordados proactivamente por la movilidad de ArreglaYa termina solicitando un servicio.", "problema": "Los seis indicadores son pertinentes, pero solo se describen. Ninguno tiene fórmula ni ejemplo de cálculo, y solo dos tienen meta («superior a 4.5», «cercano al 0%»). Así no podrán medir el piloto de la AA2.", "mejora": "Presentar los indicadores en una tabla numerada con nombre, fórmula, meta, frecuencia y un ejemplo de cálculo. Estructura sugerida: «Indicador = (A / B) × 100», con valores de ejemplo. Considerar un indicador que mida el ingreso por comisión frente al costo de cada recorrido."}, {"severidad": "sugerencia", "titulo": "Mapa de empatía sin fuente y único para dos segmentos", "ubicacion": "Mapa de empatía, p. 15", "cita": "Mapa de Empatía del segmento de clientes de ArreglaYa", "problema": "El mapa tiene sus seis dimensiones y es coherente con el problema, pero mezcla en un solo perfil al hogar y al negocio («su familia o local»), y no indica en qué se basa. Tampoco tiene número de figura ni nota de fuente.", "mejora": "Valorar un mapa para cada segmento (hogar y pequeño negocio), basado en las entrevistas que hagan, y presentarlo como «Figura N» con título y nota («Elaboración propia a partir de entrevistas a N…»)."}]}, {"etiqueta": "Formato académico", "titulo": "Presentación, redacción y citas", "resumen": "Ya hay carátula y las referencias están ordenadas, pero siguen las consignas copiadas en seis páginas, no hay índice ni numeración oficial, y varias citas no coinciden con su referencia.", "observaciones": [{"severidad": "critico", "titulo": "Siguen las consignas de los lineamientos copiadas en el informe", "ubicacion": "pp. 2, 5, 15, 17, 19 y 22", "cita": "Desarrolla el capítulo 1 del TAP: Revisa y ajusta las necesidades y problemas del cliente.", "problema": "Persiste de la versión anterior: la p. 2 sigue empezando con la consigna del capítulo 1, la p. 5 conserva el fragmento «CERTUS. Para ello, toma de base fuentes de información secundaria…» y las consignas del capítulo 2, y las pp. 15, 17, 19 y 22 mantienen las del capítulo 3: «Revisa y ajusta tu modelo de negocio según:», «Compara modelos de negocio existentes (competidores)…», «Analiza a partir de la propia planificación y estilo de aprendizaje…» y «Desarrolla y expone una presentación… Elevator Pitch». Los apartados se titulan con viñetas de la consigna («○ Mapa de empatía»).", "mejora": "Borrar todas las consignas y viñetas de instrucciones y reemplazarlas por los títulos numerados del TAP. Antes de entregar, buscar en el documento palabras como «Desarrolla», «Revisa y ajusta», «Analiza» y «Compara»."}, {"severidad": "importante", "titulo": "Carátula incompleta, apellido del docente mal escrito y sin índice", "ubicacion": "p. 1", "cita": "JEANPIER BRANDOL ANCORIJ SANCHEZ", "problema": "La carátula es un avance, pero el apellido del docente es «Ancori», no «Ancorij». Faltan la carrera de cada integrante, la sección y el número de grupo, y el nombre del proyecto aparece como «Arregla Ya», mientras que el texto usa «ArreglaYa». Sigue sin haber índice.", "mejora": "Corregir el apellido, agregar carrera, sección y grupo, unificar el nombre del proyecto en todo el documento e insertar un índice automático después de la carátula."}, {"severidad": "importante", "titulo": "Numeración de títulos que no sigue la estructura oficial", "ubicacion": "Todo el documento; pp. 9 y 13-15", "cita": "2.5. Capacitación y mejora de las habilidades de los técnicos", "problema": "Persiste de la versión anterior: no hay «Capítulo I/II/III» ni apartados 1.1 y 1.2. Ahora además hay dos «2.5»: «2.5. Segmentos de cliente» (p. 9) y el caso de uso «2.5. Capacitación…» (p. 14), porque los casos de uso siguen numerados 2.1-2.6. El título de segmentos aparece dos veces seguidas (p. 9), y el BMC y el análisis del entorno se numeran del 1 al 9 y del 1 al 4.", "mejora": "Numerar como «Capítulo I», 1.1, 1.2, «Capítulo II», 2.1-2.6, «Capítulo III», 3.1-3.3, con un tercer nivel para los casos de uso (2.6.1, 2.6.2…), los bloques del BMC (3.2.1…) y los competidores."}, {"severidad": "importante", "titulo": "Citas que no coinciden con su referencia y referencias sin citar", "ubicacion": "pp. 10, 11 y 13; «Bibliografía», pp. 22-24", "cita": "(El Peruano, 2026b)", "problema": "Ordenaron la lista y le pusieron sangría francesa, pero se sigue titulando «Bibliografía». En el texto se cita «El Peruano, 2026b» (p. 11) e «INEI, 2026a, 2026b» (pp. 10 y 13), y en la lista no hay ninguna letra a o b. Además, la única referencia de El Peruano trata de la población ocupada, no de las MYPE, y el dato de 2 441 018 MYPE no coincide con la nota de PRODUCE (2,34 millones de empresas). Siete referencias no se citan en el texto: Gestión (2018), INEI (2024), PRODUCE (2025), MVCS (2025), Ministerio del Medio Ambiente, PCM (2019) y SUNAT (2026). Diario Correo (2026) y Expreso no tienen fecha completa.", "mejora": "Titular la sección «Referencias», poner las letras a y b en las referencias del mismo autor y año, verificar que cada cifra salga de la referencia citada y eliminar las referencias que no se citan (o citarlas donde correspondan). Completar las fechas de las notas de prensa."}, {"severidad": "sugerencia", "titulo": "Figuras sin número ni fuente, anexo mal referido y erratas", "ubicacion": "pp. 15, 16, 25 y 26; pp. 14, 18-21", "cita": "( ver anexo 3)", "problema": "El mapa de empatía, la infografía y el BMC no tienen «Figura N», título ni nota de fuente; si alguna imagen se generó con una herramienta, debe declararse. El BMC remite al «anexo 3», pero está en el anexo 2, y conviene que esté dentro de 3.2 y no al final. Hay erratas («Reparaciones menores.0», p. 14; «estantes,estos», p. 19; «favorable,mediante», p. 20; «identificadas.De», p. 21), una frase en segunda persona («te instalan un caño… solo si lo compraste ahí», p. 18), «ODS Relacionadas» (p. 3) y un cambio de formato: el texto justificado pasa a alineado a la izquierda en las pp. 16-21.", "mejora": "Numerar todas las figuras en formato APA 7 (número en negrita, título en cursiva y nota de fuente), mover el BMC a 3.2, corregir la referencia al anexo y las erratas, y unificar la alineación y los estilos de todo el documento."}]}], "calificacion": {"fuentes": 2, "problema": 3, "propuesta": 2, "modelo": 3, "responsabilidad": 3}}</script>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contenido">
+    <div class="lbl">Contenido</div>
+    <ol id="toc"></ol>
+    <p class="progress" id="progress" style="margin-top:14px"></p>
+  </nav>
+  <main id="main"></main>
+</div>
+
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const SEV = { critico: 'Crítico', importante: 'Importante', sugerencia: 'Sugerencia' };
+const ST = { completo: 'Completo', incompleto: 'Incompleto', ausente: 'Ausente' };
+const DICT = { mayor: 'Requiere correcciones mayores', menor: 'Requiere correcciones menores', apto: 'Apto para continuar' };
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const KEY = 'tap-revision-' + (D.id || 'x');
+let done = {};
+try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+
+const all = D.secciones.flatMap(s => s.observaciones.map(o => o.severidad));
+const count = sev => all.filter(x => x === sev).length;
+
+let html = '';
+if (D.ejemplo) html += `<div class="demo">Ejemplo con datos ficticios: así verá cada grupo su revisión.</div>`;
+html += `<header class="cover">
+  <div class="eyebrow">${esc(D.institucion)} · ${esc(D.curso)} · ${esc(D.evidencia)}</div>
+  <h1>${esc(D.proyecto)}</h1>
+  <p class="summary">Revisión del Trabajo de Aplicación Profesional (TAP): ${esc(D.alcance)}</p>
+  <dl class="meta">
+    <div><dt>Grupo</dt><dd>${esc(D.grupo)}</dd></div>
+    <div><dt>Sección</dt><dd>${esc(D.seccion)}</dd></div>
+    <div><dt>Fecha de revisión</dt><dd>${esc(D.fecha)}</dd></div>
+    <div><dt>Docente</dt><dd>${esc(D.docente)}</dd></div>
+  </dl>
+  <div><div class="eyebrow" style="margin-bottom:4px">Integrantes</div>
+  <ul class="members">${D.integrantes.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+</header>`;
+
+html += `<section class="block verdict" id="dictamen">
+  <div class="head"><div class="eyebrow">Dictamen</div><h2>Estado del informe</h2></div>
+  <div class="stamp ${esc(D.dictamen)}">${DICT[D.dictamen] || esc(D.dictamen)}</div>
+  <div class="counts">
+    <span class="pill critico">${count('critico')} críticas</span>
+    <span class="pill importante">${count('importante')} importantes</span>
+    <span class="pill sugerencia">${count('sugerencia')} sugerencias</span>
+  </div>
+  <p>${esc(D.resumen)}</p>
+  ${D.fortalezas?.length ? `<div><h3 style="margin-bottom:8px">Lo que está bien</h3><ul class="strength">${D.fortalezas.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>` : ''}
+</section>`;
+
+if (D.calificacion) {
+  const C = D.calificacion;
+  const NIV = { 4: 'Sobresaliente', 3: 'Logrado', 2: 'En proceso', 1: 'Inicio', 0: 'No presentó' };
+  const filas = [['Fuentes de información', C.fuentes], ['Planteamiento del problema', C.problema],
+    ['Propuesta de valor', C.propuesta], ['Modelo de negocio', C.modelo], ['Responsabilidad en la ejecución', C.responsabilidad]];
+  const total = filas.reduce((s, f) => s + (Number(f[1]) || 0), 0);
+  html += `<section class="block" id="nota">
+    <div class="head"><div class="eyebrow">Rúbrica de la ${esc(D.evidencia)}</div><h2>Calificación preliminar del informe</h2></div>
+    <div class="grade"><span class="big">${total}</span><span class="of">/ 20</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Criterio</th><th>Nivel</th><th class="num">Puntos</th></tr></thead>
+      <tbody>${filas.map(([c, p]) => `<tr><td>${c}</td><td><span class="lvl l${p}">${NIV[p] ?? '—'}</span></td><td class="num">${p ?? '—'} / 4</td></tr>`).join('')}</tbody>
+    </table></div>
+    <p class="summary">La nota es individual y la final de la ${esc(D.evidencia)} también considera la exposición y las respuestas de cada integrante. Para subir de nivel, revisen la sección “Camino al 20”.</p>
+  </section>`;
+}
+
+html += `<section class="block" id="prioridades">
+  <div class="head"><div class="eyebrow">Antes de la siguiente entrega</div><h2>Prioridades de corrección</h2></div>
+  <ol class="priorities">${D.prioridades.map(p => `<li><span>${esc(p)}</span></li>`).join('')}</ol>
+</section>`;
+
+if (D.camino?.length) html += `<section class="block" id="camino">
+  <div class="head"><div class="eyebrow">Meta: nivel Sobresaliente en cada criterio de la rúbrica</div><h2>Camino al 20</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Criterio</th><th>Qué exige el nivel Sobresaliente</th><th>Qué les falta para llegar</th></tr></thead>
+    <tbody>${D.camino.map(c => `<tr><td><b>${esc(c.criterio)}</b></td><td>${esc(c.exige)}</td><td>${esc(c.falta)}</td></tr>`).join('')}</tbody>
+  </table></div>
+</section>`;
+
+if (D.viabilidad?.riesgos?.length) html += `<section class="block" id="viabilidad">
+  <div class="head"><div class="eyebrow">Mirada de negocio, más allá del documento</div><h2>Viabilidad: con qué se van a chocar</h2></div>
+  ${D.viabilidad.resumen ? `<p>${esc(D.viabilidad.resumen)}</p>` : ''}
+  <ul class="obs">${D.viabilidad.riesgos.map(r => `<li class="ob">
+    <div class="top"><span class="pill importante">${esc(r.tema)}</span><h3>${esc(r.titulo)}</h3></div>
+    <p>${esc(r.choque)}</p>
+    <div class="fix"><b>Ideas</b><ul class="ideas">${(r.ideas || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+  </li>`).join('')}</ul>
+</section>`;
+
+html += `<section class="block" id="estructura">
+  <div class="head"><div class="eyebrow">Contra la estructura oficial del TAP</div><h2>Revisión de estructura</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Ítem</th><th>Apartado</th><th>Estado</th><th>Comentario</th></tr></thead>
+    <tbody>${D.estructura.map(r => `<tr><td class="code">${esc(r.codigo)}</td><td>${esc(r.apartado)}</td>
+      <td class="st ${esc(r.estado)}">${ST[r.estado] || esc(r.estado)}</td><td>${esc(r.nota)}</td></tr>`).join('')}</tbody>
+  </table></div>
+</section>`;
+
+D.secciones.forEach((s, si) => {
+  html += `<section class="block" id="s${si}">
+    <div class="head"><div class="eyebrow">${esc(s.etiqueta)}</div><h2>${esc(s.titulo)}</h2></div>
+    ${s.resumen ? `<p class="summary">${esc(s.resumen)}</p>` : ''}
+    <ul class="obs">${s.observaciones.map((o, oi) => {
+      const k = si + '-' + oi;
+      return `<li class="ob${done[k] ? ' done' : ''}" data-k="${k}">
+        <div class="top"><span class="pill ${esc(o.severidad)}">${SEV[o.severidad] || esc(o.severidad)}</span>
+        <h3>${esc(o.titulo)}</h3>${o.ubicacion ? `<span class="where">${esc(o.ubicacion)}</span>` : ''}</div>
+        ${o.cita ? `<blockquote>“${esc(o.cita)}”</blockquote>` : ''}
+        <p>${esc(o.problema)}</p>
+        <div class="fix"><b>Mejora</b><p>${esc(o.mejora)}</p></div>
+        <label><input type="checkbox" id="chk-${k}" ${done[k] ? 'checked' : ''}> Marcar como corregido</label>
+      </li>`;
+    }).join('')}</ul>
+  </section>`;
+});
+
+html += `<footer>
+  <span>Revisión elaborada con la rúbrica de la ${esc(D.evidencia)} y la estructura oficial del TAP de CERTUS.</span>
+  <span>Las casillas “corregido” se guardan solo en este navegador, como ayuda para organizarse.</span>
+</footer>`;
+document.getElementById('main').innerHTML = html;
+
+const toc = [['dictamen', 'Dictamen', '']]
+  .concat(D.calificacion ? [['nota', 'Calificación', '']] : [])
+  .concat([['prioridades', 'Prioridades', '']])
+  .concat(D.camino?.length ? [['camino', 'Camino al 20', '']] : [])
+  .concat(D.viabilidad?.riesgos?.length ? [['viabilidad', 'Viabilidad', '']] : [])
+  .concat([['estructura', 'Estructura', '']])
+  .concat(D.secciones.map((s, i) => ['s' + i, s.titulo, s.observaciones.length]));
+document.getElementById('toc').innerHTML = toc.map(([id, t, n]) => `<li><a href="#${id}"><span>${esc(t)}</span><span class="n">${n}</span></a></li>`).join('');
+
+function updateProgress() {
+  const total = document.querySelectorAll('.ob').length;
+  const ok = document.querySelectorAll('.ob.done').length;
+  document.getElementById('progress').textContent = `${ok} de ${total} observaciones corregidas`;
+}
+document.getElementById('main').addEventListener('change', e => {
+  const li = e.target.closest('.ob'); if (!li) return;
+  li.classList.toggle('done', e.target.checked);
+  done[li.dataset.k] = e.target.checked;
+  try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (err) {}
+  updateProgress();
+});
+updateProgress();
+</script>
+
+</html>

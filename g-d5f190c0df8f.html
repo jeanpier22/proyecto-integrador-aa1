@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>TAP Grupo (sin número) · AA1</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: informe de revisión de tesina — columna de lectura centrada, índice lateral fijo en escritorio, sellos de severidad en el margen */
+:root {
+  --paper: #fbfbfa;
+  --sheet: #ffffff;
+  --ink: #1c2230;
+  --muted: #5b6475;
+  --rule: #dde1e8;
+  --accent: #1f3a68;
+  --accent-soft: #e8edf6;
+  --crit: #a3262b;   --crit-bg: #fbeceb;
+  --warn: #8a5a00;   --warn-bg: #fdf3df;
+  --sug: #1d6a55;    --sug-bg: #e6f3ee;
+  --ok: #1d6a55;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #12151c; --sheet: #191d26; --ink: #e6e9ef; --muted: #9aa3b4; --rule: #2c3240;
+  --accent: #9db7e6; --accent-soft: #1f2a40;
+  --crit: #f08c8f; --crit-bg: #3a1c1f; --warn: #e8bd6a; --warn-bg: #3a2e14; --sug: #7fcfb4; --sug-bg: #15312a; --ok: #7fcfb4;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #12151c; --sheet: #191d26; --ink: #e6e9ef; --muted: #9aa3b4; --rule: #2c3240;
+  --accent: #9db7e6; --accent-soft: #1f2a40;
+  --crit: #f08c8f; --crit-bg: #3a1c1f; --warn: #e8bd6a; --warn-bg: #3a2e14; --sug: #7fcfb4; --sug-bg: #15312a; --ok: #7fcfb4;
+  color-scheme: dark }
+
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15.5px; line-height: 1.6; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; } nav.toc { position: static !important; } }
+
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; font-size: 13.5px; }
+nav.toc .lbl, .eyebrow { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+nav.toc ol { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 2px; }
+nav.toc a { display: flex; justify-content: space-between; gap: 8px; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+nav.toc a:hover, nav.toc a:focus-visible { background: var(--accent-soft); outline: none; }
+nav.toc .n { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+main { min-width: 0; display: grid; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(28px, 4vw, 38px); font-weight: 700; }
+h2 { font-size: 24px; font-weight: 600; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+
+.demo { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn); padding: 10px 14px; border-radius: 6px; font-weight: 500; font-size: 14px; }
+
+header.cover { border-bottom: 2px solid var(--accent); padding-bottom: 24px; display: grid; gap: 14px; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 24px; margin-top: 6px; }
+.meta div { display: grid; gap: 2px; min-width: 0; }
+.meta dt { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.meta dd { margin: 0; font-weight: 500; }
+.members { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+
+.verdict { display: grid; gap: 14px; }
+.stamp { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 19px; font-weight: 600; color: var(--accent); }
+.stamp::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: currentColor; }
+.stamp.mayor { color: var(--crit); } .stamp.menor { color: var(--warn); } .stamp.apto { color: var(--ok); }
+.counts { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { font-size: 12.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+.pill.critico { background: var(--crit-bg); color: var(--crit); }
+.pill.importante { background: var(--warn-bg); color: var(--warn); }
+.pill.sugerencia { background: var(--sug-bg); color: var(--sug); }
+
+.priorities { list-style: none; counter-reset: p; padding: 0; margin: 0; display: grid; gap: 10px; }
+.priorities li { counter-increment: p; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
+.priorities li::before { content: counter(p); font-family: var(--display); font-weight: 700; color: var(--accent); font-size: 18px; line-height: 1.4; }
+
+section.block { display: grid; gap: 18px; scroll-margin-top: 24px; }
+section.block > .head { display: grid; gap: 4px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+.summary { color: var(--muted); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--paper); }
+td.code { font-family: var(--mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+.st { font-weight: 600; white-space: nowrap; }
+.st.completo { color: var(--ok); } .st.incompleto { color: var(--warn); } .st.ausente { color: var(--crit); }
+
+.obs { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.ob { background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; display: grid; gap: 10px; }
+.ob.done { opacity: .6; }
+.ob .top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ob .where { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.ob blockquote { margin: 0; padding: 8px 12px; border-left: 3px solid var(--rule); color: var(--muted); font-family: var(--display); font-style: italic; font-size: 14.5px; }
+.ob .fix { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; }
+.ob .fix b { color: var(--accent); font-size: 13px; text-transform: uppercase; letter-spacing: .06em; line-height: 1.8; }
+.ob label { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); cursor: pointer; justify-self: start; }
+.ob input { accent-color: var(--accent); width: 16px; height: 16px; }
+.grade { display: flex; align-items: baseline; gap: 8px; font-family: var(--display); color: var(--accent); }
+.grade .big { font-size: 56px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.grade .of { font-size: 22px; color: var(--muted); }
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lvl { font-size: 12.5px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.lvl.l4, .lvl.l3 { background: var(--sug-bg); color: var(--sug); }
+.lvl.l2 { background: var(--warn-bg); color: var(--warn); }
+.lvl.l1, .lvl.l0 { background: var(--crit-bg); color: var(--crit); }
+.ideas { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.strength { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.strength li::before { content: "✓  "; color: var(--ok); font-weight: 700; }
+
+.progress { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+footer { border-top: 1px solid var(--rule); padding-top: 16px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+a { color: var(--accent); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<script type="application/json" id="data">{"id": "grupo-impulsa", "institucion": "CERTUS", "curso": "UD Proyecto Integrador", "evidencia": "AA1", "alcance": "capítulos 1, 2 y 3 (planteamiento del problema, propuesta de valor y modelo de negocio).", "proyecto": "Impulsa: app de control financiero e inventario para bodegas de Arequipa", "grupo": "Grupo (sin número)", "seccion": "No indicada", "fecha": "30/10/2026 (2.ª versión)", "docente": "Jeanpier Brandol Ancori Sanchez", "integrantes": ["Anahi Condori Adco", "Aida Uscamayta Cañari", "Pamela Mestas Condori", "Nilton Peralta Ccacasaca"], "dictamen": "menor", "resumen": "La segunda versión muestra un avance claro: agregaron índice, separaron 1.1 y 1.2 con tablas de causas y consecuencias, declararon la megatendencia de CEPLAN y las metas 8.2 y 8.3 del ODS 8, completaron la ficha técnica con sus 8 campos y un precio referencial, y llevaron el capítulo 3 a nivel de análisis (BMC argumentado bloque por bloque, competidores con fortalezas, debilidades y precios, e indicadores con fórmula, ejemplo y meta). Lo que aún falta: el diferencial de Impulsa sigue siendo una hipótesis y el competidor más cercano (Clarito, que ya ofrece reportes de ganancias y fiados para bodegas) no está en las tablas comparativas; todavía no hay ninguna evidencia cualitativa propia (entrevistas) ni cifras del problema social; los apartados 2.3 a 2.6 siguen sin existir y el segmento remite a unos «distritos definidos en el capítulo 2» que no aparecen; y en lo formal persisten la carátula incompleta, citas que no coinciden con las referencias y un salto en la numeración de tablas.", "fortalezas": ["Corrigieron el capítulo 1: ahora tiene 1.1 y 1.2 con causas y consecuencias en tablas (Tablas 2 y 3, pp. 5-7), la megatendencia «acelerada innovación y desarrollo tecnológico» de CEPLAN (2023) aplicada al negocio en tres manifestaciones (pp. 8-9) y las metas 8.2 y 8.3 del ODS 8 (p. 8).", "Usan fuentes oficiales (PRODUCE, OSIPTEL, BCRP, CEPLAN) con análisis crítico: la Tabla 1 (p. 4) explica qué muestra cada cifra y qué no permite concluir, algo poco común en la AA1.", "El capítulo 3 ya argumenta el modelo: cada bloque del BMC se justifica frente al segmento y la propuesta de valor (pp. 19-20), la Tabla 13 (p. 21) compara cuatro competidores con precio, fortalezas y debilidades, y los indicadores tienen fórmula, ejemplo y meta, incluidos MAU, conversión, retención y CAC del modelo freemium (Tablas 14 y 15, pp. 23-24).", "Completaron la ficha técnica con los 8 campos y un precio referencial de S/ 10 a S/ 20 sustentado con precios de competidores (Tablas 5 y 6, pp. 12-14), e integraron el prototipo y el mapa de empatía como figuras numeradas (Figuras 1 y 2)."], "prioridades": ["Demostrar el diferencial frente a los competidores digitales, empezando por Clarito: incluirlo en las Tablas 4 y 6, instalar las versiones gratuitas o de prueba y reemplazar cada «No verificado» por un resultado comprobado.", "Realizar las 5 a 10 entrevistas que ya planificaron (pp. 5 y 17) e incorporar los resultados en 1.1.1 y en el mapa de empatía, con conteos («X de N entrevistados…») y frases textuales anonimizadas.", "Crear los apartados 2.3 Beneficios clave, 2.4 Solución, 2.5 Segmentos y 2.6 Casos de uso, trasladando allí el contenido de 1.3 y 3.6, y definir el segmento con distritos, variables y un tamaño estimado.", "Completar la carátula con el título del proyecto, la carrera de cada integrante, la sección, el número de grupo y el nombre completo del docente.", "Alinear citas y referencias (años, tildes, fuentes citadas que no están en la lista y viceversa), aplicar sangría francesa y corregir el salto de la Tabla 6 a la Tabla 11.", "Dimensionar el problema social con cifras oficiales (por ejemplo, el informe del INEI sobre TIC en las empresas que ya tienen en la lista, o estadísticas de supervivencia de empresas) y concentrar las salvedades en un solo párrafo de alcance."], "camino": [{"criterio": "Fuentes de información", "exige": "Fuentes secundarias actuales y confiables, analizadas críticamente para mostrar su aporte al proyecto en relación con megatendencias y ODS.", "falta": "El análisis crítico ya está (Tabla 1). Falta rigor en el uso: tres referencias no se citan en el texto (Chambe Torres y Velásquez Arana, Buitrón Bernal e INEI), varias citas no coinciden en año o forma con su entrada, la referencia del INEI no tiene autor y se mantiene una nota de prensa (PressPerú). Además, el problema social no se apoya en ninguna cifra."}, {"criterio": "Planteamiento del problema", "exige": "Pertinencia del problema sustentada con evidencia cualitativa y cuantitativa, vinculada de forma detallada con megatendencias, ODS y necesidades del cliente.", "falta": "La parte cuantitativa y los vínculos con ODS y megatendencia ya están. Falta la evidencia cualitativa propia: las entrevistas siguen como plan (p. 5) y no hay ningún testimonio. El problema social se presenta solo como «consecuencias potenciales», sin un dato que lo respalde."}, {"criterio": "Propuesta de valor", "exige": "Propuesta innovadora y diferenciada, con descripción, ficha técnica, soluciones, segmentos y casos de uso coherentes con el problema.", "falta": "Demostrar que el diagnóstico financiero en lenguaje cotidiano y el registro guiado no los ofrece ya Clarito u otra app; ubicar beneficios, solución, segmentos y casos de uso en 2.3 a 2.6; y definir el segmento con distritos, variables y tamaño."}, {"criterio": "Modelo de negocio", "exige": "BMC y mapa de empatía que argumenten la coherencia entre los 9 bloques y la propuesta de valor.", "falta": "En lo esencial ya lo alcanzan. Para consolidarlo: sustentar el mapa de empatía con entrevistas (hoy es una hipótesis, p. 15) y justificar las metas comerciales (conversión, CAC) relacionándolas con el precio de S/ 10 a S/ 20."}], "viabilidad": {"resumen": "La necesidad es real y el modelo ya está bien pensado, pero Impulsa entra a un mercado donde una app peruana para bodegas (Clarito) ya vende reportes de ganancias, fiados y cierre de caja, y otras ofrecen planes gratuitos o de US$ 2 al mes. Antes de la AA2 deben comprobar si el bodeguero de Arequipa registraría cada venta, si valora la explicación de su ganancia lo suficiente para pagar S/ 10 a S/ 20, y cuánto cuesta realmente conseguir cada cliente de pago.", "riesgos": [{"tema": "Competencia", "titulo": "Clarito ya ofrece lo que Impulsa propone como diferencial", "choque": "Ustedes mismos reconocen que Clarito publicita reportes de ganancias, control de fiados y cierre de caja para bodegas peruanas (pp. 21-22), y que IUNCI funciona sin internet desde US$ 2 al mes. Si el diagnóstico en lenguaje cotidiano resulta ser solo un texto debajo de un reporte, el bodeguero no tendrá un motivo claro para elegir Impulsa.", "ideas": ["Usar Clarito, IUNCI y Loyverse durante una semana con datos de una bodega real y anotar dónde el bodeguero se equivoca o no entiende su ganancia.", "Explorar un diferencial más difícil de copiar: por ejemplo, alertas que expliquen por qué bajó la ganancia (producto, gasto o fiado concreto) o una conciliación diaria de efectivo, Yape y Plin contra lo vendido.", "Preguntar en la encuesta de la AA2 qué apps han probado, cuál dejaron y por qué."]}, {"tema": "Adopción", "titulo": "Registrar cada venta en el celular", "choque": "El cálculo de la ganancia depende de que el comerciante registre todas sus ventas, compras y gastos (p. 29: «los resultados dependen de la calidad, integridad y exactitud de los registros»). En una bodega con decenas de ventas pequeñas al día, atendida por una sola persona, ese registro suele abandonarse en pocas semanas.", "ideas": ["Observar 1 o 2 horas de atención en una bodega y contar las ventas y el tiempo disponible entre clientes.", "Probar en el piloto un registro por totales al cierre del día frente al registro venta por venta, y comparar cuál se mantiene.", "Medir en un piloto de 7 a 14 días el porcentaje de días con registro completo, además del uso recurrente que ya definieron."]}, {"tema": "Mercado", "titulo": "Disposición a pagar S/ 10 a S/ 20 al mes", "choque": "Su precio está por encima del plan Profesional de IUNCI (US$ 2/mes) y del plan de pago básico de Loyverse (US$ 5/mes) (Tabla 6). La meta de 10 % de conversión al plan pagado (Tabla 15) es alta para un modelo freemium dirigido a un público con alternativas gratuitas.", "ideas": ["Validar el rango de precio en la AA2 con preguntas de disposición a pagar (por ejemplo, Van Westendorp) y mostrar qué funciones exactas incluye el plan pagado.", "Calcular cuántos suscriptores pagados necesitan para cubrir sus costos fijos mensuales y cuántos usuarios gratuitos implica eso con la conversión supuesta.", "Explorar otros pagadores: distribuidores mayoristas o microfinancieras interesados en datos de ventas de bodegas para evaluar créditos."]}, {"tema": "Costos", "titulo": "Costo de las demostraciones presenciales", "choque": "El canal principal son las demostraciones en bodegas con acompañamiento inicial (p. 19). La meta de CAC de S/ 30 por cliente de pago (Tabla 15) supone que cada 2 o 3 visitas producen un cliente que paga, algo poco probable si la conversión es baja; con un precio de S/ 10 a S/ 20 se tardarían meses en recuperar cada cliente.", "ideas": ["Registrar en el piloto cuántas visitas, horas y pasajes cuesta conseguir un usuario activo y uno de pago.", "Buscar canales de uno a muchos: charlas en mercados, asociaciones de bodegueros, el CDE Arequipa de Tu Empresa o la Cámara de Comercio e Industria de Arequipa.", "Relacionar el CAC con el ingreso esperado por cliente (meses de permanencia × precio) para fijar una meta realista."]}, {"tema": "Regulación", "titulo": "Datos personales y nombre comercial", "choque": "La app guardará datos económicos del negocio y, con los cobros pendientes, datos de los clientes del bodeguero; eso los obliga a cumplir la Ley 29733 de Protección de Datos Personales, que ustedes mencionan sin precisar (p. 27). Además, «Impulsa» es un nombre común que puede estar registrado ante INDECOPI.", "ideas": ["Buscar el nombre en la base de marcas de INDECOPI antes de seguir invirtiendo en la identidad visual.", "Revisar qué exige la Ley 29733 a una app que almacena datos de terceros y preparar términos de uso y política de privacidad.", "Aclarar que Impulsa no emite comprobantes electrónicos de SUNAT, para no generar falsas expectativas frente a Alegra o Clarito."]}]}, "estructura": [{"codigo": "—", "apartado": "Carátula con integrantes", "estado": "incompleto", "nota": "Ya figuran los nombres completos de los integrantes, pero faltan el título del proyecto, la carrera, la sección y el grupo, y el docente sigue como «JEAN PIERRE»."}, {"codigo": "—", "apartado": "Índice", "estado": "completo", "nota": "Agregado en la p. 2; algunos números de página no coinciden con el PDF final."}, {"codigo": "1.1", "apartado": "Problema del cliente (causas y consecuencias)", "estado": "completo", "nota": "Con dimensionamiento (Tabla 1) y causas y consecuencias (Tabla 2), pp. 3-6. Falta la evidencia cualitativa propia."}, {"codigo": "1.2", "apartado": "Problema social (ODS y megatendencias)", "estado": "completo", "nota": "ODS 8 (metas 8.2 y 8.3), megatendencia de CEPLAN y Tabla 3 (pp. 6-9). Las consecuencias no tienen ninguna cifra que las respalde."}, {"codigo": "2.1", "apartado": "Descripción de la propuesta de valor", "estado": "completo", "nota": "Con dos atributos diferenciadores y la Tabla 4 (pp. 10-12); el diferencial sigue sin demostrarse y Clarito no está en la comparación."}, {"codigo": "2.2", "apartado": "Ficha técnica", "estado": "completo", "nota": "Los 8 campos en la Tabla 5 (pp. 12-13), con precio referencial sustentado en la Tabla 6."}, {"codigo": "2.3", "apartado": "Beneficios clave", "estado": "incompleto", "nota": "Sin apartado propio; los beneficios están dispersos en 2.1.1."}, {"codigo": "2.4", "apartado": "Solución a problemas o necesidades", "estado": "incompleto", "nota": "Está en 1.3 «Solución propuesta» (pp. 9-10), fuera del capítulo 2."}, {"codigo": "2.5", "apartado": "Segmentos de cliente", "estado": "incompleto", "nota": "Sin apartado propio. El capítulo 3 cita «los distritos definidos en el capítulo 2» (pp. 17 y 19), pero esos distritos no se definen."}, {"codigo": "2.6", "apartado": "Casos de uso", "estado": "incompleto", "nota": "Están en 3.6 (pp. 28-29) como tabla funcional; deben ir en el capítulo 2."}, {"codigo": "3.1", "apartado": "Mapa de empatía", "estado": "completo", "nota": "Tabla 11 y Figura 2 (pp. 16-17), declarado como hipótesis sin entrevistas."}, {"codigo": "3.2", "apartado": "Business Model Canvas (9 bloques)", "estado": "completo", "nota": "Tabla 12 y argumentación de cada bloque en 3.2.1 (pp. 18-20)."}, {"codigo": "3.3", "apartado": "Competidores", "estado": "completo", "nota": "Tabla 13 con precio, fortalezas y debilidades, ventaja competitiva y estrategia de diferenciación (pp. 21-22)."}, {"codigo": "—", "apartado": "Indicadores de gestión", "estado": "completo", "nota": "Tablas 14 y 15 con fórmula, ejemplo y meta (pp. 23-24); las metas comerciales no están sustentadas."}, {"codigo": "—", "apartado": "Bibliografía APA 7", "estado": "incompleto", "nota": "Titulada «Referencias Bibliográficas:», sin sangría francesa, con referencias no citadas y citas sin su entrada exacta."}], "secciones": [{"etiqueta": "Capítulo I", "titulo": "Planteamiento del problema", "resumen": "El capítulo ya tiene la estructura y los vínculos que se pedían; lo pendiente es la evidencia cualitativa propia y respaldar con datos el problema social.", "observaciones": [{"severidad": "critico", "titulo": "Evidencia cualitativa todavía pendiente", "ubicacion": "1.1.1, pp. 4-5", "cita": "Los resultados deberán incorporarse una vez aplicados los instrumentos", "problema": "Persiste de la versión anterior: el problema sigue sin evidencia cualitativa. Ahora tienen cinco cifras de contexto bien analizadas (Tabla 1), pero las entrevistas a bodegueros solo están planificadas y no hay ningún dato propio sobre cuántos comerciantes confunden ventas con ganancia. El nivel Sobresaliente exige evidencia cualitativa y cuantitativa.", "mejora": "Aplicar las 5 a 10 entrevistas antes de la siguiente entrega y reportar en 1.1.1 el número de entrevistados, cuántos presentan cada dificultad y 2 o 3 frases textuales anonimizadas. Esqueleto: «De los N propietarios entrevistados, X indicaron que…». Además, usar Chambe Torres y Velásquez Arana (2025), que ya está en su lista y estudia justamente cómo los pequeños empresarios usan la información financiera."}, {"severidad": "importante", "titulo": "Problema social sin ninguna cifra", "ubicacion": "1.2 y Tabla 3, pp. 6-7", "cita": "no se dispone todavía de evidencia suficiente para afirmar", "problema": "Todas las consecuencias sociales se presentan como «potenciales» y ninguna se apoya en un dato. Así, el problema social queda como una suposición, aunque existen estadísticas oficiales sobre el tema.", "mejora": "Respaldar al menos dos consecuencias con cifras oficiales: por ejemplo, el uso de herramientas TIC en las empresas (el informe del INEI que ya tienen en sus referencias y no citan), la tasa de supervivencia o de bajas de empresas, o la informalidad de las MYPE según PRODUCE. Esqueleto: «Según [institución] ([año]), el X % de las [unidad]…, lo que se relaciona con…»."}, {"severidad": "sugerencia", "titulo": "Título del capítulo y apartado 1.3 fuera de la estructura", "ubicacion": "pp. 3 y 9-10", "cita": "CAPÍTULO 1: NECESIDADES Y PROBLEMAS DEL CLIENTE", "problema": "La estructura oficial titula el capítulo «Planteamiento del problema» y solo tiene 1.1 y 1.2. El apartado 1.3 «Solución propuesta» adelanta contenido que corresponde al capítulo 2.", "mejora": "Rotular «Capítulo 1. Planteamiento del problema» y trasladar el contenido de 1.3 al apartado 2.4 (ver Capítulo II)."}]}, {"etiqueta": "Capítulo II", "titulo": "Propuesta de valor", "resumen": "La descripción, los atributos diferenciadores, la ficha técnica y el precio están bien trabajados; faltan demostrar el diferencial, los apartados 2.3 a 2.6 y un segmento concreto.", "observaciones": [{"severidad": "critico", "titulo": "Diferencial sin demostrar y Clarito fuera de la comparación", "ubicacion": "2.1.1 y Tablas 4 y 6, pp. 11-14", "cita": "esta ventaja es todavía una hipótesis de valor", "problema": "Persiste de la versión anterior: el diferencial no está sustentado, aunque ahora está mucho mejor definido (dos atributos concretos). Las apps de gestión en mercados saturados están entre los productos de baja innovación de los lineamientos. En la Tabla 4 casi todas las celdas de los competidores dicen «No verificado», y Clarito, que ustedes describen en la p. 21 como un sistema para bodegas peruanas con fiados, cierre de caja y reportes de ganancias, no aparece ni en la Tabla 4 ni en la Tabla 6.", "mejora": "Incluir Clarito en ambas tablas. Instalar las versiones gratuitas o de prueba y completar cada celda con lo que comprobaron (con fecha de consulta). Responder en 2.1.1: ¿qué hace el diagnóstico de Impulsa que el reporte de ganancias de Clarito no hace?, ¿por qué un bodeguero que ya usa Clarito o IUNCI cambiaría? Si las pruebas muestran que el atributo ya existe, buscar uno que no exista."}, {"severidad": "importante", "titulo": "Siguen faltando los apartados 2.3 a 2.6", "ubicacion": "Capítulo 2, pp. 10-15; 1.3 (pp. 9-10) y 3.6 (pp. 28-29)", "cita": "Complementan las situaciones desarrolladas en el capítulo 2", "problema": "Persiste de la versión anterior: el capítulo 2 solo tiene 2.1 y 2.2. La solución está en 1.3, los casos de uso en 3.6 y los beneficios dentro de 2.1.1. Además, 3.6 remite a «situaciones desarrolladas en el capítulo 2» que no existen.", "mejora": "Crear 2.3 Beneficios clave, 2.4 Solución a problemas o necesidades específicas (relacionando cada función con una causa de la Tabla 2), 2.5 Segmentos de clientes y 2.6 Casos de uso, y mover allí el contenido que ya tienen. En 2.6, además de la tabla funcional, describir 2 o 3 situaciones reales de un día en la bodega."}, {"severidad": "importante", "titulo": "Segmento general y distritos no definidos", "ubicacion": "1.3 (p. 9), BMC (p. 18), 3.1.1 (p. 17) y 3.2.1 (p. 19)", "cita": "los distritos definidos en el capítulo 2", "problema": "Persiste de la versión anterior: el segmento sigue siendo «propietarios de bodegas y pequeñas tiendas minoristas» sin variables ni tamaño. El capítulo 3 menciona dos veces unos distritos definidos en el capítulo 2, pero no se definen en ninguna parte.", "mejora": "En 2.5, definir el segmento con variables geográficas (qué distritos de Arequipa y por qué), demográficas (edad, tamaño del negocio) y conductuales (cómo registra hoy, si cobra con Yape o Plin), y estimar su tamaño a partir de las 27 091 bodegas que ya calcularon."}]}, {"etiqueta": "Capítulo III", "titulo": "Modelo de negocio", "resumen": "El capítulo está completo y argumentado; lo pendiente es apoyar el mapa de empatía en evidencia y sustentar las metas comerciales.", "observaciones": [{"severidad": "importante", "titulo": "Mapa de empatía sin evidencia", "ubicacion": "3.1, Tabla 11 y Figura 2, pp. 15-17", "cita": "Aún no se cuenta con entrevistas documentadas", "problema": "Persiste de la versión anterior: el mapa sigue siendo una hipótesis del equipo. La columna «Evidencia pendiente» y la Figura 2 están bien hechas, pero ninguna dimensión se apoya en lo que dice o hace un bodeguero real.", "mejora": "Con las entrevistas de 1.1.1, reemplazar la columna «Evidencia pendiente» por «Evidencia encontrada», con una frase textual o una observación por dimensión, y actualizar la Figura 2."}, {"severidad": "importante", "titulo": "Metas comerciales sin sustento ni relación con el precio", "ubicacion": "Tabla 15, p. 24", "cita": "≤ S/ 30 por cliente de pago", "problema": "Las metas de conversión (10 %), retención (70 %) y CAC (S/ 30) no indican de dónde salen. Tampoco se relacionan con el precio de S/ 10 a S/ 20 ni con el costo de las demostraciones presenciales, que son el canal principal.", "mejora": "Para cada meta comercial, indicar en qué se basa (un estudio, un dato de la industria o un supuesto explícito) y añadir un párrafo que compare el CAC con el ingreso esperado por cliente (precio × meses que permanece)."}, {"severidad": "sugerencia", "titulo": "Casos de uso y elevator pitch dentro del capítulo 3", "ubicacion": "3.6 y 3.7, pp. 28-30", "cita": "3.7. Elevator pitch", "problema": "Los casos de uso pertenecen al capítulo 2 y el elevator pitch es material de la exposición, no un apartado del informe. Ubicados aquí, alargan el capítulo y rompen la estructura oficial.", "mejora": "Mover los casos de uso a 2.6 y el elevator pitch a un anexo."}]}, {"etiqueta": "Formato académico", "titulo": "Presentación, redacción y citas", "resumen": "Mejoró mucho (índice, tablas y figuras con título y nota, más fuentes oficiales), pero persisten la carátula incompleta y errores de citación.", "observaciones": [{"severidad": "critico", "titulo": "Carátula todavía incompleta", "ubicacion": "p. 1", "cita": "PROFESOR: JEAN PIERRE", "problema": "Persiste de la versión anterior: la carátula no tiene el título del proyecto (el nombre «Impulsa» no aparece), la carrera de los integrantes, la sección ni el número de grupo, y el docente figura con el nombre incompleto. Ya corrigieron el apellido de Nilton Peralta Ccacasaca y agregaron el índice.", "mejora": "Completar la carátula con institución, carrera, título del proyecto, curso, sección, grupo, integrantes y docente con nombre completo. Revisar también que el archivo siga el formato «AA1_Sección_Informe del TAP_Grupo X»."}, {"severidad": "importante", "titulo": "Citas que no coinciden con las referencias", "ubicacion": "pp. 3-4, 10, 12, 26 y 30-31", "cita": "Loyverse POS (2026), IUNCI (2026) y Alegra POS (2026)", "problema": "Persiste de la versión anterior, aunque ya agregaron Chambe Torres y Velásquez Arana y unificaron Naciones Unidas: en el texto se cita PRODUCE (2023), pero la referencia es «(s. f.)»; Loyverse, IUNCI y Alegra se citan con 2026 y en la lista figuran sin fecha; el BCRP se cita sin año (p. 26) y hay dos entradas del BCRP; «Gómez» lleva tilde en el texto y no en la lista; UNCTAD (2023) se cita como si se hubiera consultado directamente. A la inversa, Chambe Torres y Velásquez Arana, Buitrón Bernal (PressPerú) y el informe del INEI están en la lista pero no se citan. La referencia del INEI no tiene autor y termina en «?utm_source=».", "mejora": "Cotejar cita por cita con la lista. Usar «(UNCTAD, 2023, como se citó en PRODUCE, 2025)» para la cita secundaria. Citar o retirar las referencias no usadas, y preferir el estudio del INEI a la nota de PressPerú. Titular «Referencias», aplicar sangría francesa, quitar el fondo gris del texto pegado y ordenar alfabéticamente (la entrada del INEI debe ir por autor)."}, {"severidad": "importante", "titulo": "Numeración de tablas y nota de figura incompletas", "ubicacion": "pp. 14-16", "cita": "La compatibilidad con Android const", "problema": "La numeración salta de la Tabla 6 (p. 14) a la Tabla 11 (p. 16): no existen las Tablas 7 a 10. La nota de la Figura 1 está cortada a mitad de palabra. Además, los títulos de las tablas van en la misma línea que el número, mientras que las figuras sí siguen el formato APA 7.", "mejora": "Renumerar las tablas de forma correlativa (lo más seguro es usar la función de títulos de Word o Google Docs), completar la nota de la Figura 1 y aplicar a las tablas el mismo formato que a las figuras: «Tabla N» en negrita y, en la línea siguiente, el título en cursiva."}, {"severidad": "sugerencia", "titulo": "Salvedades en casi cada párrafo", "ubicacion": "Todo el documento", "cita": "sujeto a comprobación", "problema": "Persiste de la versión anterior y se ha intensificado: casi cada párrafo termina con «deberá validarse», «posibles», «potenciales» o «no se afirma». Ser prudentes está bien, pero repetirlo en todos los apartados debilita la argumentación y alarga el texto.", "mejora": "Reunir las limitaciones en un solo apartado breve de alcance y validación (por ejemplo, al final del capítulo 1) y dejar el resto del texto afirmativo y sustentado con fuentes o con los resultados de las entrevistas."}]}], "calificacion": {"fuentes": 3, "problema": 3, "propuesta": 3, "modelo": 4, "responsabilidad": 3}}</script>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contenido">
+    <div class="lbl">Contenido</div>
+    <ol id="toc"></ol>
+    <p class="progress" id="progress" style="margin-top:14px"></p>
+  </nav>
+  <main id="main"></main>
+</div>
+
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const SEV = { critico: 'Crítico', importante: 'Importante', sugerencia: 'Sugerencia' };
+const ST = { completo: 'Completo', incompleto: 'Incompleto', ausente: 'Ausente' };
+const DICT = { mayor: 'Requiere correcciones mayores', menor: 'Requiere correcciones menores', apto: 'Apto para continuar' };
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const KEY = 'tap-revision-' + (D.id || 'x');
+let done = {};
+try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+
+const all = D.secciones.flatMap(s => s.observaciones.map(o => o.severidad));
+const count = sev => all.filter(x => x === sev).length;
+
+let html = '';
+if (D.ejemplo) html += `<div class="demo">Ejemplo con datos ficticios: así verá cada grupo su revisión.</div>`;
+html += `<header class="cover">
+  <div class="eyebrow">${esc(D.institucion)} · ${esc(D.curso)} · ${esc(D.evidencia)}</div>
+  <h1>${esc(D.proyecto)}</h1>
+  <p class="summary">Revisión del Trabajo de Aplicación Profesional (TAP): ${esc(D.alcance)}</p>
+  <dl class="meta">
+    <div><dt>Grupo</dt><dd>${esc(D.grupo)}</dd></div>
+    <div><dt>Sección</dt><dd>${esc(D.seccion)}</dd></div>
+    <div><dt>Fecha de revisión</dt><dd>${esc(D.fecha)}</dd></div>
+    <div><dt>Docente</dt><dd>${esc(D.docente)}</dd></div>
+  </dl>
+  <div><div class="eyebrow" style="margin-bottom:4px">Integrantes</div>
+  <ul class="members">${D.integrantes.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+</header>`;
+
+html += `<section class="block verdict" id="dictamen">
+  <div class="head"><div class="eyebrow">Dictamen</div><h2>Estado del informe</h2></div>
+  <div class="stamp ${esc(D.dictamen)}">${DICT[D.dictamen] || esc(D.dictamen)}</div>
+  <div class="counts">
+    <span class="pill critico">${count('critico')} críticas</span>
+    <span class="pill importante">${count('importante')} importantes</span>
+    <span class="pill sugerencia">${count('sugerencia')} sugerencias</span>
+  </div>
+  <p>${esc(D.resumen)}</p>
+  ${D.fortalezas?.length ? `<div><h3 style="margin-bottom:8px">Lo que está bien</h3><ul class="strength">${D.fortalezas.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>` : ''}
+</section>`;
+
+if (D.calificacion) {
+  const C = D.calificacion;
+  const NIV = { 4: 'Sobresaliente', 3: 'Logrado', 2: 'En proceso', 1: 'Inicio', 0: 'No presentó' };
+  const filas = [['Fuentes de información', C.fuentes], ['Planteamiento del problema', C.problema],
+    ['Propuesta de valor', C.propuesta], ['Modelo de negocio', C.modelo], ['Responsabilidad en la ejecución', C.responsabilidad]];
+  const total = filas.reduce((s, f) => s + (Number(f[1]) || 0), 0);
+  html += `<section class="block" id="nota">
+    <div class="head"><div class="eyebrow">Rúbrica de la ${esc(D.evidencia)}</div><h2>Calificación preliminar del informe</h2></div>
+    <div class="grade"><span class="big">${total}</span><span class="of">/ 20</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Criterio</th><th>Nivel</th><th class="num">Puntos</th></tr></thead>
+      <tbody>${filas.map(([c, p]) => `<tr><td>${c}</td><td><span class="lvl l${p}">${NIV[p] ?? '—'}</span></td><td class="num">${p ?? '—'} / 4</td></tr>`).join('')}</tbody>
+    </table></div>
+    <p class="summary">La nota es individual y la final de la ${esc(D.evidencia)} también considera la exposición y las respuestas de cada integrante. Para subir de nivel, revisen la sección “Camino al 20”.</p>
+  </section>`;
+}
+
+html += `<section class="block" id="prioridades">
+  <div class="head"><div class="eyebrow">Antes de la siguiente entrega</div><h2>Prioridades de corrección</h2></div>
+  <ol class="priorities">${D.prioridades.map(p => `<li><span>${esc(p)}</span></li>`).join('')}</ol>
+</section>`;
+
+if (D.camino?.length) html += `<section class="block" id="camino">
+  <div class="head"><div class="eyebrow">Meta: nivel Sobresaliente en cada criterio de la rúbrica</div><h2>Camino al 20</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Criterio</th><th>Qué exige el nivel Sobresaliente</th><th>Qué les falta para llegar</th></tr></thead>
+    <tbody>${D.camino.map(c => `<tr><td><b>${esc(c.criterio)}</b></td><td>${esc(c.exige)}</td><td>${esc(c.falta)}</td></tr>`).join('')}</tbody>
+  </table></div>
+</section>`;
+
+if (D.viabilidad?.riesgos?.length) html += `<section class="block" id="viabilidad">
+  <div class="head"><div class="eyebrow">Mirada de negocio, más allá del documento</div><h2>Viabilidad: con qué se van a chocar</h2></div>
+  ${D.viabilidad.resumen ? `<p>${esc(D.viabilidad.resumen)}</p>` : ''}
+  <ul class="obs">${D.viabilidad.riesgos.map(r => `<li class="ob">
+    <div class="top"><span class="pill importante">${esc(r.tema)}</span><h3>${esc(r.titulo)}</h3></div>
+    <p>${esc(r.choque)}</p>
+    <div class="fix"><b>Ideas</b><ul class="ideas">${(r.ideas || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+  </li>`).join('')}</ul>
+</section>`;
+
+html += `<section class="block" id="estructura">
+  <div class="head"><div class="eyebrow">Contra la estructura oficial del TAP</div><h2>Revisión de estructura</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Ítem</th><th>Apartado</th><th>Estado</th><th>Comentario</th></tr></thead>
+    <tbody>${D.estructura.map(r => `<tr><td class="code">${esc(r.codigo)}</td><td>${esc(r.apartado)}</td>
+      <td class="st ${esc(r.estado)}">${ST[r.estado] || esc(r.estado)}</td><td>${esc(r.nota)}</td></tr>`).join('')}</tbody>
+  </table></div>
+</section>`;
+
+D.secciones.forEach((s, si) => {
+  html += `<section class="block" id="s${si}">
+    <div class="head"><div class="eyebrow">${esc(s.etiqueta)}</div><h2>${esc(s.titulo)}</h2></div>
+    ${s.resumen ? `<p class="summary">${esc(s.resumen)}</p>` : ''}
+    <ul class="obs">${s.observaciones.map((o, oi) => {
+      const k = si + '-' + oi;
+      return `<li class="ob${done[k] ? ' done' : ''}" data-k="${k}">
+        <div class="top"><span class="pill ${esc(o.severidad)}">${SEV[o.severidad] || esc(o.severidad)}</span>
+        <h3>${esc(o.titulo)}</h3>${o.ubicacion ? `<span class="where">${esc(o.ubicacion)}</span>` : ''}</div>
+        ${o.cita ? `<blockquote>“${esc(o.cita)}”</blockquote>` : ''}
+        <p>${esc(o.problema)}</p>
+        <div class="fix"><b>Mejora</b><p>${esc(o.mejora)}</p></div>
+        <label><input type="checkbox" id="chk-${k}" ${done[k] ? 'checked' : ''}> Marcar como corregido</label>
+      </li>`;
+    }).join('')}</ul>
+  </section>`;
+});
+
+html += `<footer>
+  <span>Revisión elaborada con la rúbrica de la ${esc(D.evidencia)} y la estructura oficial del TAP de CERTUS.</span>
+  <span>Las casillas “corregido” se guardan solo en este navegador, como ayuda para organizarse.</span>
+</footer>`;
+document.getElementById('main').innerHTML = html;
+
+const toc = [['dictamen', 'Dictamen', '']]
+  .concat(D.calificacion ? [['nota', 'Calificación', '']] : [])
+  .concat([['prioridades', 'Prioridades', '']])
+  .concat(D.camino?.length ? [['camino', 'Camino al 20', '']] : [])
+  .concat(D.viabilidad?.riesgos?.length ? [['viabilidad', 'Viabilidad', '']] : [])
+  .concat([['estructura', 'Estructura', '']])
+  .concat(D.secciones.map((s, i) => ['s' + i, s.titulo, s.observaciones.length]));
+document.getElementById('toc').innerHTML = toc.map(([id, t, n]) => `<li><a href="#${id}"><span>${esc(t)}</span><span class="n">${n}</span></a></li>`).join('');
+
+function updateProgress() {
+  const total = document.querySelectorAll('.ob').length;
+  const ok = document.querySelectorAll('.ob.done').length;
+  document.getElementById('progress').textContent = `${ok} de ${total} observaciones corregidas`;
+}
+document.getElementById('main').addEventListener('change', e => {
+  const li = e.target.closest('.ob'); if (!li) return;
+  li.classList.toggle('done', e.target.checked);
+  done[li.dataset.k] = e.target.checked;
+  try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (err) {}
+  updateProgress();
+});
+updateProgress();
+</script>
+
+</html>

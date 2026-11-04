@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>TAP Grupo 03 · AA1</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: informe de revisión de tesina — columna de lectura centrada, índice lateral fijo en escritorio, sellos de severidad en el margen */
+:root {
+  --paper: #fbfbfa;
+  --sheet: #ffffff;
+  --ink: #1c2230;
+  --muted: #5b6475;
+  --rule: #dde1e8;
+  --accent: #1f3a68;
+  --accent-soft: #e8edf6;
+  --crit: #a3262b;   --crit-bg: #fbeceb;
+  --warn: #8a5a00;   --warn-bg: #fdf3df;
+  --sug: #1d6a55;    --sug-bg: #e6f3ee;
+  --ok: #1d6a55;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #12151c; --sheet: #191d26; --ink: #e6e9ef; --muted: #9aa3b4; --rule: #2c3240;
+  --accent: #9db7e6; --accent-soft: #1f2a40;
+  --crit: #f08c8f; --crit-bg: #3a1c1f; --warn: #e8bd6a; --warn-bg: #3a2e14; --sug: #7fcfb4; --sug-bg: #15312a; --ok: #7fcfb4;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #12151c; --sheet: #191d26; --ink: #e6e9ef; --muted: #9aa3b4; --rule: #2c3240;
+  --accent: #9db7e6; --accent-soft: #1f2a40;
+  --crit: #f08c8f; --crit-bg: #3a1c1f; --warn: #e8bd6a; --warn-bg: #3a2e14; --sug: #7fcfb4; --sug-bg: #15312a; --ok: #7fcfb4;
+  color-scheme: dark }
+
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15.5px; line-height: 1.6; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; } nav.toc { position: static !important; } }
+
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; font-size: 13.5px; }
+nav.toc .lbl, .eyebrow { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+nav.toc ol { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 2px; }
+nav.toc a { display: flex; justify-content: space-between; gap: 8px; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+nav.toc a:hover, nav.toc a:focus-visible { background: var(--accent-soft); outline: none; }
+nav.toc .n { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+main { min-width: 0; display: grid; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(28px, 4vw, 38px); font-weight: 700; }
+h2 { font-size: 24px; font-weight: 600; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+
+.demo { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn); padding: 10px 14px; border-radius: 6px; font-weight: 500; font-size: 14px; }
+
+header.cover { border-bottom: 2px solid var(--accent); padding-bottom: 24px; display: grid; gap: 14px; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 24px; margin-top: 6px; }
+.meta div { display: grid; gap: 2px; min-width: 0; }
+.meta dt { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.meta dd { margin: 0; font-weight: 500; }
+.members { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+
+.verdict { display: grid; gap: 14px; }
+.stamp { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 19px; font-weight: 600; color: var(--accent); }
+.stamp::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: currentColor; }
+.stamp.mayor { color: var(--crit); } .stamp.menor { color: var(--warn); } .stamp.apto { color: var(--ok); }
+.counts { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { font-size: 12.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+.pill.critico { background: var(--crit-bg); color: var(--crit); }
+.pill.importante { background: var(--warn-bg); color: var(--warn); }
+.pill.sugerencia { background: var(--sug-bg); color: var(--sug); }
+
+.priorities { list-style: none; counter-reset: p; padding: 0; margin: 0; display: grid; gap: 10px; }
+.priorities li { counter-increment: p; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
+.priorities li::before { content: counter(p); font-family: var(--display); font-weight: 700; color: var(--accent); font-size: 18px; line-height: 1.4; }
+
+section.block { display: grid; gap: 18px; scroll-margin-top: 24px; }
+section.block > .head { display: grid; gap: 4px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+.summary { color: var(--muted); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--paper); }
+td.code { font-family: var(--mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+.st { font-weight: 600; white-space: nowrap; }
+.st.completo { color: var(--ok); } .st.incompleto { color: var(--warn); } .st.ausente { color: var(--crit); }
+
+.obs { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.ob { background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; display: grid; gap: 10px; }
+.ob.done { opacity: .6; }
+.ob .top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ob .where { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.ob blockquote { margin: 0; padding: 8px 12px; border-left: 3px solid var(--rule); color: var(--muted); font-family: var(--display); font-style: italic; font-size: 14.5px; }
+.ob .fix { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; }
+.ob .fix b { color: var(--accent); font-size: 13px; text-transform: uppercase; letter-spacing: .06em; line-height: 1.8; }
+.ob label { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); cursor: pointer; justify-self: start; }
+.ob input { accent-color: var(--accent); width: 16px; height: 16px; }
+.grade { display: flex; align-items: baseline; gap: 8px; font-family: var(--display); color: var(--accent); }
+.grade .big { font-size: 56px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.grade .of { font-size: 22px; color: var(--muted); }
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lvl { font-size: 12.5px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.lvl.l4, .lvl.l3 { background: var(--sug-bg); color: var(--sug); }
+.lvl.l2 { background: var(--warn-bg); color: var(--warn); }
+.lvl.l1, .lvl.l0 { background: var(--crit-bg); color: var(--crit); }
+.ideas { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.strength { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.strength li::before { content: "✓  "; color: var(--ok); font-weight: 700; }
+
+.progress { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+footer { border-top: 1px solid var(--rule); padding-top: 16px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+a { color: var(--accent); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<script type="application/json" id="data">{"id": "grupo-3-alquitodo", "institucion": "CERTUS", "curso": "UD Proyecto Integrador", "evidencia": "AA1", "alcance": "capítulos 1, 2 y 3 (planteamiento del problema, propuesta de valor y modelo de negocio).", "proyecto": "AlquiTodo: marketplace web de alquiler temporal de productos entre personas en Arequipa", "grupo": "Grupo 03", "seccion": "No indicada", "fecha": "30/10/2026", "docente": "Jeanpier Brandol Ancori Sanchez", "integrantes": ["Anahi Nicol Nashely Mamani Machacca", "Ernesto Becerra Ccopa", "Yanira Karol Vasquez Sulla", "Elizabeth Noemi Saraya Parillo"], "dictamen": "mayor", "resumen": "El informe tiene una base bibliográfica sólida: usan artículos científicos con DOI y fuentes oficiales, y analizan sus límites con honestidad. También destacan los dos mapas de empatía, el análisis de cuatro competidores locales y siete indicadores con fórmula. Sin embargo, el capítulo 1 no declara ninguna megatendencia y no tiene cifras que dimensionen el problema del alquiler en Arequipa: solo hay cifras sobre conectividad y comercio electrónico. Además, el documento se contradice en dos puntos centrales. El primero es el modelo de ingresos: en el capítulo 2 es un cobro por publicación y en el BMC y los indicadores es una comisión por alquiler. El segundo son las funciones de confianza (perfiles verificados, calificaciones y garantías): los capítulos 1 y 3 las ofrecen, pero la ficha técnica las excluye de la primera versión. Así, la versión que se describe es un tablón de anuncios muy parecido a Facebook Marketplace, que es gratuito. Por eso el diferencial todavía no está sustentado. En lo formal, falta el título del proyecto en la carátula y siguen en el documento textos de la plantilla, entre ellos el encabezado de todas las páginas.", "fortalezas": ["Las fuentes del capítulo 1 son confiables y académicas: Hamari et al. (2016), Moeller y Wittkowski (2010), Anwar (2022), OCDE (2020), PNUMA (2024), OSIPTEL (2026) y CAPECE (2025), con DOI o URL. Además, se analizan con criterio, por ejemplo: «el crecimiento del comercio electrónico no demuestra por sí mismo que exista una demanda equivalente» (p. 5).", "Elaboran dos mapas de empatía completos, uno para quien alquila y otro para el propietario (pp. 12-13), y reconocen que el negocio necesita atraer a ambos lados del mercado (2.5, p. 10).", "El análisis de competidores (pp. 16-20) identifica cuatro competidores con presencia real (Petulap, ROMA Publicidad, Deboss Eventos y Alquilo Cosas) y uno indirecto (Facebook Marketplace). Incluye una tabla de fortalezas y limitaciones, la ventaja competitiva y la estrategia de diferenciación.", "Proponen siete indicadores de gestión, cada uno con definición, fórmula, ejemplo de cálculo y meta (pp. 20-24)."], "prioridades": ["Unificar el modelo de ingresos (cobro por publicación o comisión por alquiler) en 2.1, 2.2, el BMC y el indicador f), y decidir de forma explícita qué funciones de confianza tendrá la primera versión, para que los capítulos 1, 2 y 3 digan lo mismo.", "Sustentar el diferencial frente a Facebook Marketplace, que es gratuito: explicar por qué un propietario pagaría por publicar en AlquiTodo y qué hace la plataforma que un grupo de Facebook no haga.", "Reorganizar el capítulo 1 en 1.1 Problema del cliente y 1.2 Problema social, cada uno con sus causas y consecuencias. Además, declarar y desarrollar una megatendencia con fuente (CEPLAN u otra) y precisar la meta del ODS 12.", "Agregar cifras que dimensionen el problema en sí: gasto en bienes de uso ocasional, interés por alquilar y mercado de alquiler o de eventos en Arequipa. Las cifras de conectividad no bastan.", "Completar la ficha técnica con sus 8 campos, presentarla como tabla numerada y redactar un párrafo por cada bloque del BMC.", "Corregir la carátula (título del proyecto, sección, carreras, apellido del docente) y eliminar todo el texto de plantilla: el encabezado de cada página, las instrucciones de los capítulos 4 a 12 y el enlace de YouTube en la bibliografía."], "camino": [{"criterio": "Fuentes de información", "exige": "Fuentes secundarias actuales y confiables, analizadas críticamente para mostrar qué aportan al proyecto en relación con las megatendencias y los ODS.", "falta": "Ya tienen buenas fuentes y análisis crítico. Les falta una fuente sobre la megatendencia, que hoy no existe, e incluir en Referencias las cinco fuentes de competidores citadas en el texto (Petulap, ROMA Publicidad, Deboss Eventos, Alquilo Cosas y Meta), que no figuran en la lista."}, {"criterio": "Planteamiento del problema", "exige": "La pertinencia del problema sustentada con evidencia cualitativa y cuantitativa, y con su vínculo con las megatendencias, los ODS y las necesidades del cliente detallado.", "falta": "Separar el problema del cliente del problema social, con causas y consecuencias, y declarar una megatendencia. También deben agregar datos que dimensionen el problema del alquiler en Arequipa y alguna evidencia cualitativa, como entrevistas o testimonios, que respalde los mapas de empatía."}, {"criterio": "Propuesta de valor", "exige": "Una propuesta innovadora y diferenciada, con descripción, ficha técnica, soluciones, segmentos y casos de uso, todos coherentes con el problema.", "falta": "Completar los 8 campos de la ficha técnica, definir el precio, segmentar con variables concretas (edad, NSE, distritos) y resolver la contradicción sobre las funciones de confianza. Sin esas funciones, el diferencial frente a Facebook Marketplace no se sostiene."}, {"criterio": "Modelo de negocio", "exige": "El BMC y el mapa de empatía, argumentando la coherencia entre los 9 bloques y la propuesta de valor.", "falta": "Explicar cada uno de los 9 bloques del BMC y alinear su fuente de ingresos (comisión) con la del capítulo 2 (cobro por publicación). También deben explicar cómo cobrarán una comisión si el pago se hace fuera de la plataforma."}], "viabilidad": {"resumen": "AlquiTodo es un marketplace de dos lados. Su mayor reto no es técnico: es lograr que lleguen suficientes publicaciones y suficientes interesados a la vez, y conseguir que alguien pague cuando ya existe una alternativa gratuita y masiva. Antes de la AA2 deben validar quién pagará y cuánto, y cómo resolverán la confianza entre extraños.", "riesgos": [{"tema": "Competencia", "titulo": "Facebook Marketplace y los grupos de Arequipa son gratuitos", "choque": "Los propietarios ya publican gratis en Marketplace y en grupos con miles de miembros. Si la primera versión de AlquiTodo solo ofrece fotos, descripción y contacto, es difícil que alguien pague por publicar en una web con poco tráfico.", "ideas": ["Preguntar en la encuesta de la AA2 a propietarios y pequeños negocios dónde publican hoy, cuánto les cuesta y qué tendría que ofrecer una web para que paguen por ella.", "Evaluar el modelo freemium: publicación gratuita para atraer oferta y cobro solo por destacar el anuncio o por funciones de garantía.", "Identificar algo que Facebook no resuelve, como un calendario de disponibilidad, un contrato modelo o un depósito de garantía, y probarlo en el MVP."]}, {"tema": "Costos", "titulo": "Cobrar una comisión por un pago que no pasa por la plataforma", "choque": "El BMC propone una comisión por cada alquiler concretado, pero el pago se acuerda directamente entre las partes. En la práctica, los usuarios tienden a cerrar el trato por WhatsApp y no reportar la operación.", "ideas": ["Averiguar el costo de integrar una pasarela de pagos local (Culqi, Izipay, Niubiz, Mercado Pago) o de usar Yape o Plin para empresas, y qué porcentaje cobra cada una.", "Comparar en una tabla los ingresos esperados con cobro por publicación, comisión y suscripción mensual para pequeños negocios, y elegir uno."]}, {"tema": "Regulación", "titulo": "Responsabilidad por daños, estafas y datos personales", "choque": "Una plataforma que intermedia entre particulares puede recibir reclamos ante INDECOPI y debe tener un Libro de Reclamaciones virtual. Si verifica identidades con DNI, también debe cumplir la Ley 29733 de protección de datos personales y declarar sus bancos de datos ante la ANPD. Además, deben emitir comprobante electrónico por cada cobro (SUNAT).", "ideas": ["Revisar qué exige el Código de Protección y Defensa del Consumidor a un intermediario digital y redactar los términos de uso con asesoría.", "Incluir en los costos el Libro de Reclamaciones virtual, la facturación electrónica y la inscripción del banco de datos ante la ANPD."]}, {"tema": "Adopción", "titulo": "Desconfianza a prestar bienes a desconocidos", "choque": "Los propios mapas de empatía muestran temor a daños, pérdidas y estafas. Si la primera versión no ofrece verificación, garantía ni calificaciones, es probable que los propietarios de equipos caros, como cámaras o laptops, no publiquen.", "ideas": ["Medir en la encuesta de la AA2 qué porcentaje de propietarios prestaría un equipo a un desconocido y con qué condiciones: depósito, copia del DNI o contrato.", "Explorar un piloto acotado, por ejemplo con estudiantes de una sola institución en Arequipa, donde la confianza se apoye en una comunidad que ya existe."]}, {"tema": "Mercado", "titulo": "Lanzar ambos lados del mercado a la vez en Arequipa", "choque": "Un marketplace con pocas publicaciones no atrae interesados y sin interesados nadie publica. Arequipa es un mercado más pequeño que Lima, y las categorías prioritarias ya tienen proveedores especializados (Petulap, ROMA, Deboss).", "ideas": ["Calcular cuántas publicaciones necesitan en el lanzamiento para que la búsqueda resulte útil (su indicador b propone 50) y de dónde saldrán.", "Explorar alianzas con pequeños negocios de alquiler de artículos para eventos para empezar con oferta asegurada, en lugar de depender solo de particulares."]}]}, "estructura": [{"codigo": "—", "apartado": "Carátula con integrantes", "estado": "incompleto", "nota": "Falta el título del proyecto (AlquiTodo no aparece), la sección y las carreras. El nombre de la institución está incompleto (\"INSTITUTO DE EDUCACIÓN SUPERIOR TECNOLÓGICO PRIVADO.\") y el apellido del docente dice \"ANCORIJ\"."}, {"codigo": "—", "apartado": "Índice", "estado": "incompleto", "nota": "Existe, pero las páginas no coinciden (por ejemplo, 3.1 figura en la p. 8 y está en la p. 12) e incluye títulos de la plantilla (caps. 4-12)."}, {"codigo": "1.1", "apartado": "Problema del cliente (causas y consecuencias)", "estado": "incompleto", "nota": "Se describe dentro de un texto corrido sin el subtítulo 1.1, y sus causas y consecuencias no se distinguen."}, {"codigo": "1.2", "apartado": "Problema social (ODS y megatendencias)", "estado": "incompleto", "nota": "Desarrollan el ODS 12, pero sin precisar la meta. No hay ninguna megatendencia."}, {"codigo": "2.1", "apartado": "Descripción de la propuesta de valor", "estado": "completo", "nota": "El ingreso que se describe (cobro por publicación) contradice al BMC."}, {"codigo": "2.2", "apartado": "Ficha técnica", "estado": "incompleto", "nota": "Faltan el precio, el proceso de desarrollo, la presentación, la sostenibilidad y la integración con redes sociales. No está en formato de tabla."}, {"codigo": "2.3", "apartado": "Beneficios clave", "estado": "completo", "nota": ""}, {"codigo": "2.4", "apartado": "Solución a problemas o necesidades", "estado": "completo", "nota": ""}, {"codigo": "2.5", "apartado": "Segmentos de cliente", "estado": "incompleto", "nota": "Identifican los dos lados del mercado, pero sin variables demográficas ni tamaño."}, {"codigo": "2.6", "apartado": "Casos de uso", "estado": "completo", "nota": "Presentan cuatro casos hipotéticos claros."}, {"codigo": "3.1", "apartado": "Mapa de empatía", "estado": "completo", "nota": "Hay dos mapas con su análisis. Las figuras no tienen número ni fuente."}, {"codigo": "3.2", "apartado": "Business Model Canvas (9 bloques)", "estado": "incompleto", "nota": "Los 9 bloques están en la figura, pero el análisis es general y la fuente de ingresos no coincide con la del cap. 2."}, {"codigo": "3.3", "apartado": "Competidores", "estado": "completo", "nota": "Analizan 4 competidores directos y 1 indirecto, con tabla, ventaja y estrategia. Las fuentes no figuran en Referencias."}, {"codigo": "3.4", "apartado": "Indicadores de gestión", "estado": "completo", "nota": "Proponen 7 indicadores con fórmula, pero el apartado está numerado como 3.3 (duplicado)."}, {"codigo": "—", "apartado": "Bibliografía APA 7", "estado": "incompleto", "nota": "No están en orden alfabético, faltan las fuentes de los competidores y queda texto de la plantilla."}], "secciones": [{"etiqueta": "Capítulo I", "titulo": "Planteamiento del problema", "resumen": "Tiene buen sustento académico sobre el consumo colaborativo y vincula el problema con el ODS 12, pero no hay megatendencia, no separa el problema del cliente del problema social y no dimensiona el problema en Arequipa.", "observaciones": [{"severidad": "critico", "titulo": "No hay ninguna megatendencia", "ubicacion": "Cap. 1, pp. 4-6", "cita": "", "problema": "La estructura del TAP y la rúbrica exigen vincular el problema con un ODS y con una megatendencia. El capítulo desarrolla el ODS 12, la economía circular y la conectividad, pero no nombra ninguna megatendencia ni cita a CEPLAN u otra fuente prospectiva.", "mejora": "Identifiquen una megatendencia en un informe prospectivo (por ejemplo, el Observatorio Nacional de Prospectiva de CEPLAN) y desarrollen en un párrafo cómo se relaciona con el alquiler entre particulares, citando la fuente. Esqueleto: «Según [institución] ([año]), la megatendencia [nombre] implica…; esto se relaciona con el problema porque…»."}, {"severidad": "critico", "titulo": "Las cifras no dimensionan el problema del cliente", "ubicacion": "Cap. 1, p. 5", "cita": "el 96 % de los hogares peruanos contaba con acceso a Internet", "problema": "Las tres cifras del capítulo (OSIPTEL, CAPECE e INEI) describen el entorno digital, no el problema. No hay ningún dato sobre cuánto gastan las personas en bienes de uso ocasional, cuántas prefieren alquilar ni cuál es el tamaño del mercado de alquiler o de eventos en Arequipa. Ustedes mismos lo reconocen: «no demuestra por sí mismo que exista una demanda equivalente». Por eso la pertinencia del problema queda sin sustento cuantitativo.", "mejora": "Busquen al menos 2 o 3 datos que midan el problema en sí: estudios de consumo de Ipsos, Arellano, Kantar o Datum sobre la economía colaborativa o la disposición a alquilar, datos del INEI sobre Arequipa (hogares, población universitaria) o cifras del sector de eventos. Si no encuentran datos locales, anúncienlo y planteen la encuesta de la AA2 para obtenerlos."}, {"severidad": "importante", "titulo": "Problema del cliente y problema social mezclados, sin causas ni consecuencias", "ubicacion": "Cap. 1 (sin subtítulos 1.1 y 1.2)", "cita": "", "problema": "El capítulo es un texto corrido de casi tres páginas. Las causas (información dispersa, desconfianza, falta de verificación) y las consecuencias (gasto innecesario, bienes inactivos) aparecen mezcladas, sin distinguir qué le pasa al cliente y qué le pasa a la sociedad. La estructura oficial pide los dos problemas por separado.", "mejora": "Dividan el capítulo en 1.1 Problema del cliente y 1.2 Problema social. En cada uno, identifiquen de forma explícita las causas y las consecuencias. Para ordenarlas pueden usar un árbol de problemas como figura numerada."}, {"severidad": "importante", "titulo": "El ODS 12 no precisa la meta", "ubicacion": "Cap. 1, p. 4", "cita": "Esta problemática se vincula con el Objetivo de Desarrollo Sostenible 12 (ODS 12)", "problema": "La relación con el ODS es correcta y está bien sustentada con la OCDE y el PNUMA, pero no indican a qué meta del ODS 12 contribuye el proyecto. Para llegar a Sobresaliente, el vínculo debe ser concreto.", "mejora": "Revisen las metas del ODS 12 en el portal de la ONU, elijan la que corresponda al uso eficiente de los bienes y expliquen con qué mecanismo contribuye AlquiTodo. También es valioso que mantengan la limitación que ya señalan sobre los desplazamientos (p. 5)."}, {"severidad": "importante", "titulo": "Se prometen funciones que el capítulo 2 descarta", "ubicacion": "Cap. 1, p. 6", "cita": "contempla funcionalidades como perfiles verificados, descripciones estandarizadas del estado de los bienes, condiciones de alquiler claramente definidas, depósitos de garantía y un sistema bilateral de calificaciones", "problema": "La ficha técnica (2.2, p. 8) dice que «la verificación de identidad, las calificaciones y la gestión de depósitos o garantías no se consideran funciones de la primera versión». Como el capítulo 1 presenta esas funciones como la solución a la desconfianza, el lector no sabe qué ofrece realmente AlquiTodo.", "mejora": "Decidan qué funciones de confianza tendrá la primera versión y redacten los capítulos 1, 2 y 3 con esa misma decisión. Si serán funciones futuras, el capítulo 1 debe decirlo así."}]}, {"etiqueta": "Capítulo II", "titulo": "Propuesta de valor", "resumen": "Los beneficios, las soluciones y los casos de uso están claros, pero la ficha técnica está incompleta, el precio no está definido y el diferencial frente a las alternativas gratuitas es débil.", "observaciones": [{"severidad": "critico", "titulo": "El diferencial frente a Facebook Marketplace no está sustentado", "ubicacion": "2.1, p. 7", "cita": "La diferencia que AlquiTodo busca aportar es reunir en una misma página publicaciones de alquiler de varias categorías y presentar la información básica de forma ordenada.", "problema": "Sin verificación, pagos, reservas, calificaciones ni garantías (2.2, p. 8), la primera versión funciona como un tablón de anuncios con fotos, precio y contacto, que es lo mismo que ya ofrece gratis Facebook Marketplace. Las plataformas digitales en mercados saturados figuran entre los proyectos de baja innovación, así que deben demostrar el valor agregado. La rúbrica pide en Sobresaliente una propuesta innovadora y diferenciada.", "mejora": "Respondan de forma explícita en 2.1: ¿qué problema de 1.1 resuelve AlquiTodo que un grupo de Facebook no resuelva? ¿Por qué un propietario pagaría por publicar aquí? Identifiquen 1 o 2 atributos que nadie ofrezca en Arequipa y que sí puedan implementar en el MVP, y presenten la comparación con criterios concretos."}, {"severidad": "critico", "titulo": "Ficha técnica incompleta y sin precio", "ubicacion": "2.2, pp. 7-8", "cita": "La tarifa, el método de cálculo y el periodo que cubre el pago están pendientes de definición.", "problema": "De los 8 campos de la estructura oficial están el nombre, las especificaciones (tipo de servicio) y las funcionalidades. El precio está «pendiente» y faltan el proceso de fabricación (en un servicio digital, cómo y con qué herramientas se desarrollará la web), el empaque y presentación (identidad visual, dominio, interfaz), la sostenibilidad y la integración con redes sociales. Las redes sociales aparecen recién en 3.3 d.", "mejora": "Completen los 8 campos en una tabla numerada («Tabla N», título en cursiva y nota «Elaboración propia»). Para el precio, propongan al menos un monto tentativo y justifíquenlo con lo que cobran plataformas similares; la AA2 servirá para validarlo."}, {"severidad": "importante", "titulo": "Segmentos sin variables concretas", "ubicacion": "2.5, p. 10", "cita": "estudiantes y profesionales que requieren equipos tecnológicos [...] así como familias y organizadores", "problema": "Definir los dos lados del mercado es un acierto, pero cada segmento es muy amplio: no indica la edad, el NSE, los distritos de Arequipa, la frecuencia de necesidad ni el tamaño aproximado. Sin eso no se puede diseñar la promoción ni calcular la demanda en la AA2.", "mejora": "Describan cada segmento con variables geográficas, demográficas, psicográficas y conductuales, y estimen su tamaño con datos del INEI o de estudios de mercado de Arequipa, citando la fuente."}, {"severidad": "sugerencia", "titulo": "Exceso de condicionales que debilitan la propuesta", "ubicacion": "2.1, 2.4 y 2.6", "cita": "por ahora, no se afirma que la plataforma sea la única opción disponible en Arequipa", "problema": "Ser prudentes es correcto, pero el capítulo repite muchas reservas: «no garantiza», «sin garantizar que se concrete», «no debe presentarse como garante». Una propuesta de valor debe afirmar con claridad qué promete al cliente; los límites pueden ir en un párrafo aparte.", "mejora": "Redacten la propuesta de valor en afirmativo (qué ofrece, a quién y con qué beneficio) y agrupen las limitaciones de la primera versión en un solo párrafo de alcance."}]}, {"etiqueta": "Capítulo III", "titulo": "Modelo de negocio", "resumen": "Es el capítulo más trabajado: tiene dos mapas de empatía, un BMC con los 9 bloques, un buen análisis de competidores y siete indicadores con fórmula. Falta argumentar cada bloque y corregir la incoherencia en los ingresos.", "observaciones": [{"severidad": "critico", "titulo": "La fuente de ingresos del BMC contradice al capítulo 2", "ubicacion": "3.2, pp. 14-15; 2.1, p. 7; indicador f), p. 23", "cita": "Se propone generar ingresos principalmente mediante una comisión por los alquileres concretados", "problema": "En 2.1 y 2.2 el ingreso es el «cobro por publicación», pero en el bloque Ingresos del BMC y en el indicador f) es una comisión por alquiler, y la publicación destacada aparece como fuente «a futuro». Además, ustedes mismos reconocen que el pago se hace directamente entre las partes, así que no hay forma de saber cuándo se concretó un alquiler para cobrar la comisión. La rúbrica de Sobresaliente exige coherencia entre los 9 bloques y la propuesta de valor.", "mejora": "Elijan un solo modelo de ingresos y úsenlo igual en 2.1, 2.2, el BMC y los indicadores. Si eligen la comisión, expliquen en Recursos y Actividades clave el mecanismo de cobro (por ejemplo, una pasarela de pagos) y en Costos lo que cuesta."}, {"severidad": "importante", "titulo": "El BMC no explica cada bloque", "ubicacion": "3.2, p. 15", "cita": "", "problema": "El lienzo tiene los 9 bloques, pero el «Análisis del Business Model Canvas» tiene solo tres párrafos generales. No explica por qué se eligieron esos socios, canales o costos ni cómo se relacionan con los segmentos de 2.5. Además, en la relación con clientes, el bloque dice «Sistema de comentarios y calificaciones (propuesto)», que contradice a la ficha técnica.", "mejora": "Después de la figura, redacten un párrafo por bloque (pueden numerarlos 3.2.1 a 3.2.9) que justifique cada elemento y lo vincule con la propuesta de valor y con lo que mostraron los mapas de empatía."}, {"severidad": "importante", "titulo": "Las fuentes de los competidores no figuran en Referencias", "ubicacion": "3.3, pp. 16-17; Referencias, pp. 36-37", "cita": "(Petulap, s. f.)", "problema": "En el texto citan a Petulap, ROMA Publicidad, Deboss Eventos, Alquilo Cosas (todos s. f.) y Meta (2017), pero ninguno aparece en la lista de referencias. En APA 7, toda cita del texto debe tener su entrada.", "mejora": "Agreguen cada fuente con el formato de página web de APA 7: «Autor u organización. (s. f.). Título de la página. Nombre del sitio. URL». Completen también el análisis con el precio o la tarifa de cada competidor, un dato clave para comparar."}, {"severidad": "sugerencia", "titulo": "Numeración duplicada e indicadores que no coinciden con la primera versión", "ubicacion": "3.3 Indicadores de gestión, p. 20", "cita": "3.3. Indicadores de gestión", "problema": "Hay dos apartados numerados 3.3 (Competidores e Indicadores), mientras que el índice dice 3.4. Además, los indicadores a), c) y g) miden «solicitudes» y «alquileres concretados», pero la primera versión no registra reservas ni pagos. Así, no queda claro cómo obtendrán esos datos.", "mejora": "Renumeren a 3.4 y, para cada indicador, indiquen de dónde saldrá el dato (analítica web, formulario, encuesta) teniendo en cuenta las funciones que realmente tendrá la primera versión."}, {"severidad": "sugerencia", "titulo": "Los mapas de empatía no indican su base", "ubicacion": "3.1, pp. 12-13", "cita": "", "problema": "Los mapas son completos y están bien diseñados, pero no se indica si se basan en entrevistas, observación o supuestos del equipo, y las figuras no tienen número, título ni fuente.", "mejora": "Indiquen cómo obtuvieron la información (por ejemplo, conversaciones con N potenciales usuarios en Arequipa) y presenten cada mapa como «Figura N» con su título y su nota de fuente."}]}, {"etiqueta": "Formato académico", "titulo": "Presentación, redacción y citas", "resumen": "La redacción es impersonal y cuidada, pero la carátula está incompleta, quedan muchos textos de la plantilla y faltan la numeración de tablas y figuras y el orden de las referencias.", "observaciones": [{"severidad": "importante", "titulo": "Carátula incompleta y con un error en el nombre del docente", "ubicacion": "Carátula, p. 1", "cita": "DOCENTE: JEANPIER BRANDOL ANCORIJ SANCHEZ", "problema": "La carátula no tiene el título del proyecto (AlquiTodo no aparece en ella), la carrera, la sección ni las carreras de los integrantes. El nombre de la institución queda genérico («INSTITUTO DE EDUCACIÓN SUPERIOR TECNOLÓGICO PRIVADO.», solo con el logo) y el apellido del docente está mal escrito: es «ANCORI».", "mejora": "Completen la carátula con el nombre completo de la institución, la carrera, el título del proyecto, la sección, el grupo, los integrantes con su carrera y el docente, y corrijan el apellido."}, {"severidad": "importante", "titulo": "Quedan textos de la plantilla oficial", "ubicacion": "Encabezado de todas las páginas; pp. 24-37", "cita": "Estructura del Trabajo Aplicativo Profesional (TAP)", "problema": "El encabezado de las 37 páginas repite el título de la plantilla. Además, desde la p. 24 quedan las instrucciones y los ejemplos de la plantilla (capítulos 4 a 12, incluidos una tabla de inversión ajena y misiones de ejemplo), y la bibliografía conserva «Video de referencia: Cómo poner Citas Bibliográficas…» con un enlace de YouTube. No se les pidieron esos capítulos, pero el texto de la plantilla no debe quedar en un documento académico.", "mejora": "Cambien el encabezado por el nombre del proyecto (por ejemplo, «AlquiTodo – TAP»). Si quieren conservar los títulos de los capítulos 4 a 12, déjenlos vacíos o con «(se desarrollará en la AA2/AA3)», y borren todas las instrucciones y ejemplos."}, {"severidad": "importante", "titulo": "Índice con páginas que no coinciden", "ubicacion": "Índice, pp. 2-3", "cita": "3.1. Mapa de Empatía 8", "problema": "El índice no está actualizado: el capítulo 2 figura en la p. 6 y empieza en la 7, el 3.1 figura en la p. 8 y está en la 12, y el 3.3 figura en la p. 10 y está en la 16. Además, el capítulo 1 no tiene los subtítulos 1.1 y 1.2.", "mejora": "Apliquen estilos de título a todos los apartados (incluidos 1.1 y 1.2) y actualicen el índice automático antes de exportar a PDF."}, {"severidad": "importante", "titulo": "Tablas y figuras sin numeración, título ni fuente", "ubicacion": "pp. 12, 13, 14 y 18", "cita": "", "problema": "Los dos mapas de empatía, el BMC y la tabla de competidores no tienen número, título ni nota de fuente, como exige APA 7.", "mejora": "Usen el formato APA 7: «Figura N» o «Tabla N» en negrita, título en cursiva arriba y, debajo, «Nota. Elaboración propia» o la fuente que corresponda."}, {"severidad": "sugerencia", "titulo": "Referencias desordenadas y una fuente sin cita", "ubicacion": "Referencias, pp. 36-37", "cita": "Mora Aristega, J. E., García León, E. P., & Ley Leiva, N. V. (2024).", "problema": "La lista no está en orden alfabético: Mora Aristega aparece al final, después de Ruiz Ramírez. Esa fuente tampoco se cita en el texto. Además, hay una errata en la p. 6: «vinculandose» lleva tilde (vinculándose).", "mejora": "Ordenen las referencias alfabéticamente con sangría francesa, citen en el texto toda fuente que esté en la lista (o retírenla de ella) y hagan una revisión ortográfica final."}]}], "calificacion": {"fuentes": 3, "problema": 2, "propuesta": 2, "modelo": 3, "responsabilidad": 3}}</script>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contenido">
+    <div class="lbl">Contenido</div>
+    <ol id="toc"></ol>
+    <p class="progress" id="progress" style="margin-top:14px"></p>
+  </nav>
+  <main id="main"></main>
+</div>
+
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const SEV = { critico: 'Crítico', importante: 'Importante', sugerencia: 'Sugerencia' };
+const ST = { completo: 'Completo', incompleto: 'Incompleto', ausente: 'Ausente' };
+const DICT = { mayor: 'Requiere correcciones mayores', menor: 'Requiere correcciones menores', apto: 'Apto para continuar' };
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const KEY = 'tap-revision-' + (D.id || 'x');
+let done = {};
+try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+
+const all = D.secciones.flatMap(s => s.observaciones.map(o => o.severidad));
+const count = sev => all.filter(x => x === sev).length;
+
+let html = '';
+if (D.ejemplo) html += `<div class="demo">Ejemplo con datos ficticios: así verá cada grupo su revisión.</div>`;
+html += `<header class="cover">
+  <div class="eyebrow">${esc(D.institucion)} · ${esc(D.curso)} · ${esc(D.evidencia)}</div>
+  <h1>${esc(D.proyecto)}</h1>
+  <p class="summary">Revisión del Trabajo de Aplicación Profesional (TAP): ${esc(D.alcance)}</p>
+  <dl class="meta">
+    <div><dt>Grupo</dt><dd>${esc(D.grupo)}</dd></div>
+    <div><dt>Sección</dt><dd>${esc(D.seccion)}</dd></div>
+    <div><dt>Fecha de revisión</dt><dd>${esc(D.fecha)}</dd></div>
+    <div><dt>Docente</dt><dd>${esc(D.docente)}</dd></div>
+  </dl>
+  <div><div class="eyebrow" style="margin-bottom:4px">Integrantes</div>
+  <ul class="members">${D.integrantes.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+</header>`;
+
+html += `<section class="block verdict" id="dictamen">
+  <div class="head"><div class="eyebrow">Dictamen</div><h2>Estado del informe</h2></div>
+  <div class="stamp ${esc(D.dictamen)}">${DICT[D.dictamen] || esc(D.dictamen)}</div>
+  <div class="counts">
+    <span class="pill critico">${count('critico')} críticas</span>
+    <span class="pill importante">${count('importante')} importantes</span>
+    <span class="pill sugerencia">${count('sugerencia')} sugerencias</span>
+  </div>
+  <p>${esc(D.resumen)}</p>
+  ${D.fortalezas?.length ? `<div><h3 style="margin-bottom:8px">Lo que está bien</h3><ul class="strength">${D.fortalezas.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>` : ''}
+</section>`;
+
+if (D.calificacion) {
+  const C = D.calificacion;
+  const NIV = { 4: 'Sobresaliente', 3: 'Logrado', 2: 'En proceso', 1: 'Inicio', 0: 'No presentó' };
+  const filas = [['Fuentes de información', C.fuentes], ['Planteamiento del problema', C.problema],
+    ['Propuesta de valor', C.propuesta], ['Modelo de negocio', C.modelo], ['Responsabilidad en la ejecución', C.responsabilidad]];
+  const total = filas.reduce((s, f) => s + (Number(f[1]) || 0), 0);
+  html += `<section class="block" id="nota">
+    <div class="head"><div class="eyebrow">Rúbrica de la ${esc(D.evidencia)}</div><h2>Calificación preliminar del informe</h2></div>
+    <div class="grade"><span class="big">${total}</span><span class="of">/ 20</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Criterio</th><th>Nivel</th><th class="num">Puntos</th></tr></thead>
+      <tbody>${filas.map(([c, p]) => `<tr><td>${c}</td><td><span class="lvl l${p}">${NIV[p] ?? '—'}</span></td><td class="num">${p ?? '—'} / 4</td></tr>`).join('')}</tbody>
+    </table></div>
+    <p class="summary">La nota es individual y la final de la ${esc(D.evidencia)} también considera la exposición y las respuestas de cada integrante. Para subir de nivel, revisen la sección “Camino al 20”.</p>
+  </section>`;
+}
+
+html += `<section class="block" id="prioridades">
+  <div class="head"><div class="eyebrow">Antes de la siguiente entrega</div><h2>Prioridades de corrección</h2></div>
+  <ol class="priorities">${D.prioridades.map(p => `<li><span>${esc(p)}</span></li>`).join('')}</ol>
+</section>`;
+
+if (D.camino?.length) html += `<section class="block" id="camino">
+  <div class="head"><div class="eyebrow">Meta: nivel Sobresaliente en cada criterio de la rúbrica</div><h2>Camino al 20</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Criterio</th><th>Qué exige el nivel Sobresaliente</th><th>Qué les falta para llegar</th></tr></thead>
+    <tbody>${D.camino.map(c => `<tr><td><b>${esc(c.criterio)}</b></td><td>${esc(c.exige)}</td><td>${esc(c.falta)}</td></tr>`).join('')}</tbody>
+  </table></div>
+</section>`;
+
+if (D.viabilidad?.riesgos?.length) html += `<section class="block" id="viabilidad">
+  <div class="head"><div class="eyebrow">Mirada de negocio, más allá del documento</div><h2>Viabilidad: con qué se van a chocar</h2></div>
+  ${D.viabilidad.resumen ? `<p>${esc(D.viabilidad.resumen)}</p>` : ''}
+  <ul class="obs">${D.viabilidad.riesgos.map(r => `<li class="ob">
+    <div class="top"><span class="pill importante">${esc(r.tema)}</span><h3>${esc(r.titulo)}</h3></div>
+    <p>${esc(r.choque)}</p>
+    <div class="fix"><b>Ideas</b><ul class="ideas">${(r.ideas || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+  </li>`).join('')}</ul>
+</section>`;
+
+html += `<section class="block" id="estructura">
+  <div class="head"><div class="eyebrow">Contra la estructura oficial del TAP</div><h2>Revisión de estructura</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Ítem</th><th>Apartado</th><th>Estado</th><th>Comentario</th></tr></thead>
+    <tbody>${D.estructura.map(r => `<tr><td class="code">${esc(r.codigo)}</td><td>${esc(r.apartado)}</td>
+      <td class="st ${esc(r.estado)}">${ST[r.estado] || esc(r.estado)}</td><td>${esc(r.nota)}</td></tr>`).join('')}</tbody>
+  </table></div>
+</section>`;
+
+D.secciones.forEach((s, si) => {
+  html += `<section class="block" id="s${si}">
+    <div class="head"><div class="eyebrow">${esc(s.etiqueta)}</div><h2>${esc(s.titulo)}</h2></div>
+    ${s.resumen ? `<p class="summary">${esc(s.resumen)}</p>` : ''}
+    <ul class="obs">${s.observaciones.map((o, oi) => {
+      const k = si + '-' + oi;
+      return `<li class="ob${done[k] ? ' done' : ''}" data-k="${k}">
+        <div class="top"><span class="pill ${esc(o.severidad)}">${SEV[o.severidad] || esc(o.severidad)}</span>
+        <h3>${esc(o.titulo)}</h3>${o.ubicacion ? `<span class="where">${esc(o.ubicacion)}</span>` : ''}</div>
+        ${o.cita ? `<blockquote>“${esc(o.cita)}”</blockquote>` : ''}
+        <p>${esc(o.problema)}</p>
+        <div class="fix"><b>Mejora</b><p>${esc(o.mejora)}</p></div>
+        <label><input type="checkbox" id="chk-${k}" ${done[k] ? 'checked' : ''}> Marcar como corregido</label>
+      </li>`;
+    }).join('')}</ul>
+  </section>`;
+});
+
+html += `<footer>
+  <span>Revisión elaborada con la rúbrica de la ${esc(D.evidencia)} y la estructura oficial del TAP de CERTUS.</span>
+  <span>Las casillas “corregido” se guardan solo en este navegador, como ayuda para organizarse.</span>
+</footer>`;
+document.getElementById('main').innerHTML = html;
+
+const toc = [['dictamen', 'Dictamen', '']]
+  .concat(D.calificacion ? [['nota', 'Calificación', '']] : [])
+  .concat([['prioridades', 'Prioridades', '']])
+  .concat(D.camino?.length ? [['camino', 'Camino al 20', '']] : [])
+  .concat(D.viabilidad?.riesgos?.length ? [['viabilidad', 'Viabilidad', '']] : [])
+  .concat([['estructura', 'Estructura', '']])
+  .concat(D.secciones.map((s, i) => ['s' + i, s.titulo, s.observaciones.length]));
+document.getElementById('toc').innerHTML = toc.map(([id, t, n]) => `<li><a href="#${id}"><span>${esc(t)}</span><span class="n">${n}</span></a></li>`).join('');
+
+function updateProgress() {
+  const total = document.querySelectorAll('.ob').length;
+  const ok = document.querySelectorAll('.ob.done').length;
+  document.getElementById('progress').textContent = `${ok} de ${total} observaciones corregidas`;
+}
+document.getElementById('main').addEventListener('change', e => {
+  const li = e.target.closest('.ob'); if (!li) return;
+  li.classList.toggle('done', e.target.checked);
+  done[li.dataset.k] = e.target.checked;
+  try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (err) {}
+  updateProgress();
+});
+updateProgress();
+</script>
+
+</html>

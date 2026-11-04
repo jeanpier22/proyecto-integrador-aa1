@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>TAP Grupo (sin número) · AA1</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: informe de revisión de tesina — columna de lectura centrada, índice lateral fijo en escritorio, sellos de severidad en el margen */
+:root {
+  --paper: #fbfbfa;
+  --sheet: #ffffff;
+  --ink: #1c2230;
+  --muted: #5b6475;
+  --rule: #dde1e8;
+  --accent: #1f3a68;
+  --accent-soft: #e8edf6;
+  --crit: #a3262b;   --crit-bg: #fbeceb;
+  --warn: #8a5a00;   --warn-bg: #fdf3df;
+  --sug: #1d6a55;    --sug-bg: #e6f3ee;
+  --ok: #1d6a55;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #12151c; --sheet: #191d26; --ink: #e6e9ef; --muted: #9aa3b4; --rule: #2c3240;
+  --accent: #9db7e6; --accent-soft: #1f2a40;
+  --crit: #f08c8f; --crit-bg: #3a1c1f; --warn: #e8bd6a; --warn-bg: #3a2e14; --sug: #7fcfb4; --sug-bg: #15312a; --ok: #7fcfb4;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #12151c; --sheet: #191d26; --ink: #e6e9ef; --muted: #9aa3b4; --rule: #2c3240;
+  --accent: #9db7e6; --accent-soft: #1f2a40;
+  --crit: #f08c8f; --crit-bg: #3a1c1f; --warn: #e8bd6a; --warn-bg: #3a2e14; --sug: #7fcfb4; --sug-bg: #15312a; --ok: #7fcfb4;
+  color-scheme: dark }
+
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15.5px; line-height: 1.6; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; } nav.toc { position: static !important; } }
+
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; font-size: 13.5px; }
+nav.toc .lbl, .eyebrow { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+nav.toc ol { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 2px; }
+nav.toc a { display: flex; justify-content: space-between; gap: 8px; padding: 6px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+nav.toc a:hover, nav.toc a:focus-visible { background: var(--accent-soft); outline: none; }
+nav.toc .n { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+main { min-width: 0; display: grid; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(28px, 4vw, 38px); font-weight: 700; }
+h2 { font-size: 24px; font-weight: 600; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+
+.demo { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn); padding: 10px 14px; border-radius: 6px; font-weight: 500; font-size: 14px; }
+
+header.cover { border-bottom: 2px solid var(--accent); padding-bottom: 24px; display: grid; gap: 14px; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 24px; margin-top: 6px; }
+.meta div { display: grid; gap: 2px; min-width: 0; }
+.meta dt { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.meta dd { margin: 0; font-weight: 500; }
+.members { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+
+.verdict { display: grid; gap: 14px; }
+.stamp { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 19px; font-weight: 600; color: var(--accent); }
+.stamp::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: currentColor; }
+.stamp.mayor { color: var(--crit); } .stamp.menor { color: var(--warn); } .stamp.apto { color: var(--ok); }
+.counts { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { font-size: 12.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+.pill.critico { background: var(--crit-bg); color: var(--crit); }
+.pill.importante { background: var(--warn-bg); color: var(--warn); }
+.pill.sugerencia { background: var(--sug-bg); color: var(--sug); }
+
+.priorities { list-style: none; counter-reset: p; padding: 0; margin: 0; display: grid; gap: 10px; }
+.priorities li { counter-increment: p; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
+.priorities li::before { content: counter(p); font-family: var(--display); font-weight: 700; color: var(--accent); font-size: 18px; line-height: 1.4; }
+
+section.block { display: grid; gap: 18px; scroll-margin-top: 24px; }
+section.block > .head { display: grid; gap: 4px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+.summary { color: var(--muted); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--paper); }
+td.code { font-family: var(--mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+.st { font-weight: 600; white-space: nowrap; }
+.st.completo { color: var(--ok); } .st.incompleto { color: var(--warn); } .st.ausente { color: var(--crit); }
+
+.obs { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.ob { background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; display: grid; gap: 10px; }
+.ob.done { opacity: .6; }
+.ob .top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ob .where { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.ob blockquote { margin: 0; padding: 8px 12px; border-left: 3px solid var(--rule); color: var(--muted); font-family: var(--display); font-style: italic; font-size: 14.5px; }
+.ob .fix { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; }
+.ob .fix b { color: var(--accent); font-size: 13px; text-transform: uppercase; letter-spacing: .06em; line-height: 1.8; }
+.ob label { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); cursor: pointer; justify-self: start; }
+.ob input { accent-color: var(--accent); width: 16px; height: 16px; }
+.grade { display: flex; align-items: baseline; gap: 8px; font-family: var(--display); color: var(--accent); }
+.grade .big { font-size: 56px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.grade .of { font-size: 22px; color: var(--muted); }
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lvl { font-size: 12.5px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.lvl.l4, .lvl.l3 { background: var(--sug-bg); color: var(--sug); }
+.lvl.l2 { background: var(--warn-bg); color: var(--warn); }
+.lvl.l1, .lvl.l0 { background: var(--crit-bg); color: var(--crit); }
+.ideas { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.strength { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.strength li::before { content: "✓  "; color: var(--ok); font-weight: 700; }
+
+.progress { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+footer { border-top: 1px solid var(--rule); padding-top: 16px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+a { color: var(--accent); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<script type="application/json" id="data">{"id": "grupo-adobo-instantaneo", "institucion": "CERTUS", "curso": "UD Proyecto Integrador", "evidencia": "AA1", "alcance": "capítulos 1, 2 y 3 (planteamiento del problema, propuesta de valor y modelo de negocio).", "proyecto": "Adobito AQP: adobo arequipeño instantáneo", "grupo": "Grupo (sin número)", "seccion": "No indicada", "fecha": "30/10/2026", "docente": "Jeanpier Brandol Ancori Sanchez", "integrantes": ["Davita Lucero Aguilar Choquiluque", "María Quispe Rivera", "Alexandra Cuba Aroni", "Sarai Virginia Champi Hermoza"], "dictamen": "mayor", "resumen": "El informe plantea con honestidad intelectual una idea interesante: llevar el adobo arequipeño a un formato instantáneo mediante liofilización o deshidratación, y reconoce en varios pasajes que la necesidad del cliente todavía es una hipótesis. El capítulo 2 está bastante avanzado: tiene descripción, ficha técnica en infografía, beneficios, una tabla problema-solución, segmentos y cinco casos de uso. Sin embargo, el capítulo 3 no se ha desarrollado: en las pp. 9-10 solo aparecen los títulos del mapa de empatía, el Business Model Canvas y los competidores, sin contenido. El capítulo 1 no tiene ninguna cifra estadística que dimensione el problema, el problema social no tiene causas ni consecuencias y las megatendencias no tienen cita completa. Como es un alimento procesado con carne, el informe todavía no aborda el diferencial frente a las sopas instantáneas y los sazonadores industriales, ni los requisitos sanitarios (registro sanitario de DIGESA, rotulado, octógonos y vida útil). En lo formal faltan índice, lista de referencias en APA 7, numeración correcta de títulos (el capítulo 2 salta de 2.3 a 4.1) y la numeración, el título y la fuente de tablas y figuras.", "fortalezas": ["La idea combina identidad gastronómica regional con una tecnología de conservación concreta (liofilización o deshidratación) y se apoya en referentes internacionales verificables, como el keihan japonés y Tiffins (p. 2).", "El informe muestra pensamiento crítico: reconoce que la necesidad es una hipótesis, que la liofilización puede consumir mucha energía (p. 5) y que el estudio de Molero Garibay et al. (2023) no prueba la demanda en Arequipa (p. 4).", "La tabla problema-solución (p. 8) y los cinco casos de uso (p. 9) están bien conectados con la necesidad planteada en el capítulo 1.", "La ficha técnica (p. 6) define con precisión la presentación (vaso individual de 60 g, polipropileno con tapa sellada), el modo de preparación en 5 pasos y las condiciones de almacenamiento."], "prioridades": ["Desarrollar completo el capítulo 3: mapa de empatía, BMC con los 9 bloques explicados uno por uno, análisis de competidores e indicadores de gestión con fórmula.", "Dimensionar el problema en el capítulo 1 con al menos 3 a 5 cifras de fuentes confiables y recientes (INEI, PromPerú, MINCETUR, Ipsos, Kantar, CPI) sobre consumo fuera del hogar, tiempo para cocinar, alimentos de conveniencia y turismo en Arequipa, citadas en APA 7.", "Completar la ficha técnica con los 4 campos que faltan (precio y opciones de compra, proceso de fabricación, sostenibilidad e integración con redes sociales) e incluir los requisitos sanitarios del producto (registro sanitario, rotulado, octógonos y vida útil).", "Sustentar el diferencial de innovación frente a sopas instantáneas, sazonadores o pastas de adobo industriales, platos congelados y picanterías, con una tabla comparativa por criterios.", "Desarrollar el problema social con causas y consecuencias, citar las metas específicas de los ODS 9 y 12 y referenciar las megatendencias de CEPLAN con año y página.", "Corregir el formato académico: carátula completa, índice, numeración 2.4-2.6 y 3.1-3.3, tablas y figuras numeradas con título y fuente, y lista de referencias en APA 7. Eliminar los títulos vacíos del elevator pitch."], "camino": [{"criterio": "Fuentes de información", "exige": "Fuentes secundarias actualizadas y confiables, analizadas críticamente para mostrar qué aportan al proyecto en relación con las megatendencias y los ODS.", "falta": "Hoy hay cinco citas: tres son páginas comerciales sin fecha (Tiffins, La Despensa, Encuentro), y CEPLAN no tiene año. Falta la lista de referencias. Deben sumar fuentes estadísticas y técnicas (artículos científicos sobre liofilización de carnes o comidas preparadas, informes de consumo) y conservar el análisis crítico que ya hacen en la p. 4."}, {"criterio": "Planteamiento del problema", "exige": "Pertinencia del problema sustentada con evidencia cualitativa y cuantitativa, vinculada de forma explícita con megatendencias, ODS y necesidades del cliente.", "falta": "Falta evidencia cuantitativa: no hay ninguna cifra que dimensione el problema en Arequipa. El problema está formulado como una «oportunidad». Las causas de 1.1.1 no tienen consecuencias y el problema social no tiene causas ni consecuencias. Falta también evidencia cualitativa propia, como entrevistas exploratorias o testimonios."}, {"criterio": "Propuesta de valor", "exige": "Propuesta innovadora y diferenciada, con descripción, ficha técnica, soluciones, segmentos y casos de uso coherentes con el problema.", "falta": "Los elementos ya están presentes. Falta completar 4 campos de la ficha técnica, definir el segmento con variables demográficas y de tamaño, y demostrar con evidencia por qué el producto es diferente de una sopa instantánea o de un sazonador de adobo, y que es técnicamente viable."}, {"criterio": "Modelo de negocio", "exige": "BMC y mapa de empatía que argumenten la coherencia entre los 9 bloques y la propuesta de valor.", "falta": "Todo el capítulo: el mapa de empatía, el BMC, la explicación de los 9 bloques, los competidores y los indicadores de gestión figuran solo como títulos (pp. 9-10)."}], "viabilidad": {"resumen": "En Arequipa, Adobito AQP se va a chocar primero con lo sanitario y lo técnico: un alimento industrializado con carne de cerdo no se puede vender sin registro sanitario y sin una planta que cumpla las normas, y la liofilización de un guiso con carne es costosa y difícil de lograr con buena textura. Después vienen el precio que el cliente aceptaría frente a opciones instantáneas baratas y la resistencia cultural a un adobo que no sea de picantería.", "riesgos": [{"tema": "Regulación", "titulo": "Registro sanitario y planta habilitada (DIGESA)", "choque": "Un alimento industrializado envasado, más aún si lleva carne, necesita registro sanitario de DIGESA, fabricado en un establecimiento que cumpla los principios generales de higiene y el plan HACCP. No se puede producir en una cocina doméstica ni vender en supermercados o tiendas de souvenirs sin ese registro.", "ideas": ["Averiguar en el TUPA de DIGESA el costo, el plazo y los requisitos del registro sanitario para alimentos y bebidas industrializados, e incluirlos en la estructura de costos.", "Explorar la maquila con una planta de alimentos ya habilitada en Arequipa o en el sur, o con laboratorios universitarios de industrias alimentarias, en lugar de montar una planta propia.", "Mientras no haya registro, limitar el MVP a degustaciones controladas y pruebas sensoriales, sin venta comercial."]}, {"tema": "Tecnología", "titulo": "Viabilidad técnica de liofilizar un guiso de cerdo", "choque": "El adobo es un guiso de cerdo con chicha de jora, ají y grasa. La grasa dificulta la liofilización y puede enranciarse, y la carne reconstituida suele quedar fibrosa. La ficha ya dice «vida útil: por definir». Si la textura o el sabor no convencen, el producto pierde su promesa de mantener el sabor tradicional.", "ideas": ["Buscar artículos científicos sobre liofilización y deshidratación de carnes y comidas preparadas para estimar los tiempos, la rehidratación y la vida útil esperada.", "Probar dos o tres variantes de prototipo (liofilizado, deshidratado o base de salsa más carne aparte) y compararlas en una prueba sensorial a ciegas frente a un adobo de picantería.", "Cotizar un estudio de vida útil (acelerado) en un laboratorio acreditado por INACAL."]}, {"tema": "Regulación", "titulo": "Rotulado y octógonos de advertencia", "choque": "Por la Ley 30021 y su manual de advertencias publicitarias, un adobo concentrado probablemente supere los límites de sodio y de grasas saturadas y deba llevar octógonos. Eso choca con un empaque pensado como regalo o souvenir y con un segmento que cuida su salud (el estudio de Molero Garibay et al. que ustedes citan lo menciona). Además, el rótulo debe cumplir la norma de rotulado de alimentos envasados.", "ideas": ["Estimar el perfil nutricional de una porción de 60 g con tablas de composición de alimentos (CENAN/INS) y compararlo con los parámetros de la Ley 30021.", "Evaluar ajustes de receta (menos sal o grasa) y medir en la prueba sensorial si se pierde la identidad del plato.", "Diseñar el empaque considerando desde ya el espacio de los octógonos y la información obligatoria del rotulado."]}, {"tema": "Mercado", "titulo": "Precio aceptable frente a alternativas baratas", "choque": "Los estudiantes, que son el segmento principal, buscan comida «económica» (tabla de la p. 9), pero liofilizar es caro. Las sopas instantáneas industriales se venden a bajo precio y en todas las bodegas, y un adobo de picantería es un plato completo. Si el costo por vaso es alto, quizá el segmento real sean los turistas o el regalo, no el estudiante.", "ideas": ["Hacer un relevamiento de precios en supermercados, bodegas y tiendas de souvenirs de Arequipa: sopas instantáneas, platos congelados y productos regionales empacados.", "En la encuesta de la AA2, medir la disposición a pagar por segmento con rangos de precio (por ejemplo, con el método Van Westendorp).", "Evaluar si conviene empezar por el canal turístico (aeropuerto, tiendas del centro histórico, agencias), donde el precio pesa menos."]}, {"tema": "Adopción", "titulo": "Resistencia cultural a un adobo «instantáneo»", "choque": "En Arequipa el adobo es un ritual dominical de picantería, de preparación lenta. Un consumidor local puede percibir la versión instantánea como poco auténtica, y la ficha incluso lo presenta como «tipo sopa instantánea» y «en cada sorbo», cuando el adobo es un guiso que se come con pan.", "ideas": ["Incluir en las entrevistas de la AA2 preguntas sobre la autenticidad: qué tendría que conservar un adobo para que lo acepten como «verdadero».", "Probar el concepto por separado con arequipeños y con visitantes, porque la aceptación puede ser muy distinta.", "Considerar alianzas con una picantería reconocida (receta o marca compartida) para dar legitimidad al producto."]}]}, "estructura": [{"codigo": "—", "apartado": "Carátula con integrantes", "estado": "incompleto", "nota": "Faltan el título del proyecto, la sección, el número de grupo y la carrera de cada integrante. El apellido del docente está mal escrito («Ancorij»)."}, {"codigo": "—", "apartado": "Índice", "estado": "ausente", "nota": "Generarlo de forma automática desde los estilos de título."}, {"codigo": "1.1", "apartado": "Problema del cliente (causas y consecuencias)", "estado": "incompleto", "nota": "Hay 4 causas en 1.1.1, pero no hay consecuencias ni cifras."}, {"codigo": "1.2", "apartado": "Problema social (ODS y megatendencias)", "estado": "incompleto", "nota": "Se declaran los ODS 9 y 12 y tres megatendencias, pero sin metas, sin causas ni consecuencias y sin cita completa de CEPLAN."}, {"codigo": "2.1", "apartado": "Descripción de la propuesta de valor", "estado": "completo", "nota": ""}, {"codigo": "2.2", "apartado": "Ficha técnica", "estado": "incompleto", "nota": "Faltan precio, proceso de fabricación, sostenibilidad y redes sociales. La infografía no tiene número ni fuente."}, {"codigo": "2.3", "apartado": "Beneficios clave", "estado": "completo", "nota": "Corregir la numeración de los beneficios ambientales (3 y 4)."}, {"codigo": "2.4", "apartado": "Solución a problemas o necesidades", "estado": "completo", "nota": "Está numerado como 4.1."}, {"codigo": "2.5", "apartado": "Segmentos de cliente", "estado": "incompleto", "nota": "Está numerado como 4.2. Los segmentos son amplios, sin edad, NSE, tamaño ni cifras."}, {"codigo": "2.6", "apartado": "Casos de uso", "estado": "completo", "nota": "Está numerado como 4.3."}, {"codigo": "3.1", "apartado": "Mapa de empatía", "estado": "ausente", "nota": "Solo figura el título (p. 9)."}, {"codigo": "3.2", "apartado": "Business Model Canvas (9 bloques)", "estado": "ausente", "nota": "Solo figuran los títulos 5.2 y 5.2.1 (pp. 9-10)."}, {"codigo": "3.3", "apartado": "Competidores", "estado": "ausente", "nota": "Solo figura el título (p. 10)."}, {"codigo": "—", "apartado": "Indicadores de gestión", "estado": "ausente", "nota": ""}, {"codigo": "—", "apartado": "Bibliografía APA 7", "estado": "ausente", "nota": "Hay citas en el texto, pero no hay lista de referencias."}], "secciones": [{"etiqueta": "Capítulo I", "titulo": "Planteamiento del problema", "resumen": "El capítulo está bien razonado y es autocrítico, pero se formula como una oportunidad y no como un problema. No tiene ninguna cifra que lo dimensione y el problema social no tiene causas ni consecuencias.", "observaciones": [{"severidad": "critico", "titulo": "El problema no está dimensionado con ninguna cifra", "ubicacion": "1.1 y 1.2, pp. 2-5", "cita": "La propuesta podría resultar atractiva para consumidores que buscan opciones prácticas de alimentación", "problema": "En todo el capítulo no hay un solo dato estadístico. El único número es la muestra del estudio de Molero Garibay et al. (255 encuestas), que es de Lima y de la pandemia, como ustedes mismos advierten. La rúbrica exige evidencia cuantitativa para llegar a Logrado o Sobresaliente.", "mejora": "Incluir de 3 a 5 cifras recientes de fuentes confiables que dimensionen: el tiempo disponible para cocinar o el consumo fuera del hogar (INEI, Ipsos, Kantar), el mercado de alimentos de conveniencia o instantáneos en el Perú (Euromonitor, Statista), la población estudiantil y trabajadora de Arequipa (INEI) y el flujo de turistas a Arequipa (MINCETUR, PromPerú). Esqueleto de forma: «Según [institución] ([año]), el X % de…»."}, {"severidad": "importante", "titulo": "Se plantea una «oportunidad», no un problema del cliente con consecuencias", "ubicacion": "1.1 y 1.1.1, pp. 2-3", "cita": "La oportunidad de Adobito AQP se relaciona con la posibilidad de ofrecer una nueva presentación", "problema": "El apartado describe el producto y la tecnología más que el problema que vive el cliente. En 1.1.1, titulado «Causas y consecuencias», hay cuatro factores, pero ninguna consecuencia. Además, dos de las causas («Aplicación de tecnologías de conservación» y «Falta de validación del nuevo formato») son en realidad la solución y el plan de validación, no las causas del problema del cliente.", "mejora": "Formular el problema desde el cliente: qué le pasa, a quién y con qué frecuencia. Separar las causas (por qué ocurre) de las consecuencias (qué efecto tiene en el cliente: qué deja de hacer, qué gasta, qué come en su lugar) y sustentarlas con datos. Un árbol de problemas como figura numerada puede ayudar."}, {"severidad": "importante", "titulo": "Problema social sin causas, sin consecuencias y sin metas de los ODS", "ubicacion": "1.2.1, pp. 4-5", "cita": "La propuesta se relaciona principalmente con los Objetivos de Desarrollo Sostenible 9 y 12", "problema": "Los ODS 9 y 12 están explicados en términos generales, pero no se identifica qué meta específica se atiende ni cuál es el problema social, con sus causas y consecuencias. La estructura del TAP pide ambos elementos, igual que para el problema del cliente. Tampoco se menciona la línea de investigación de CERTUS con la que se alinea el proyecto.", "mejora": "Citar la meta concreta de cada ODS (revisen las metas del ODS 9 sobre industrias y diversificación de productos, y la meta 12.3 sobre pérdida y desperdicio de alimentos) y redactar el problema social con sus causas y consecuencias, respaldadas por datos (por ejemplo, la participación de la agroindustria regional o la pérdida de alimentos en el Perú, de fuentes como PRODUCE, FAO o INEI). Indicar la línea de investigación CERTUS correspondiente."}, {"severidad": "importante", "titulo": "Megatendencias sin cita completa ni datos de respaldo", "ubicacion": "1.2.2, p. 5", "cita": "El Centro Nacional de Planeamiento Estratégico (CEPLAN), en su publicación Megatendencias al 2050", "problema": "Se menciona el documento de CEPLAN sin año ni página, y las tres tendencias se describen con frases generales («La evolución de las preferencias alimentarias puede generar oportunidades»), sin ningún dato que muestre cómo se manifiestan en el Perú o en Arequipa.", "mejora": "Citar a CEPLAN en formato autor-año, con página. Usar el nombre exacto de cada megatendencia o tendencia que figura en el documento y acompañar cada una con un dato que la evidencie (por ejemplo, el crecimiento de alimentos listos para consumir o el cambio en los hábitos de consumo urbano)."}, {"severidad": "sugerencia", "titulo": "Fuentes comerciales sin fecha y sin respaldo técnico", "ubicacion": "1.1 y 1.1.2, pp. 2-4", "cita": "Finalmente, las fuentes técnicas sobre liofilización y deshidratación serán necesarias", "problema": "Tres de las cinco fuentes son páginas comerciales sin fecha (Tiffins, s. f.; La Despensa, s. f.) o de prensa (Encuentro, 2023). El propio informe reconoce que faltan fuentes técnicas, pero no incorpora ninguna, cuando son justamente las que sustentarían la viabilidad del formato.", "mejora": "Incorporar al menos 2 artículos científicos (Scopus, SciELO, Redalyc, ScienceDirect) sobre liofilización o deshidratación de carnes o comidas preparadas, y resumir lo que dicen sobre rehidratación, textura y vida útil. Mantener el estilo crítico que ya usan en la p. 4."}]}, {"etiqueta": "Capítulo II", "titulo": "Propuesta de valor", "resumen": "Es el capítulo más avanzado: tiene todos los apartados. Falta completar la ficha técnica, precisar el segmento y sustentar con evidencia el diferencial y la viabilidad técnica del producto.", "observaciones": [{"severidad": "critico", "titulo": "Ficha técnica incompleta: faltan 4 de los 8 campos", "ubicacion": "2.2, infografía de la p. 6", "cita": "Vida útil: por definir (en validación).", "problema": "La infografía cubre bien el nombre, las especificaciones, las características y el empaque, pero no incluye el precio ni las opciones de compra, el proceso de fabricación (etapas de cocción, liofilización o deshidratación, envasado), la sostenibilidad ni la integración con redes sociales. Tampoco menciona el registro sanitario, el rotulado ni la vida útil estimada, que en un alimento envasado son parte de su especificación técnica.", "mejora": "Agregar los 4 campos faltantes, de preferencia en una tabla textual complementaria a la infografía. Describir el proceso de fabricación como diagrama de flujo (figura numerada), indicar un precio tentativo con el criterio usado para fijarlo y los puntos de venta, y estimar la vida útil a partir de la literatura técnica mientras no haya pruebas propias."}, {"severidad": "importante", "titulo": "El diferencial de innovación aún no está sustentado", "ubicacion": "2.1 y 2.2, p. 6", "cita": "Vaso individual tipo sopa instantánea", "problema": "Un alimento procesado de receta tradicional puede considerarse de baja innovación si no demuestra qué lo distingue de lo que ya existe. La comparación del informe se limita al adobo de delivery y al congelado, pero el cliente también compara con las sopas instantáneas industriales, los sazonadores y las pastas de adobo, y los platos listos de supermercado. La ficha incluso lo presenta «tipo sopa instantánea» y con el lema «en cada sorbo», cuando el adobo es un guiso con trozos de cerdo: eso debilita la promesa de mantener el sabor tradicional.", "mejora": "Demostrar el diferencial con evidencia: una búsqueda de productos similares (adobo o platos regionales peruanos liofilizados) en el mercado nacional y en registros de marcas, y una tabla comparativa con criterios como autenticidad, contenido de carne, tiempo de preparación, vida útil, precio y canal. Precisar si el producto es un plato completo con carne o una base de salsa, porque eso define la tecnología, el costo y la competencia."}, {"severidad": "importante", "titulo": "Segmentos demasiado amplios y sin dimensionar", "ubicacion": "2.5 (numerado como 4.2), pp. 8-9", "cita": "la caracterización detallada de cada segmento (edad, ingresos, frecuencia de consumo, disposición a pagar) se definirá con las encuestas", "problema": "Se definen cuatro segmentos (estudiantes, trabajadores, turistas y aficionados a la gastronomía) sin edad, NSE, zona ni tamaño. Que la caracterización dependa de encuestas futuras no impide perfilarlos desde ahora con datos secundarios. Además, los segmentos tienen necesidades distintas: el estudiante busca algo «económico» y el turista un souvenir, lo que exige precios y canales diferentes.", "mejora": "Priorizar un segmento inicial y describirlo con variables geográficas (Arequipa Metropolitana, distritos), demográficas (edad, NSE) y conductuales (frecuencia de consumo de comida preparada). Estimar su tamaño con fuentes como INEI, la SUNEDU o el MINEDU (población estudiantil) y MINCETUR (arribos de turistas)."}, {"severidad": "sugerencia", "titulo": "Beneficios y casos de uso que presuponen el resultado", "ubicacion": "2.3 y 2.6, pp. 7 y 9", "cita": "Su conveniencia económica dependerá del precio final del producto.", "problema": "Los beneficios económicos dependen de un precio que no está definido, y los casos de uso son hipotéticos («deberán contrastarse»). Está bien reconocerlo, pero sin ningún dato de referencia los beneficios quedan sin sustento.", "mejora": "Cuantificar al menos un beneficio con un dato de referencia (por ejemplo, el tiempo promedio de preparación del adobo tradicional frente a los 3 a 5 minutos del producto, o el precio de un plato de adobo en picantería frente al precio tentativo), indicando la fuente."}]}, {"etiqueta": "Capítulo III", "titulo": "Modelo de negocio", "resumen": "El capítulo no se ha desarrollado: solo aparecen los títulos 5.1, 5.2, 5.2.1 y 5.3 (pp. 9-10). Es la principal razón del dictamen.", "observaciones": [{"severidad": "critico", "titulo": "Mapa de empatía ausente", "ubicacion": "5.1 (debe ser 3.1), p. 9", "cita": "5.1. Mapa de empatía", "problema": "Debajo del título no hay contenido (se comprobó visualmente en el PDF). El mapa de empatía es obligatorio y es la base para que el BMC responda al cliente real.", "mejora": "Elaborar un mapa de empatía para el segmento prioritario, con sus seis cuadrantes (piensa y siente, ve, oye, dice y hace, esfuerzos o dolores, resultados o ganancias), presentado como figura numerada con fuente. Lo ideal es basarlo en 3 a 5 entrevistas exploratorias a personas del segmento, para sumar la evidencia cualitativa que también pide el capítulo 1."}, {"severidad": "critico", "titulo": "Business Model Canvas y sus 9 bloques ausentes", "ubicacion": "5.2 y 5.2.1 (deben ser 3.2), pp. 9-10", "cita": "5.2.1. Identificación y características de los nueve bloques del BMC", "problema": "No hay lienzo ni explicación de los bloques. Sin el BMC no se puede evaluar el criterio Modelo de negocio. En este proyecto, además, bloques como los socios clave (planta o laboratorio de liofilización, proveedores de cerdo), los recursos clave (registro sanitario, equipo) y la estructura de costos son decisivos.", "mejora": "Presentar el BMC como figura numerada y, debajo, un subapartado por bloque que explique su contenido. Verificar que el segmento, los canales y las fuentes de ingreso coincidan con lo definido en 2.5 y que los costos reflejen la tecnología elegida y los trámites sanitarios."}, {"severidad": "critico", "titulo": "Análisis de competidores ausente", "ubicacion": "5.3 (debe ser 3.3), p. 10", "cita": "5.3. Competidores", "problema": "Solo figura el título. En el capítulo 1 se mencionan La Sazón de la Abuela y La Despensa, pero no se analizan sus fortalezas, debilidades ni su modelo de negocio, y no se consideran los competidores indirectos (sopas instantáneas, sazonadores de adobo, picanterías).", "mejora": "Elaborar una tabla con 3 a 5 competidores directos e indirectos, con su descripción, fortalezas, debilidades y modelo de negocio, y cerrar con la ventaja competitiva propia y la estrategia de diferenciación (por ejemplo, según el marco de estrategias genéricas de Porter), con fuente."}, {"severidad": "importante", "titulo": "Faltan los indicadores de gestión", "ubicacion": "Capítulo 3", "cita": "", "problema": "No hay KPI. El ODS 12 (p. 5) promete medir «las mermas, el consumo de recursos, el aprovechamiento de materias primas», pero esos indicadores no se definen en ninguna parte.", "mejora": "Proponer de 4 a 6 indicadores con nombre, fórmula, meta y ejemplo de cálculo, que cubran lo comercial, lo productivo y lo ambiental. Esqueleto de forma: «Indicador = (A / B) × 100; meta: X %»."}]}, {"etiqueta": "Formato académico", "titulo": "Presentación, redacción y citas", "resumen": "La redacción es impersonal y cuidada, pero al documento le faltan los elementos formales de un trabajo académico.", "observaciones": [{"severidad": "critico", "titulo": "No hay lista de referencias en APA 7", "ubicacion": "Todo el documento", "cita": "(Ministry of Agriculture, Forestry and Fisheries of Japan, s. f.; Tiffins, s. f.)", "problema": "Hay citas autor-año en el texto, pero el documento termina en la p. 10 sin sección de referencias, así que ninguna fuente se puede verificar.", "mejora": "Crear la sección «Referencias» al final, en orden alfabético, con sangría francesa y con URL o DOI. Cada cita del texto debe tener su referencia y viceversa."}, {"severidad": "importante", "titulo": "Numeración de títulos incorrecta y títulos vacíos de la plantilla", "ubicacion": "pp. 7-10", "cita": "4.1. Solución a problemas o necesidades específicas", "problema": "Después de 2.3, la numeración salta a 4.1, 4.2 y 4.3 (deben ser 2.4, 2.5 y 2.6), y el capítulo 3 aparece como «5» y sus apartados como 5.1 a 5.3. En la p. 7, los beneficios ambientales se numeran como «3.» y «4.». Al final quedan títulos vacíos del elevator pitch (6, 6.1 a 6.3), que corresponde a la exposición y no al informe.", "mejora": "Usar la lista multinivel de títulos del procesador de textos y rehacer la numeración según la estructura oficial (1.1-1.2, 2.1-2.6, 3.1-3.3). Eliminar los títulos sin contenido."}, {"severidad": "importante", "titulo": "Carátula incompleta e índice ausente", "ubicacion": "Carátula (p. 1)", "cita": "Docente: Jeanpier Brandol Ancorij Sanchez", "problema": "La carátula no tiene el título del proyecto (aparece recién en la p. 2), la sección ni el número de grupo, y tiene una sola carrera para las cuatro integrantes. Los lineamientos permiten como máximo dos integrantes de la misma carrera, así que deben indicar la carrera de cada una. El apellido del docente es «Ancori». No hay índice.", "mejora": "Completar la carátula con la institución, la carrera de cada integrante, el título del proyecto, la sección, el grupo y el docente. Insertar un índice automático después de la carátula. Nombrar el archivo como AA1_Sección_Informe del TAP_Grupo X."}, {"severidad": "importante", "titulo": "Tablas y figuras sin número, título ni fuente", "ubicacion": "Ficha técnica (p. 6), tablas de las pp. 8 y 9", "cita": "", "problema": "La infografía de la ficha técnica y las dos tablas (problema-solución y segmentos) no tienen número, título ni nota de fuente. Además, la infografía tiene erratas («Fácil de transpartar») y la nota de la p. 9 queda cortada («del proyect»).", "mejora": "Aplicar el formato APA 7: «Tabla N» o «Figura N» en negrita, el título en cursiva arriba y la nota de fuente debajo (por ejemplo, «Nota. Elaboración propia»). Si la imagen se generó con una herramienta de IA, indicarlo en la nota. Revisar la ortografía de los textos dentro de las imágenes."}]}], "calificacion": {"fuentes": 2, "problema": 2, "propuesta": 3, "modelo": 1, "responsabilidad": 3}}</script>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contenido">
+    <div class="lbl">Contenido</div>
+    <ol id="toc"></ol>
+    <p class="progress" id="progress" style="margin-top:14px"></p>
+  </nav>
+  <main id="main"></main>
+</div>
+
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const SEV = { critico: 'Crítico', importante: 'Importante', sugerencia: 'Sugerencia' };
+const ST = { completo: 'Completo', incompleto: 'Incompleto', ausente: 'Ausente' };
+const DICT = { mayor: 'Requiere correcciones mayores', menor: 'Requiere correcciones menores', apto: 'Apto para continuar' };
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const KEY = 'tap-revision-' + (D.id || 'x');
+let done = {};
+try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+
+const all = D.secciones.flatMap(s => s.observaciones.map(o => o.severidad));
+const count = sev => all.filter(x => x === sev).length;
+
+let html = '';
+if (D.ejemplo) html += `<div class="demo">Ejemplo con datos ficticios: así verá cada grupo su revisión.</div>`;
+html += `<header class="cover">
+  <div class="eyebrow">${esc(D.institucion)} · ${esc(D.curso)} · ${esc(D.evidencia)}</div>
+  <h1>${esc(D.proyecto)}</h1>
+  <p class="summary">Revisión del Trabajo de Aplicación Profesional (TAP): ${esc(D.alcance)}</p>
+  <dl class="meta">
+    <div><dt>Grupo</dt><dd>${esc(D.grupo)}</dd></div>
+    <div><dt>Sección</dt><dd>${esc(D.seccion)}</dd></div>
+    <div><dt>Fecha de revisión</dt><dd>${esc(D.fecha)}</dd></div>
+    <div><dt>Docente</dt><dd>${esc(D.docente)}</dd></div>
+  </dl>
+  <div><div class="eyebrow" style="margin-bottom:4px">Integrantes</div>
+  <ul class="members">${D.integrantes.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+</header>`;
+
+html += `<section class="block verdict" id="dictamen">
+  <div class="head"><div class="eyebrow">Dictamen</div><h2>Estado del informe</h2></div>
+  <div class="stamp ${esc(D.dictamen)}">${DICT[D.dictamen] || esc(D.dictamen)}</div>
+  <div class="counts">
+    <span class="pill critico">${count('critico')} críticas</span>
+    <span class="pill importante">${count('importante')} importantes</span>
+    <span class="pill sugerencia">${count('sugerencia')} sugerencias</span>
+  </div>
+  <p>${esc(D.resumen)}</p>
+  ${D.fortalezas?.length ? `<div><h3 style="margin-bottom:8px">Lo que está bien</h3><ul class="strength">${D.fortalezas.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>` : ''}
+</section>`;
+
+if (D.calificacion) {
+  const C = D.calificacion;
+  const NIV = { 4: 'Sobresaliente', 3: 'Logrado', 2: 'En proceso', 1: 'Inicio', 0: 'No presentó' };
+  const filas = [['Fuentes de información', C.fuentes], ['Planteamiento del problema', C.problema],
+    ['Propuesta de valor', C.propuesta], ['Modelo de negocio', C.modelo], ['Responsabilidad en la ejecución', C.responsabilidad]];
+  const total = filas.reduce((s, f) => s + (Number(f[1]) || 0), 0);
+  html += `<section class="block" id="nota">
+    <div class="head"><div class="eyebrow">Rúbrica de la ${esc(D.evidencia)}</div><h2>Calificación preliminar del informe</h2></div>
+    <div class="grade"><span class="big">${total}</span><span class="of">/ 20</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Criterio</th><th>Nivel</th><th class="num">Puntos</th></tr></thead>
+      <tbody>${filas.map(([c, p]) => `<tr><td>${c}</td><td><span class="lvl l${p}">${NIV[p] ?? '—'}</span></td><td class="num">${p ?? '—'} / 4</td></tr>`).join('')}</tbody>
+    </table></div>
+    <p class="summary">La nota es individual y la final de la ${esc(D.evidencia)} también considera la exposición y las respuestas de cada integrante. Para subir de nivel, revisen la sección “Camino al 20”.</p>
+  </section>`;
+}
+
+html += `<section class="block" id="prioridades">
+  <div class="head"><div class="eyebrow">Antes de la siguiente entrega</div><h2>Prioridades de corrección</h2></div>
+  <ol class="priorities">${D.prioridades.map(p => `<li><span>${esc(p)}</span></li>`).join('')}</ol>
+</section>`;
+
+if (D.camino?.length) html += `<section class="block" id="camino">
+  <div class="head"><div class="eyebrow">Meta: nivel Sobresaliente en cada criterio de la rúbrica</div><h2>Camino al 20</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Criterio</th><th>Qué exige el nivel Sobresaliente</th><th>Qué les falta para llegar</th></tr></thead>
+    <tbody>${D.camino.map(c => `<tr><td><b>${esc(c.criterio)}</b></td><td>${esc(c.exige)}</td><td>${esc(c.falta)}</td></tr>`).join('')}</tbody>
+  </table></div>
+</section>`;
+
+if (D.viabilidad?.riesgos?.length) html += `<section class="block" id="viabilidad">
+  <div class="head"><div class="eyebrow">Mirada de negocio, más allá del documento</div><h2>Viabilidad: con qué se van a chocar</h2></div>
+  ${D.viabilidad.resumen ? `<p>${esc(D.viabilidad.resumen)}</p>` : ''}
+  <ul class="obs">${D.viabilidad.riesgos.map(r => `<li class="ob">
+    <div class="top"><span class="pill importante">${esc(r.tema)}</span><h3>${esc(r.titulo)}</h3></div>
+    <p>${esc(r.choque)}</p>
+    <div class="fix"><b>Ideas</b><ul class="ideas">${(r.ideas || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+  </li>`).join('')}</ul>
+</section>`;
+
+html += `<section class="block" id="estructura">
+  <div class="head"><div class="eyebrow">Contra la estructura oficial del TAP</div><h2>Revisión de estructura</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Ítem</th><th>Apartado</th><th>Estado</th><th>Comentario</th></tr></thead>
+    <tbody>${D.estructura.map(r => `<tr><td class="code">${esc(r.codigo)}</td><td>${esc(r.apartado)}</td>
+      <td class="st ${esc(r.estado)}">${ST[r.estado] || esc(r.estado)}</td><td>${esc(r.nota)}</td></tr>`).join('')}</tbody>
+  </table></div>
+</section>`;
+
+D.secciones.forEach((s, si) => {
+  html += `<section class="block" id="s${si}">
+    <div class="head"><div class="eyebrow">${esc(s.etiqueta)}</div><h2>${esc(s.titulo)}</h2></div>
+    ${s.resumen ? `<p class="summary">${esc(s.resumen)}</p>` : ''}
+    <ul class="obs">${s.observaciones.map((o, oi) => {
+      const k = si + '-' + oi;
+      return `<li class="ob${done[k] ? ' done' : ''}" data-k="${k}">
+        <div class="top"><span class="pill ${esc(o.severidad)}">${SEV[o.severidad] || esc(o.severidad)}</span>
+        <h3>${esc(o.titulo)}</h3>${o.ubicacion ? `<span class="where">${esc(o.ubicacion)}</span>` : ''}</div>
+        ${o.cita ? `<blockquote>“${esc(o.cita)}”</blockquote>` : ''}
+        <p>${esc(o.problema)}</p>
+        <div class="fix"><b>Mejora</b><p>${esc(o.mejora)}</p></div>
+        <label><input type="checkbox" id="chk-${k}" ${done[k] ? 'checked' : ''}> Marcar como corregido</label>
+      </li>`;
+    }).join('')}</ul>
+  </section>`;
+});
+
+html += `<footer>
+  <span>Revisión elaborada con la rúbrica de la ${esc(D.evidencia)} y la estructura oficial del TAP de CERTUS.</span>
+  <span>Las casillas “corregido” se guardan solo en este navegador, como ayuda para organizarse.</span>
+</footer>`;
+document.getElementById('main').innerHTML = html;
+
+const toc = [['dictamen', 'Dictamen', '']]
+  .concat(D.calificacion ? [['nota', 'Calificación', '']] : [])
+  .concat([['prioridades', 'Prioridades', '']])
+  .concat(D.camino?.length ? [['camino', 'Camino al 20', '']] : [])
+  .concat(D.viabilidad?.riesgos?.length ? [['viabilidad', 'Viabilidad', '']] : [])
+  .concat([['estructura', 'Estructura', '']])
+  .concat(D.secciones.map((s, i) => ['s' + i, s.titulo, s.observaciones.length]));
+document.getElementById('toc').innerHTML = toc.map(([id, t, n]) => `<li><a href="#${id}"><span>${esc(t)}</span><span class="n">${n}</span></a></li>`).join('');
+
+function updateProgress() {
+  const total = document.querySelectorAll('.ob').length;
+  const ok = document.querySelectorAll('.ob.done').length;
+  document.getElementById('progress').textContent = `${ok} de ${total} observaciones corregidas`;
+}
+document.getElementById('main').addEventListener('change', e => {
+  const li = e.target.closest('.ob'); if (!li) return;
+  li.classList.toggle('done', e.target.checked);
+  done[li.dataset.k] = e.target.checked;
+  try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (err) {}
+  updateProgress();
+});
+updateProgress();
+</script>
+
+</html>

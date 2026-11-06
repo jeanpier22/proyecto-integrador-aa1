@@ -81,8 +81,15 @@ header.cover { border-bottom: 2px solid var(--accent); padding-bottom: 24px; dis
 .priorities li { counter-increment: p; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
 .priorities li::before { content: counter(p); font-family: var(--display); font-weight: 700; color: var(--accent); font-size: 18px; line-height: 1.4; }
 
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 1px solid var(--rule); }
+.tab { font: inherit; font-weight: 600; font-size: 14.5px; padding: 10px 16px; border: 1px solid transparent; border-bottom: 0; border-radius: 8px 8px 0 0; background: transparent; color: var(--muted); cursor: pointer; margin-bottom: -1px; }
+.tab:hover { color: var(--ink); background: var(--accent-soft); }
+.tab.on { color: var(--ink); background: var(--sheet); border-color: var(--rule); border-bottom: 1px solid var(--sheet); box-shadow: inset 0 3px 0 var(--accent); }
+.tab .n { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-left: 4px; }
+.tabpane { display: grid; gap: 40px; }
+.tabpane[hidden] { display: none; }
 section.block { display: grid; gap: 18px; scroll-margin-top: 24px; }
-section.aa2 { margin-top: 28px; padding: 18px 18px 18px 20px; border-left: 4px solid var(--accent); background: var(--sheet); border-radius: 8px; }
+section.aa2 { padding: 18px 18px 18px 20px; border-left: 4px solid var(--accent); background: var(--sheet); border-radius: 8px; }
 section.block > .head { display: grid; gap: 4px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
 .summary { color: var(--muted); }
 
@@ -154,6 +161,11 @@ const all = D.secciones.filter(s => !isAA2(s)).flatMap(s => s.observaciones.map(
 const allAA2 = secAA2.flatMap(s => s.observaciones.map(o => o.severidad));
 const count = sev => all.filter(x => x === sev).length;
 const countAA2 = sev => allAA2.filter(x => x === sev).length;
+const hasAA2 = secAA2.length > 0 || fortAA2.length > 0 || priAA2.length > 0;
+const tabbar = hasAA2 ? `<nav class="tabs" role="tablist" aria-label="Evidencias">
+  <button class="tab on" role="tab" data-tab="aa1" aria-selected="true">Evidencia 1 (AA1)</button>
+  <button class="tab" role="tab" data-tab="aa2" aria-selected="false">Evidencia 2 (AA2) <span class="n">${allAA2.length}</span></button>
+</nav>` : '';
 
 let html = '';
 if (D.ejemplo) html += `<div class="demo">Ejemplo con datos ficticios: así verá cada grupo su revisión.</div>`;
@@ -171,6 +183,8 @@ html += `<header class="cover">
   <ul class="members">${D.integrantes.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
 </header>`;
 
+html += tabbar;
+html += '<div id="tab-aa1" class="tabpane">';
 html += `<section class="block verdict" id="dictamen">
   <div class="head"><div class="eyebrow">Dictamen</div><h2>Estado del informe</h2></div>
   <div class="stamp ${esc(D.dictamen)}">${DICT[D.dictamen] || esc(D.dictamen)}</div>
@@ -250,8 +264,10 @@ const renderSec = (s, si) => {
   </section>`;
 };
 D.secciones.forEach((s, si) => { if (!isAA2(s)) renderSec(s, si); });
+html += '</div>';
 
-if (secAA2.length || fortAA2.length || priAA2.length) {
+if (hasAA2) {
+  html += '<div id="tab-aa2" class="tabpane" hidden>';
   html += `<section class="block aa2" id="aa2">
     <div class="head"><div class="eyebrow">Evidencia 2 · avance en curso</div><h2>Evidencia 2 (AA2): retroalimentación de avance</h2></div>
     <p class="summary">Esta parte corresponde a la Evidencia 2 (capítulos 4, 5 y 6 y elevator pitch). Es retroalimentación formativa para que puedan mejorar mientras avanzan: todavía no es una calificación. Se irá actualizando en este mismo enlace.</p>
@@ -264,6 +280,7 @@ if (secAA2.length || fortAA2.length || priAA2.length) {
     ${priAA2.length ? `<div><h3 style="margin-bottom:8px">Prioridades para la Evidencia 2</h3><ol class="priorities">${priAA2.map(p => `<li><span>${esc(p)}</span></li>`).join('')}</ol></div>` : ''}
   </section>`;
   D.secciones.forEach((s, si) => { if (isAA2(s)) renderSec(s, si); });
+  html += '</div>';
 }
 
 html += `<footer>
@@ -272,16 +289,30 @@ html += `<footer>
 </footer>`;
 document.getElementById('main').innerHTML = html;
 
-const toc = [['dictamen', 'Dictamen', '']]
+const tocAA1 = [['dictamen', 'Dictamen', '']]
   .concat(D.calificacion ? [['nota', 'Calificación', '']] : [])
   .concat([['prioridades', 'Prioridades', '']])
   .concat(D.camino?.length ? [['camino', 'Camino al 20', '']] : [])
   .concat(D.viabilidad?.riesgos?.length ? [['viabilidad', 'Viabilidad', '']] : [])
   .concat([['estructura', 'Estructura', '']])
-  .concat(D.secciones.map((s, i) => [s, i]).filter(([s]) => !isAA2(s)).map(([s, i]) => ['s' + i, s.titulo, s.observaciones.length]))
-  .concat(secAA2.length || fortAA2.length || priAA2.length ? [['aa2', 'Evidencia 2 (AA2)', allAA2.length]] : [])
-  .concat(D.secciones.map((s, i) => [s, i]).filter(([s]) => isAA2(s)).map(([s, i]) => ['s' + i, '↳ ' + s.titulo, s.observaciones.length]));
-document.getElementById('toc').innerHTML = toc.map(([id, t, n]) => `<li><a href="#${id}"><span>${esc(t)}</span><span class="n">${n}</span></a></li>`).join('');
+  .concat(D.secciones.map((s, i) => [s, i]).filter(([s]) => !isAA2(s)).map(([s, i]) => ['s' + i, s.titulo, s.observaciones.length]));
+const tocAA2 = [['aa2', 'Resumen de la AA2', '']]
+  .concat(D.secciones.map((s, i) => [s, i]).filter(([s]) => isAA2(s)).map(([s, i]) => ['s' + i, (s.etiqueta || '').replace(/^AA2\s*·\s*/, '') || s.titulo, s.observaciones.length]));
+const tocHtml = lista => lista.map(([id, t, n]) => `<li><a href="#${id}"><span>${esc(t)}</span><span class="n">${n}</span></a></li>`).join('');
+function showTab(name) {
+  if (!hasAA2) name = 'aa1';
+  const p1 = document.getElementById('tab-aa1'), p2 = document.getElementById('tab-aa2');
+  if (p1) p1.hidden = name !== 'aa1';
+  if (p2) p2.hidden = name !== 'aa2';
+  document.querySelectorAll('.tab').forEach(b => {
+    const on = b.dataset.tab === name;
+    b.classList.toggle('on', on); b.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  document.getElementById('toc').innerHTML = tocHtml(name === 'aa2' ? tocAA2 : tocAA1);
+  try { history.replaceState(null, '', name === 'aa2' ? '#evidencia-2' : location.pathname + location.search); } catch (err) {}
+}
+document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => { showTab(b.dataset.tab); window.scrollTo({ top: 0 }); }));
+showTab(hasAA2 && location.hash === '#evidencia-2' ? 'aa2' : 'aa1');
 
 function updateProgress() {
   const total = document.querySelectorAll('.ob').length;

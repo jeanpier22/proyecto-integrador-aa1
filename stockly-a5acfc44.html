@@ -87,6 +87,7 @@ header.cover { border-bottom: 2px solid var(--accent); padding-bottom: 24px; dis
 .tab.on { color: var(--ink); background: var(--sheet); border-color: var(--rule); border-bottom: 1px solid var(--sheet); box-shadow: inset 0 3px 0 var(--accent); }
 .tab .n { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-left: 4px; }
 .tabpane { display: grid; gap: 40px; }
+.scorebox { display: grid; gap: 10px; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); }
 .tabpane[hidden] { display: none; }
 section.block { display: grid; gap: 18px; scroll-margin-top: 24px; }
 section.aa2 { padding: 18px 18px 18px 20px; border-left: 4px solid var(--accent); background: var(--sheet); border-radius: 8px; }
@@ -246,10 +247,20 @@ html += `<section class="block" id="estructura">
   </table></div>
 </section>`;
 
+const fmt = n => Number(n).toLocaleString('es-PE', { maximumFractionDigits: 2 });
 const renderSec = (s, si) => {
   html += `<section class="block" id="s${si}">
     <div class="head"><div class="eyebrow">${esc(s.etiqueta)}</div><h2>${esc(s.titulo)}</h2></div>
     ${s.resumen ? `<p class="summary">${esc(s.resumen)}</p>` : ''}
+    ${s.puntuacion ? `<div class="scorebox">
+      <div class="eyebrow">Puntuación de referencia del formulario (formativa; no es la calificación de la evidencia)</div>
+      <div class="grade"><span class="big">${fmt(s.puntuacion.criterios.reduce((a, c) => a + Number(c[1]), 0))}</span><span class="of">/ 5</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Dimensión</th><th class="num">Puntos</th></tr></thead>
+        <tbody>${s.puntuacion.criterios.map(c => `<tr><td>${esc(c[0])}</td><td class="num">${fmt(c[1])} / 1</td></tr>`).join('')}</tbody>
+      </table></div>
+      ${s.puntuacion.nota ? `<p class="summary">${esc(s.puntuacion.nota)}</p>` : ''}
+    </div>` : ''}
     <ul class="obs">${s.observaciones.map((o, oi) => {
       const k = si + '-' + oi;
       return `<li class="ob${done[k] ? ' done' : ''}" data-k="${k}">
@@ -261,6 +272,11 @@ const renderSec = (s, si) => {
         <label><input type="checkbox" id="chk-${k}" ${done[k] ? 'checked' : ''}> Marcar como corregido</label>
       </li>`;
     }).join('')}</ul>
+    ${s.preguntas?.length ? `<div><h3 style="margin-bottom:8px">Preguntas que podrían mejorar el formulario</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Pregunta sugerida</th><th>Opciones o escala</th><th>Para qué sirve</th></tr></thead>
+        <tbody>${s.preguntas.map(q => `<tr><td>${esc(q.pregunta)}</td><td>${esc(q.opciones)}</td><td>${esc(q.mide)}</td></tr>`).join('')}</tbody>
+      </table></div></div>` : ''}
   </section>`;
 };
 D.secciones.forEach((s, si) => { if (!isAA2(s)) renderSec(s, si); });

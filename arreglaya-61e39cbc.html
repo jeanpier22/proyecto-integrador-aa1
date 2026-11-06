@@ -82,6 +82,7 @@ header.cover { border-bottom: 2px solid var(--accent); padding-bottom: 24px; dis
 .priorities li::before { content: counter(p); font-family: var(--display); font-weight: 700; color: var(--accent); font-size: 18px; line-height: 1.4; }
 
 section.block { display: grid; gap: 18px; scroll-margin-top: 24px; }
+section.aa2 { margin-top: 28px; padding: 18px 18px 18px 20px; border-left: 4px solid var(--accent); background: var(--sheet); border-radius: 8px; }
 section.block > .head { display: grid; gap: 4px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
 .summary { color: var(--muted); }
 
@@ -143,8 +144,16 @@ const KEY = 'tap-revision-' + (D.id || 'x');
 let done = {};
 try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
 
-const all = D.secciones.flatMap(s => s.observaciones.map(o => o.severidad));
+const isAA2 = s => /^AA2/.test(s.etiqueta || '');
+const secAA2 = D.secciones.filter(isAA2);
+const fortAA1 = (D.fortalezas || []).filter(f => !/^AA2:/.test(f));
+const fortAA2 = (D.fortalezas || []).filter(f => /^AA2:/.test(f)).map(f => f.replace(/^AA2:\s*/, ''));
+const priAA1 = (D.prioridades || []).filter(p => !/^AA2:/.test(p));
+const priAA2 = (D.prioridades || []).filter(p => /^AA2:/.test(p)).map(p => p.replace(/^AA2:\s*/, ''));
+const all = D.secciones.filter(s => !isAA2(s)).flatMap(s => s.observaciones.map(o => o.severidad));
+const allAA2 = secAA2.flatMap(s => s.observaciones.map(o => o.severidad));
 const count = sev => all.filter(x => x === sev).length;
+const countAA2 = sev => allAA2.filter(x => x === sev).length;
 
 let html = '';
 if (D.ejemplo) html += `<div class="demo">Ejemplo con datos ficticios: así verá cada grupo su revisión.</div>`;
@@ -171,7 +180,7 @@ html += `<section class="block verdict" id="dictamen">
     <span class="pill sugerencia">${count('sugerencia')} sugerencias</span>
   </div>
   <p>${esc(D.resumen)}</p>
-  ${D.fortalezas?.length ? `<div><h3 style="margin-bottom:8px">Lo que está bien</h3><ul class="strength">${D.fortalezas.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>` : ''}
+  ${fortAA1.length ? `<div><h3 style="margin-bottom:8px">Lo que está bien</h3><ul class="strength">${fortAA1.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>` : ''}
 </section>`;
 
 if (D.calificacion) {
@@ -193,7 +202,7 @@ if (D.calificacion) {
 
 html += `<section class="block" id="prioridades">
   <div class="head"><div class="eyebrow">Antes de la siguiente entrega</div><h2>Prioridades de corrección</h2></div>
-  <ol class="priorities">${D.prioridades.map(p => `<li><span>${esc(p)}</span></li>`).join('')}</ol>
+  <ol class="priorities">${priAA1.map(p => `<li><span>${esc(p)}</span></li>`).join('')}</ol>
 </section>`;
 
 if (D.camino?.length) html += `<section class="block" id="camino">
@@ -223,7 +232,7 @@ html += `<section class="block" id="estructura">
   </table></div>
 </section>`;
 
-D.secciones.forEach((s, si) => {
+const renderSec = (s, si) => {
   html += `<section class="block" id="s${si}">
     <div class="head"><div class="eyebrow">${esc(s.etiqueta)}</div><h2>${esc(s.titulo)}</h2></div>
     ${s.resumen ? `<p class="summary">${esc(s.resumen)}</p>` : ''}
@@ -239,7 +248,23 @@ D.secciones.forEach((s, si) => {
       </li>`;
     }).join('')}</ul>
   </section>`;
-});
+};
+D.secciones.forEach((s, si) => { if (!isAA2(s)) renderSec(s, si); });
+
+if (secAA2.length || fortAA2.length || priAA2.length) {
+  html += `<section class="block aa2" id="aa2">
+    <div class="head"><div class="eyebrow">Evidencia 2 · avance en curso</div><h2>Evidencia 2 (AA2): retroalimentación de avance</h2></div>
+    <p class="summary">Esta parte corresponde a la Evidencia 2 (capítulos 4, 5 y 6 y elevator pitch). Es retroalimentación formativa para que puedan mejorar mientras avanzan: todavía no es una calificación. Se irá actualizando en este mismo enlace.</p>
+    <div class="counts">
+      <span class="pill critico">${countAA2('critico')} críticas</span>
+      <span class="pill importante">${countAA2('importante')} importantes</span>
+      <span class="pill sugerencia">${countAA2('sugerencia')} sugerencias</span>
+    </div>
+    ${fortAA2.length ? `<div><h3 style="margin-bottom:8px">Lo que está bien</h3><ul class="strength">${fortAA2.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>` : ''}
+    ${priAA2.length ? `<div><h3 style="margin-bottom:8px">Prioridades para la Evidencia 2</h3><ol class="priorities">${priAA2.map(p => `<li><span>${esc(p)}</span></li>`).join('')}</ol></div>` : ''}
+  </section>`;
+  D.secciones.forEach((s, si) => { if (isAA2(s)) renderSec(s, si); });
+}
 
 html += `<footer>
   <span>Revisión elaborada con la rúbrica de la ${esc(D.evidencia)} y la estructura oficial del TAP de CERTUS.</span>
@@ -253,7 +278,9 @@ const toc = [['dictamen', 'Dictamen', '']]
   .concat(D.camino?.length ? [['camino', 'Camino al 20', '']] : [])
   .concat(D.viabilidad?.riesgos?.length ? [['viabilidad', 'Viabilidad', '']] : [])
   .concat([['estructura', 'Estructura', '']])
-  .concat(D.secciones.map((s, i) => ['s' + i, s.titulo, s.observaciones.length]));
+  .concat(D.secciones.map((s, i) => [s, i]).filter(([s]) => !isAA2(s)).map(([s, i]) => ['s' + i, s.titulo, s.observaciones.length]))
+  .concat(secAA2.length || fortAA2.length || priAA2.length ? [['aa2', 'Evidencia 2 (AA2)', allAA2.length]] : [])
+  .concat(D.secciones.map((s, i) => [s, i]).filter(([s]) => isAA2(s)).map(([s, i]) => ['s' + i, '↳ ' + s.titulo, s.observaciones.length]));
 document.getElementById('toc').innerHTML = toc.map(([id, t, n]) => `<li><a href="#${id}"><span>${esc(t)}</span><span class="n">${n}</span></a></li>`).join('');
 
 function updateProgress() {

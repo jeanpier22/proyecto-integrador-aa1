@@ -307,6 +307,11 @@ if (hasAA2) {
         <p class="summary">Esta nota evalúa solo el instrumento (el formulario), porque aún no hay resultados reales. Para subir de nivel: con muestra real y análisis de resultados (n y %) se llega a 3; con mejoras al MVP derivadas de esos datos, a 4. La calificación final de la AA2 la define el docente e incluye los demás criterios y la exposición.</p>
       </div>`;
     })() : ''}
+    ${D.prototipoHtml ? `<div id="prototipo-aa2">
+      <h3 style="margin:18px 0 8px">Prototipo navegable de la plataforma</h3>
+      <p class="summary">Prototipo referencial elaborado a partir del MVP y de las imágenes de referencia de su informe, para visualizar cómo podría verse y usarse su plataforma. Los datos son ficticios; no es el producto final. Pruébenlo aquí o <a href="${esc(D.prototipoHtml)}" target="_blank" rel="noopener noreferrer">ábranlo en pantalla completa</a>.</p>
+      <iframe src="${esc(D.prototipoHtml)}" title="Prototipo de la plataforma" loading="lazy" style="width:100%;height:680px;border:1px solid var(--rule);border-radius:10px;background:#fff"></iframe>
+    </div>` : ''}
     ${D.costosAA2 ? (() => {
       const K = D.costosAA2, S = n => 'S/ ' + Number(n).toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       const f3 = arr => arr.map(v => `<td class="num">${S(v)}</td>`).join('');
@@ -394,6 +399,7 @@ const tocAA1 = [['dictamen', 'Dictamen', '']]
   .concat(D.secciones.map((s, i) => [s, i]).filter(([s]) => !isAA2(s)).map(([s, i]) => ['s' + i, s.titulo, s.observaciones.length]));
 const tocAA2 = [['aa2', 'Resumen de la AA2', '']]
   .concat(D.calificacionAA2 ? [['nota-aa2', 'Calificación parcial', '']] : [])
+  .concat(D.prototipoHtml ? [['prototipo-aa2', 'Prototipo', '']] : [])
   .concat(D.costosAA2 ? [['costos-aa2', 'Costos de nube', '']] : [])
   .concat(D.excelPE ? [['excel-pe', 'Excel de punto de equilibrio', '']] : [])
   .concat(D.secciones.map((s, i) => [s, i]).filter(([s]) => isAA2(s)).map(([s, i]) => ['s' + i, (s.etiqueta || '').replace(/^AA2\s*·\s*/, '') || s.titulo, s.observaciones.length]));

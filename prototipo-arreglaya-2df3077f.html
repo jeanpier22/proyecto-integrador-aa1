@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es"><head>
+<meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ArreglaYa - Prototipo de plataforma interna</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--tx:#1d2733;--mut:#5b6877;--pri:#0b6b8a;--pri2:#e3f2f7;--ok:#1b7f45;--warn:#b26a00;--bad:#b3261e;--bd:#d5dde5}
+@media(prefers-color-scheme:dark){:root{--bg:#12181e;--card:#1b242d;--tx:#e8eef3;--mut:#9fb0c0;--pri:#5cc3e0;--pri2:#16313c;--ok:#5fd08a;--warn:#f0b04f;--bad:#ff8a80;--bd:#33424f}}
+*{box-sizing:border-box}body{margin:0;font:15px/1.45 system-ui,Segoe UI,sans-serif;background:var(--bg);color:var(--tx);padding-bottom:46px}
+.band{position:fixed;bottom:0;left:0;right:0;background:#33404d;color:#fff;font-size:12px;padding:6px 12px;text-align:center;z-index:9}
+header{background:var(--card);border-bottom:1px solid var(--bd);padding:10px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+h1{font-size:18px;margin:0;color:var(--pri)}h2{font-size:16px;margin:0 0 8px}h3{font-size:14px;margin:12px 0 6px}
+label{font-size:13px;color:var(--mut);display:block;margin-top:8px}
+input,select,textarea,button{font:inherit;color:inherit;background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:7px 9px;max-width:100%}
+input,select,textarea{width:100%}button{cursor:pointer;background:var(--pri);color:#fff;border-color:var(--pri)}
+@media(prefers-color-scheme:dark){button{color:#0a1a22}}
+button.sec{background:var(--card);color:var(--tx);border-color:var(--bd)}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--warn);outline-offset:1px}
+nav{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px}nav button{background:var(--card);color:var(--tx);border-color:var(--bd)}nav button[aria-current=page]{background:var(--pri);color:#fff;border-color:var(--pri)}
+@media(prefers-color-scheme:dark){nav button[aria-current=page]{color:#0a1a22}}
+main{padding:0 16px 16px;max-width:1100px;margin:auto}.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;margin-bottom:12px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}.kpis{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.kpi{background:var(--pri2);border-radius:8px;padding:10px}.kpi b{display:block;font-size:22px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:6px;border-bottom:1px solid var(--bd);vertical-align:top}.tw{overflow-x:auto}
+.tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:600;background:var(--pri2)}
+.s-pendiente{color:var(--mut)}.s-camino{color:var(--warn)}.s-curso{color:var(--pri)}.s-terminado{color:var(--ok)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.ph{width:64px;height:48px;border-radius:6px;background:repeating-linear-gradient(45deg,var(--pri2),var(--pri2) 6px,var(--bd) 6px,var(--bd) 12px);display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:var(--mut)}
+.job{border-left:5px solid var(--bd)}.job.camino{border-color:var(--warn)}.job.curso{border-color:var(--pri)}.job.terminado{border-color:var(--ok);opacity:.85}
+.soon{border:2px dashed var(--warn)}.msg{color:var(--ok);font-weight:600;min-height:1.3em}.err{color:var(--bad)}
+.star{font-size:26px;background:none;border:0;color:var(--mut);padding:0 2px}.star.on{color:#e6a800}
+.phone{max-width:340px;border:2px solid var(--bd);border-radius:20px;padding:14px;margin:auto;background:var(--bg)}
+</style></head><body>
+<div class="band" role="note">Prototipo referencial elaborado a partir del MVP del grupo; no es el producto final. Datos ficticios.</div>
+<header><h1>ArreglaYa · Gestión interna</h1>
+<div class="row"><label for="perfil" style="margin:0">Perfil:</label>
+<select id="perfil" style="width:auto"><option value="admin">Administrador</option><option value="tec">Técnico</option></select>
+<span id="quien" class="tag"></span></div></header>
+<nav id="nav" aria-label="Secciones"></nav>
+<main id="main" tabindex="-1"></main>
+<script>
+const ZONAS=["Cayma","Paucarpata","Cerro Colorado"];
+const TARIFA=[{n:"Gasfitería: fuga/grifo",p:80},{n:"Gasfitería: destape de desagüe",p:100},{n:"Electricidad: tomacorriente/interruptor",p:60},{n:"Electricidad: cambio de luminarias",p:70},{n:"Pintura: pared por habitación",p:180},{n:"Reparación menor (puerta, chapa)",p:90}];
+let TEC=[{id:1,n:"Luis Ccori",esp:"Gasfitería"},{id:2,n:"Marco Huamaní",esp:"Electricidad"},{id:3,n:"Rosa Quispe",esp:"Pintura y reparaciones"}];
+let S=[
+{id:1,cli:"María Zegarra",dir:"Av. Ejército 512, Cayma",zona:"Cayma",srv:0,tec:1,orden:1,est:"pendiente",fotos:2,mat:[]},
+{id:2,cli:"Bodega Don Pepe",dir:"Calle Jerusalén 230, Paucarpata",zona:"Paucarpata",srv:2,tec:2,orden:1,est:"pendiente",fotos:1,mat:[]},
+{id:3,cli:"Peluquería Estilo",dir:"Av. Aviación 1450, Cerro Colorado",zona:"Cerro Colorado",srv:4,tec:3,orden:1,est:"pendiente",fotos:3,mat:[]}];
+let PAGOS=[];let cerrado=false;let perfil="admin",vista="panel",tecAct=1,msg="";
+const $=s=>document.querySelector(s),sol=n=>"S/ "+(+n).toFixed(2);
+const EST={pendiente:"Pendiente",camino:"En camino",curso:"En curso",terminado:"Terminado"};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tn=id=>(TEC.find(t=>t.id==id)||{n:"Sin asignar"}).n;
+const precio=s=>TARIFA[s.srv].p+s.mat.reduce((a,m)=>a+m.c*m.q,0)*0;
+const VIS={admin:[["panel","Panel del día"],["solicitud","Registrar solicitud"],["ruta","Asignar técnico y ruta"],["tarifa","Tarifario"],["pagos","Pagos y comisión"],["cierre","Cierre del día"],["cliente","Cliente (etapa 2)"]],
+tec:[["mis","Mis servicios"],["mat","Materiales usados"],["cliente","Cliente (etapa 2)"]]};
+function nav(){const v=VIS[perfil];if(!v.some(x=>x[0]==vista))vista=v[0][0];
+$("#nav").innerHTML=v.map(x=>`<button data-v="${x[0]}" ${x[0]==vista?'aria-current="page"':''}>${x[1]}${x[0]=="cliente"?" · próximamente":""}</button>`).join("");
+$("#quien").textContent=perfil=="admin"?"Sesión: Administrador":"Sesión: "+tn(tecAct);}
+function badge(e){return `<span class="tag s-${e}">${EST[e]}</span>`}
+function V_panel(){const t=S.length,f=S.filter(s=>s.est=="terminado").length,c=S.filter(s=>s.est=="camino"||s.est=="curso").length;
+return `<div class="kpis"><div class="kpi"><b>${t}</b>Servicios del día</div><div class="kpi"><b>${c}</b>En ejecución</div><div class="kpi"><b>${f}</b>Terminados</div><div class="kpi"><b>${sol(PAGOS.reduce((a,p)=>a+p.m,0))}</b>Cobrado hoy</div></div>
+<div class="card" style="margin-top:12px"><h2>Servicios del día</h2><div class="tw"><table><caption class="sr" style="text-align:left;color:var(--mut)">Lunes, jornada actual (datos ficticios)</caption><tr><th>#</th><th>Cliente</th><th>Zona</th><th>Servicio</th><th>Técnico</th><th>Estado</th></tr>
+${S.map(s=>`<tr><td>${s.id}</td><td>${esc(s.cli)}<br><small>${esc(s.dir)}</small></td><td>${s.zona}</td><td>${TARIFA[s.srv].n}</td><td>${tn(s.tec)}</td><td>${badge(s.est)}</td></tr>`).join("")}</table></div></div>`}
+function V_solicitud(){return `<div class="card"><h2>Registrar solicitud entrante (llegó por WhatsApp)</h2>
+<form id="fSol"><div class="grid"><div><label for="c">Cliente</label><input id="c" required placeholder="Nombre o negocio">
+<label for="d">Dirección</label><input id="d" required placeholder="Calle y número">
+<label for="z">Zona</label><select id="z">${ZONAS.map(z=>`<option>${z}</option>`).join("")}</select></div>
+<div><label for="sv">Tipo de servicio</label><select id="sv">${TARIFA.map((t,i)=>`<option value="${i}">${t.n} (${sol(t.p)})</option>`).join("")}</select>
+<label for="nf">Fotos recibidas por WhatsApp (simuladas)</label><select id="nf"><option>0</option><option selected>1</option><option>2</option><option>3</option></select>
+<label for="nt">Detalle del problema</label><textarea id="nt" rows="2"></textarea></div></div>
+<p><button>Registrar solicitud</button></p><p class="msg" role="status">${msg}</p></form></div>`}
+function V_ruta(){return `<div class="card"><h2>Asignar técnico y ruta de la movilidad</h2><p>Orden de recorrido por zona. Cambie técnico u orden de visita.</p>
+${ZONAS.map(z=>{const l=S.filter(s=>s.zona==z).sort((a,b)=>a.orden-b.orden);return `<h3>Zona ${z} (${l.length})</h3>`+(l.length?`<div class="tw"><table><tr><th>Orden</th><th>Cliente</th><th>Técnico</th></tr>${l.map(s=>`<tr><td><input type="number" min="1" max="9" value="${s.orden}" data-o="${s.id}" aria-label="Orden de ${esc(s.cli)}" style="width:70px"></td><td>${esc(s.cli)}</td><td><select data-t="${s.id}" aria-label="Técnico de ${esc(s.cli)}">${TEC.map(t=>`<option value="${t.id}" ${t.id==s.tec?"selected":""}>${t.n} (${t.esp})</option>`).join("")}</select></td></tr>`).join("")}</table></div>`:"<p>Sin servicios.</p>")}).join("")}
+<h3>Recorrido propuesto</h3><ol>${[...S].sort((a,b)=>ZONAS.indexOf(a.zona)-ZONAS.indexOf(b.zona)||a.orden-b.orden).map(s=>`<li>${s.zona}: ${esc(s.cli)} (${tn(s.tec)})</li>`).join("")}</ol></div>`}
+function V_tarifa(){return `<div class="card"><h2>Tarifario referencial por servicio</h2><div class="tw"><table><tr><th>Servicio</th><th>Precio (S/)</th></tr>${TARIFA.map((t,i)=>`<tr><td>${t.n}</td><td><input type="number" min="0" value="${t.p}" data-p="${i}" aria-label="Precio de ${t.n}" style="width:100px"></td></tr>`).join("")}</table></div><p><small>Precios ficticios; el tarifario real se define con cotizaciones. Comisión de ArreglaYa: 20 %.</small></p></div>`}
+function V_pagos(){const t=S.filter(s=>s.est=="terminado"&&!PAGOS.some(p=>p.s==s.id));
+return `<div class="card"><h2>Registrar pago (Yape, Plin o efectivo)</h2><form id="fPag"><div class="grid"><div><label for="ps">Servicio terminado</label><select id="ps">${t.map(s=>`<option value="${s.id}">#${s.id} ${esc(s.cli)} - ${sol(TARIFA[s.srv].p)}</option>`).join("")||"<option value=''>No hay servicios terminados sin pago</option>"}</select></div>
+<div><label for="pm">Medio de pago</label><select id="pm"><option>Yape</option><option>Plin</option><option>Efectivo</option></select></div></div><p><button ${t.length?"":"disabled"}>Registrar pago</button></p><p class="msg" role="status">${msg}</p></form>
+<p><small>Pago manual: el administrador lo confirma al ver el comprobante del cliente.</small></p></div>
+<div class="card"><h2>Pagos del día</h2><div class="tw"><table><tr><th>Servicio</th><th>Medio</th><th>Monto</th><th>Comisión 20 %</th><th>Técnico (80 %)</th></tr>${PAGOS.map(p=>`<tr><td>#${p.s}</td><td>${p.med}</td><td>${sol(p.m)}</td><td>${sol(p.m*.2)}</td><td>${sol(p.m*.8)}</td></tr>`).join("")||"<tr><td colspan=5>Sin pagos registrados.</td></tr>"}</table></div></div>`}
+function V_cierre(){const m=PAGOS.reduce((a,p)=>a+p.m,0),pend=S.filter(s=>s.est!="terminado"),sinPago=S.filter(s=>s.est=="terminado"&&!PAGOS.some(p=>p.s==s.id));
+const por={};PAGOS.forEach(p=>por[p.med]=(por[p.med]||0)+p.m);
+return `<div class="card"><h2>Cierre del día</h2><div class="kpis"><div class="kpi"><b>${sol(m)}</b>Total cobrado</div><div class="kpi"><b>${sol(m*.2)}</b>Comisión ArreglaYa</div><div class="kpi"><b>${sol(m*.8)}</b>A pagar a técnicos</div></div>
+<h3>Por medio de pago</h3><p>${Object.entries(por).map(([k,v])=>k+": "+sol(v)).join(" · ")||"Sin pagos."}</p>
+<h3>Observaciones</h3><ul><li>Servicios sin terminar (se reprograman y se avisa al cliente): ${pend.length}</li><li>Terminados sin pago registrado: ${sinPago.length}</li></ul>
+<button id="bCierre" ${cerrado?"disabled":""}>${cerrado?"Día cerrado":"Cerrar el día"}</button><p class="msg" role="status">${cerrado?"Día cerrado. Resumen guardado (simulado).":""}</p></div>`}
+function V_mis(){const l=S.filter(s=>s.tec==tecAct).sort((a,b)=>ZONAS.indexOf(a.zona)-ZONAS.indexOf(b.zona)||a.orden-b.orden);
+return `<div class="card"><label for="tsel">Simular ingreso como</label><select id="tsel">${TEC.map(t=>`<option value="${t.id}" ${t.id==tecAct?"selected":""}>${t.n}</option>`).join("")}</select></div>
+<h2>Mis servicios asignados</h2>${l.map(s=>`<div class="card job ${s.est}"><div class="row" style="justify-content:space-between"><b>${esc(s.cli)}</b>${badge(s.est)}</div><div>${esc(s.dir)}</div><div>${TARIFA[s.srv].n} · ${s.zona}</div>
+<div class="row" style="margin:6px 0">${Array.from({length:s.fotos},(_, i)=>`<span class="ph" role="img" aria-label="Foto simulada ${i+1}">foto ${i+1}</span>`).join("")}</div>
+<div class="row"><button data-e="camino" data-id="${s.id}" ${s.est!="pendiente"?"disabled":""}>En camino</button><button data-e="curso" data-id="${s.id}" ${s.est!="camino"?"disabled":""}>En curso</button><button data-e="terminado" data-id="${s.id}" ${s.est!="curso"?"disabled":""}>Terminado</button></div></div>`).join("")||"<p>No tiene servicios asignados.</p>"}`}
+function V_mat(){const l=S.filter(s=>s.tec==tecAct);return `<div class="card"><h2>Registrar materiales usados</h2><form id="fMat"><div class="grid"><div><label for="ms">Servicio</label><select id="ms">${l.map(s=>`<option value="${s.id}">#${s.id} ${esc(s.cli)}</option>`).join("")}</select>
+<label for="mn">Material</label><input id="mn" required placeholder="Ej.: cinta teflón"></div><div><label for="mq">Cantidad</label><input id="mq" type="number" min="1" value="1"><label for="mc">Costo unitario (S/)</label><input id="mc" type="number" min="0" step="0.1" value="5"></div></div><p><button>Agregar material</button></p><p class="msg" role="status">${msg}</p></form>
+<div class="tw"><table><tr><th>Servicio</th><th>Material</th><th>Cant.</th><th>Costo</th></tr>${l.flatMap(s=>s.mat.map(m=>`<tr><td>#${s.id}</td><td>${esc(m.n)}</td><td>${m.q}</td><td>${sol(m.c*m.q)}</td></tr>`)).join("")||"<tr><td colspan=4>Sin materiales registrados.</td></tr>"}</table></div></div>`}
+let rate=0;
+function V_cliente(){return `<div class="card soon"><span class="tag" style="background:var(--warn);color:#fff">Próximamente · Etapa 2</span><h2>Vista del cliente</h2><p>En la primera etapa los clientes piden por WhatsApp. Esta pantalla muestra cómo sería el módulo posterior (no operativo).</p>
+<div class="phone"><b>Mi solicitud</b><p>Servicio: Gasfitería: fuga/grifo<br>Técnico: Luis Ccori<br>Estado: ${badge("camino")}</p><b>Califica la atención</b><div role="group" aria-label="Calificación">${[1,2,3,4,5].map(i=>`<button class="star ${i<=rate?"on":""}" data-r="${i}" aria-label="${i} estrellas">★</button>`).join("")}</div>
+<p class="msg" role="status">${rate?"Gracias, calificación de "+rate+"/5 (simulada).":""}</p></div></div>`}
+const VW={panel:V_panel,solicitud:V_solicitud,ruta:V_ruta,tarifa:V_tarifa,pagos:V_pagos,cierre:V_cierre,mis:V_mis,mat:V_mat,cliente:V_cliente};
+function render(){nav();$("#main").innerHTML=VW[vista]();msg="";}
+$("#perfil").onchange=e=>{perfil=e.target.value;vista=VIS[perfil][0][0];render()};
+$("#nav").onclick=e=>{const b=e.target.closest("button");if(b){vista=b.dataset.v;msg="";render()}};
+$("#main").addEventListener("submit",e=>{e.preventDefault();const id=e.target.id;
+if(id=="fSol"){const n=S.length?Math.max(...S.map(s=>s.id))+1:1,z=$("#z").value;S.push({id:n,cli:$("#c").value,dir:$("#d").value+", "+z,zona:z,srv:+$("#sv").value,tec:TEC[0].id,orden:S.filter(s=>s.zona==z).length+1,est:"pendiente",fotos:+$("#nf").value,mat:[]});vista="solicitud";render();$("#main .msg").textContent="Solicitud #"+n+" registrada. Asígnele técnico en la pestaña de ruta.";}
+if(id=="fPag"){const s=S.find(x=>x.id==$("#ps").value);if(!s)return;PAGOS.push({s:s.id,med:$("#pm").value,m:TARIFA[s.srv].p});render();$("#main .msg").textContent="Pago registrado. Comisión 20 % calculada.";}
+if(id=="fMat"){const s=S.find(x=>x.id==$("#ms").value);if(!s)return;s.mat.push({n:$("#mn").value,q:+$("#mq").value,c:+$("#mc").value});render();$("#main .msg").textContent="Material agregado.";}});
+$("#main").addEventListener("change",e=>{const t=e.target;
+if(t.dataset.t)S.find(s=>s.id==t.dataset.t).tec=+t.value;
+if(t.dataset.o){S.find(s=>s.id==t.dataset.o).orden=+t.value;render();}
+if(t.dataset.p)TARIFA[t.dataset.p].p=Math.max(0,+t.value);
+if(t.id=="tsel"){tecAct=+t.value;render();}});
+$("#main").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+if(b.dataset.e){S.find(s=>s.id==b.dataset.id).est=b.dataset.e;render();}
+if(b.id=="bCierre"){cerrado=true;render();}
+if(b.dataset.r){rate=+b.dataset.r;render();}});
+render();
+</script></body></html>

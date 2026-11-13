@@ -377,13 +377,32 @@ if (hasAA2) {
           <li><span>Si lo corrigen, suban la nueva versión con el mismo nombre y el mismo enlace.</span></li>
         </ol>`;
       if (X.estado !== 'calificado' || X.logro == null) {
-        return entrega + `<p class="summary">Estado: <b>pendiente de entrega</b>. Cuando lo reciban, aquí aparecerá su porcentaje de logro (0 a 100 %) con la retroalimentación por criterio.</p></div>`;
+        const lista = [
+          'Las 7 piezas del cap. 6, parecidas al modelo del docente: estructura de inversión, costos y gastos, presupuesto de ingresos, presupuesto de egresos, flujo de caja mensual del año 1, flujo económico a 3 años e indicadores (VAN, TIR, B/C, recuperación).',
+          'Precio y volumen iguales a los de su informe y su validación (cap. 5); si usan otro precio, explicar por qué.',
+          'Todos los costos del MVP, incluidos indirectos, depreciación, mantenimiento y comisiones de pago, clasificados en fijos y variables, con proveedor y fuente.',
+          'Hoja «Cotizaciones» con al menos 2 proveedores por rubro (captura o PDF, con fecha y vigencia).',
+          'Punto de equilibrio en unidades y en soles, con fórmula (costos fijos ÷ margen de contribución), margen de seguridad y el mes en que se alcanza.',
+          'Gráfico del punto de equilibrio donde el eje de unidades cubra el equilibrio y se vea el cruce de ingresos y costos totales, con ejes y series rotulados.',
+          'Flujo mensual del año 1 con saldo acumulado y el mes de saldo más bajo (capital necesario); sin contar dos veces el capital de trabajo.',
+          'Horizonte de 3 años (no 5), con la tasa de descuento (COK) sustentada.',
+          'Escenarios pesimista, base y optimista (ventas −20 % o +20 %, costos +10 %) con una conclusión de viabilidad con números.',
+          'Fórmulas vivas (no números pegados), sin errores (#REF!, #DIV/0!, #VALUE!), sin rótulos ni hojas de otros proyectos, sin hojas vacías o duplicadas.',
+          'Formato .xlsx, nombre «AA2_Cap6_Excel_Punto de equilibrio_Grupo X» y enlace de Drive con «Cualquier persona con el enlace → Lector».'
+        ];
+        return entrega + `<p class="summary">Estado: <b>pendiente de entrega</b>. Cuando lo reciban, aquí aparecerá su nota sobre 20 (y su porcentaje de logro) con la retroalimentación por criterio.</p>
+        <h4 style="margin:12px 0 6px">Qué debe contener su Excel (revisión previa)</h4><ol class="priorities">${lista.map(m => `<li><span>${esc(m)}</span></li>`).join('')}</ol></div>`;
       }
-      return entrega + `<div class="grade"><span class="big">${Number(X.logro)} %</span><span class="of">de logro · ${NIV(Number(X.logro))}</span></div>
+      const notaX = (Number(X.logro) * 0.2).toFixed(1).replace('.0', '');
+      return entrega + `<div class="grade"><span class="big">${notaX} / 20</span><span class="of">nota del Excel · ${Number(X.logro)} % de logro · ${NIV(Number(X.logro))}</span></div>
         <div class="table-wrap"><table>
           <thead><tr><th>Criterio</th><th class="num">Puntaje</th><th>Retroalimentación</th></tr></thead>
           <tbody>${X.criterios.map(c => `<tr><td>${esc(c.nombre)}</td><td class="num">${Number(c.puntaje)} / ${Number(c.peso)}</td><td>${esc(c.comentario || '')}</td></tr>`).join('')}</tbody>
         </table></div>
+        ${X.paridad?.length ? `<h4 style="margin:12px 0 6px">Comparación con el modelo del docente</h4><div class="table-wrap"><table>
+          <thead><tr><th>Pieza del modelo</th><th>Hoja del grupo</th><th>Estado</th><th>Nota</th></tr></thead>
+          <tbody>${X.paridad.map(p => `<tr><td>${esc(p.pieza)}</td><td>${esc(p.hoja || '—')}</td><td>${esc(p.estado || '')}</td><td>${esc(p.nota || '')}</td></tr>`).join('')}</tbody>
+        </table></div>` : ''}
         ${X.fortalezas?.length ? `<h4 style="margin:12px 0 6px">Lo que está bien</h4><ul class="strength">${X.fortalezas.map(f => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}
         ${X.mejoras?.length ? `<h4 style="margin:12px 0 6px">Para mejorar</h4><ol class="priorities">${X.mejoras.map(m => `<li><span>${esc(m)}</span></li>`).join('')}</ol>` : ''}
         <p class="summary">Indicador preliminar elaborado con la rúbrica del Excel de punto de equilibrio. La calificación final de la AA2 la define el docente.${X.revisado ? ' Revisión del ' + esc(X.revisado) + '.' : ''}</p></div>`;
